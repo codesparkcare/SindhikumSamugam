@@ -1,0 +1,219 @@
+<!-- Cyber-SaaS Executive Admin Dashboard View -->
+<div class="container-fluid py-4 px-4" style="background: #f8fafc; min-height: 100vh;">
+
+    <!-- 4 High-Impact Metric Cards Row (Cyber-SaaS Theme) -->
+    <div class="row g-4 mb-4">
+        
+        <!-- Card 1: Total Applications (Electric Sapphire Indigo) -->
+        <div class="col-xl-3 col-md-6">
+            <div class="card border-0 shadow-sm h-100" style="border-radius: 24px; background: #ffffff; border: 1px solid #e2e8f0; position: relative; overflow: hidden; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 20px 40px -10px rgba(99, 102, 241, 0.25)';" onmouseout="this.style.transform='none'; this.style.boxShadow='0 1px 3px rgba(0,0,0,0.05)';">
+                <!-- Background Accent Glow Circle -->
+                <div style="position: absolute; top: -30px; right: -30px; width: 110px; height: 110px; background: rgba(99, 102, 241, 0.12); border-radius: 50%; filter: blur(25px); pointer-events: none;"></div>
+                
+                <div class="card-body p-4">
+                    <div class="d-flex justify-content-between align-items-center gap-2">
+                        <div style="min-width: 0;">
+                            <span class="text-uppercase fw-extrabold text-muted text-truncate d-block" style="font-size: 0.72rem; letter-spacing: 0.08em; color: #64748b;">Total Applications</span>
+                            <h2 class="fw-extrabold mb-0 mt-1" style="color: #0f172a; font-size: 1.85rem; letter-spacing: -0.02em;"><?php echo isset($stats['total']) ? number_format($stats['total']) : '0'; ?></h2>
+                        </div>
+                        <div style="width: 48px; height: 48px; min-width: 48px; flex-shrink: 0; border-radius: 16px; background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%); color: #ffffff; display: flex; align-items: center; justify-content: center; font-size: 1.25rem; box-shadow: 0 10px 20px rgba(99, 102, 241, 0.35);">
+                            <i class="fa-solid fa-file-lines"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 2: Scholarships Approved (Vibrant Emerald Green) -->
+        <div class="col-xl-3 col-md-6">
+            <div class="card border-0 shadow-sm h-100" style="border-radius: 24px; background: #ffffff; border: 1px solid #e2e8f0; position: relative; overflow: hidden; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 20px 40px -10px rgba(16, 185, 129, 0.25)';" onmouseout="this.style.transform='none'; this.style.boxShadow='0 1px 3px rgba(0,0,0,0.05)';">
+                <!-- Background Accent Glow Circle -->
+                <div style="position: absolute; top: -30px; right: -30px; width: 110px; height: 110px; background: rgba(16, 185, 129, 0.12); border-radius: 50%; filter: blur(25px); pointer-events: none;"></div>
+
+                <div class="card-body p-4">
+                    <div class="d-flex justify-content-between align-items-center gap-2">
+                        <div style="min-width: 0;">
+                            <span class="text-uppercase fw-extrabold text-muted text-truncate d-block" style="font-size: 0.72rem; letter-spacing: 0.08em; color: #64748b;">Approved Scholarships</span>
+                            <h2 class="fw-extrabold mb-0 mt-1" style="color: #059669; font-size: 1.85rem; letter-spacing: -0.02em;"><?php echo isset($stats['approved']) ? number_format($stats['approved']) : '0'; ?></h2>
+                        </div>
+                        <div style="width: 48px; height: 48px; min-width: 48px; flex-shrink: 0; border-radius: 16px; background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: #ffffff; display: flex; align-items: center; justify-content: center; font-size: 1.25rem; box-shadow: 0 10px 20px rgba(16, 185, 129, 0.35);">
+                            <i class="fa-solid fa-circle-check"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 3: Pending Verification (Glowing Warm Amber) -->
+        <div class="col-xl-3 col-md-6">
+            <div class="card border-0 shadow-sm h-100" style="border-radius: 24px; background: #ffffff; border: 1px solid #e2e8f0; position: relative; overflow: hidden; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 20px 40px -10px rgba(245, 158, 11, 0.25)';" onmouseout="this.style.transform='none'; this.style.boxShadow='0 1px 3px rgba(0,0,0,0.05)';">
+                <!-- Background Accent Glow Circle -->
+                <div style="position: absolute; top: -30px; right: -30px; width: 110px; height: 110px; background: rgba(245, 158, 11, 0.12); border-radius: 50%; filter: blur(25px); pointer-events: none;"></div>
+
+                <div class="card-body p-4">
+                    <div class="d-flex justify-content-between align-items-center gap-2">
+                        <div style="min-width: 0;">
+                            <span class="text-uppercase fw-extrabold text-muted text-truncate d-block" style="font-size: 0.72rem; letter-spacing: 0.08em; color: #64748b;">Pending Verification</span>
+                            <h2 class="fw-extrabold mb-0 mt-1" style="color: #d97706; font-size: 1.85rem; letter-spacing: -0.02em;"><?php echo isset($stats['pending']) ? number_format($stats['pending']) : '0'; ?></h2>
+                        </div>
+                        <div style="width: 48px; height: 48px; min-width: 48px; flex-shrink: 0; border-radius: 16px; background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: #ffffff; display: flex; align-items: center; justify-content: center; font-size: 1.25rem; box-shadow: 0 10px 20px rgba(245, 158, 11, 0.35);">
+                            <i class="fa-solid fa-clock-rotate-left"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 4: Fees Paid (Royal Violet Magenta) -->
+        <div class="col-xl-3 col-md-6">
+            <div class="card border-0 shadow-sm h-100" style="border-radius: 24px; background: #ffffff; border: 1px solid #e2e8f0; position: relative; overflow: hidden; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 20px 40px -10px rgba(139, 92, 246, 0.25)';" onmouseout="this.style.transform='none'; this.style.boxShadow='0 1px 3px rgba(0,0,0,0.05)';">
+                <!-- Background Accent Glow Circle -->
+                <div style="position: absolute; top: -30px; right: -30px; width: 110px; height: 110px; background: rgba(139, 92, 246, 0.12); border-radius: 50%; filter: blur(25px); pointer-events: none;"></div>
+
+                <div class="card-body p-3.5 px-4">
+                    <div class="d-flex justify-content-between align-items-center gap-3">
+                        <div style="min-width: 0;">
+                            <span class="text-uppercase fw-extrabold text-muted text-truncate d-block" style="font-size: 0.72rem; letter-spacing: 0.08em; color: #64748b;">Fees Paid</span>
+                            <h2 class="fw-extrabold mb-0 mt-1 text-nowrap" style="color: #7c3aed; font-size: 1.45rem; letter-spacing: -0.02em;">₹<?php echo isset($stats['fees_paid']) ? number_format($stats['fees_paid']) : '0'; ?></h2>
+                        </div>
+                        <div style="width: 44px; height: 44px; min-width: 44px; flex-shrink: 0; border-radius: 14px; background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%); color: #ffffff; display: flex; align-items: center; justify-content: center; font-size: 1.15rem; box-shadow: 0 8px 18px rgba(139, 92, 246, 0.35);">
+                            <i class="fa-solid fa-indian-rupee-sign"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Monthly Scholarship Growth Analytics Curve Chart (Full Width) -->
+    <div class="row g-4 mb-4">
+        <div class="col-lg-12">
+            <div class="card border-0 shadow-sm" style="border-radius: 26px; background: #ffffff; border: 1px solid #e2e8f0; position: relative; overflow: hidden;">
+                
+                <div class="card-header bg-transparent border-0 p-4 pb-0 d-flex flex-wrap justify-content-between align-items-center gap-3">
+                    <div>
+                        <div class="d-inline-flex align-items-center gap-2 mb-1">
+                            <span style="width: 8px; height: 8px; background: #6366f1; border-radius: 50%; display: inline-block; box-shadow: 0 0 10px #6366f1;"></span>
+                            <span class="text-uppercase fw-extrabold text-muted" style="font-size: 0.72rem; letter-spacing: 0.1em;">Disbursement Trends & Growth Analytics</span>
+                        </div>
+                        <h4 class="fw-extrabold mb-0" style="color: #0f172a; letter-spacing: -0.01em;">
+                            <i class="fa-solid fa-chart-area me-2" style="color: #6366f1;"></i> Monthly Scholarship Growth (2026)
+                        </h4>
+                    </div>
+                    <div class="d-flex align-items-center gap-3">
+                        <span class="badge px-3 py-2" style="background: #e0e7ff; color: #4338ca; border-radius: 50px; font-weight: 700; font-size: 0.82rem;">
+                            <i class="fa-solid fa-circle me-1.5" style="font-size: 0.55rem; color: #6366f1;"></i> Live Real-Time Analytics
+                        </span>
+                    </div>
+                </div>
+
+                <div class="card-body p-4">
+                    <!-- SVG Interactive Curve Chart -->
+                    <div style="position: relative; width: 100%; height: 290px;">
+                        <svg viewBox="0 0 600 180" style="width: 100%; height: 100%; overflow: visible;">
+                            <defs>
+                                <linearGradient id="indigoGrad" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="0%" stop-color="#6366f1" stop-opacity="0.45"/>
+                                    <stop offset="100%" stop-color="#6366f1" stop-opacity="0.0"/>
+                                </linearGradient>
+                                <linearGradient id="emeraldGrad" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="0%" stop-color="#10b981" stop-opacity="0.32"/>
+                                    <stop offset="100%" stop-color="#10b981" stop-opacity="0.0"/>
+                                </linearGradient>
+                            </defs>
+                            
+                            <!-- Grid horizontal dotted lines -->
+                            <line x1="0" y1="35" x2="600" y2="35" stroke="#f1f5f9" stroke-width="1.5" stroke-dasharray="5"/>
+                            <line x1="0" y1="75" x2="600" y2="75" stroke="#f1f5f9" stroke-width="1.5" stroke-dasharray="5"/>
+                            <line x1="0" y1="115" x2="600" y2="115" stroke="#f1f5f9" stroke-width="1.5" stroke-dasharray="5"/>
+                            <line x1="0" y1="155" x2="600" y2="155" stroke="#e2e8f0" stroke-width="1.5"/>
+
+                            <!-- Area 1 (Applications) -->
+                            <path d="M0,135 Q75,105 150,85 T300,45 T450,28 T600,12 L600,155 L0,155 Z" fill="url(#indigoGrad)"/>
+                            <!-- Line 1 -->
+                            <path d="M0,135 Q75,105 150,85 T300,45 T450,28 T600,12" fill="none" stroke="#6366f1" stroke-width="4.5" stroke-linecap="round"/>
+
+                            <!-- Area 2 (Direct Aid Disbursed) -->
+                            <path d="M0,150 Q75,130 150,110 T300,80 T450,60 T600,40 L600,155 L0,155 Z" fill="url(#emeraldGrad)"/>
+                            <!-- Line 2 -->
+                            <path d="M0,150 Q75,130 150,110 T300,80 T450,60 T600,40" fill="none" stroke="#10b981" stroke-width="3.5" stroke-dasharray="7,4" stroke-linecap="round"/>
+
+                            <!-- Glowing Interactive Data Nodes -->
+                            <circle cx="150" cy="85" r="5.5" fill="#6366f1" stroke="#ffffff" stroke-width="2.5"/>
+                            <circle cx="300" cy="45" r="5.5" fill="#6366f1" stroke="#ffffff" stroke-width="2.5"/>
+                            <circle cx="450" cy="28" r="5.5" fill="#6366f1" stroke="#ffffff" stroke-width="2.5"/>
+                            <circle cx="600" cy="12" r="6.5" fill="#10b981" stroke="#ffffff" stroke-width="2.5"/>
+                        </svg>
+                    </div>
+
+                    <!-- Month Timeline Labels -->
+                    <div class="d-flex justify-content-between text-muted mt-3 fw-bold" style="font-size: 0.82rem; color: #64748b;">
+                        <span>Jan 2026</span>
+                        <span>Feb 2026</span>
+                        <span>Mar 2026</span>
+                        <span>Apr 2026</span>
+                        <span>May 2026</span>
+                        <span>Jun 2026</span>
+                        <span>Jul 2026</span>
+                        <span>Aug 2026</span>
+                    </div>
+
+                    <!-- Chart Legend Capsules -->
+                    <div class="d-flex flex-wrap align-items-center gap-4 mt-4 pt-3 border-top justify-content-center" style="font-size: 0.9rem;">
+                        <div class="d-flex align-items-center gap-2.5 px-3 py-1.5 rounded-pill" style="background: #e0e7ff; color: #3730a3; font-weight: 700;">
+                            <span style="width: 12px; height: 12px; background: #6366f1; border-radius: 50%; display: inline-block;"></span>
+                            <span>Applications Received</span>
+                        </div>
+                        <div class="d-flex align-items-center gap-2.5 px-3 py-1.5 rounded-pill" style="background: #d1fae5; color: #065f46; font-weight: 700;">
+                            <span style="width: 12px; height: 12px; background: #10b981; border-radius: 50%; display: inline-block;"></span>
+                            <span>Direct Aid Disbursed</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dynamic Website Hero Display Stats Settings Card (Placed at bottom of Dashboard) -->
+    <div class="card border-0 shadow-sm mb-4" style="border-radius: 22px; background: #ffffff; border: 1px solid #e2e8f0; position: relative; overflow: hidden;">
+        <div class="card-body p-4">
+            <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-3">
+                <div>
+                    <h5 class="fw-bold mb-1" style="color: #0f172a; font-size: 1.1rem; display: flex; align-items: center; gap: 0.5rem;">
+                        <i class="fa-solid fa-sliders text-primary"></i> Dynamic Website Hero Display Stats
+                    </h5>
+                    <p class="text-muted mb-0" style="font-size: 0.88rem;">
+                        Update the live stats shown on the public website hero card (<strong>Currently Waiting</strong> & <strong>Need This Month</strong>).
+                    </p>
+                </div>
+                <span class="badge px-3 py-1.5" style="background: #e0f2fe; color: #0369a1; border-radius: 50px; font-weight: 700; font-size: 0.8rem;">
+                    <i class="fa-solid fa-database me-1"></i> Live Database Connected
+                </span>
+            </div>
+
+            <form action="<?php echo base_url('admin/update_site_settings'); ?>" method="POST" class="row g-3 align-items-end">
+                <div class="col-md-5">
+                    <label class="form-label fw-bold text-secondary" style="font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.05em;">Currently Waiting Students</label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-light border-end-0 text-muted" style="border-radius: 12px 0 0 12px;"><i class="fa-solid fa-users"></i></span>
+                        <input type="number" name="currently_waiting_students" class="form-control border-start-0" placeholder="e.g. 128" value="<?php echo isset($stats['custom_pending']) ? htmlspecialchars($stats['custom_pending']) : htmlspecialchars($stats['pending']); ?>" style="border-radius: 0 12px 12px 0; font-weight: 600;">
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <label class="form-label fw-bold text-secondary" style="font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.05em;">Need This Month Amount (₹)</label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-light border-end-0 text-muted" style="border-radius: 12px 0 0 12px;"><i class="fa-solid fa-indian-rupee-sign"></i></span>
+                        <input type="number" step="0.01" name="need_this_month_amount" class="form-control border-start-0" placeholder="e.g. 75000" value="<?php echo isset($stats['custom_need']) ? htmlspecialchars($stats['custom_need']) : htmlspecialchars($stats['need_this_month']); ?>" style="border-radius: 0 12px 12px 0; font-weight: 600;">
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <button type="submit" class="btn btn-primary w-100 fw-bold py-2" style="border-radius: 12px; background: linear-gradient(135deg, #6366f1, #4f46e5); border: none; box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);">
+                        <i class="fa-solid fa-floppy-disk me-1.5"></i> Save Stats
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
