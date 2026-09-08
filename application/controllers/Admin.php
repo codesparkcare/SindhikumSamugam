@@ -8,6 +8,7 @@ class Admin extends CI_Controller {
 		$this->load->model('Hostel_model');
 		$this->load->model('Staff_model');
 		$this->load->model('Student_model');
+		$this->load->model('Enquiry_model');
 	}
 
 	private function _check_auth() {
@@ -53,6 +54,8 @@ class Admin extends CI_Controller {
 		$this->_check_auth();
 		$data['stats'] = $this->Student_model->get_stats();
 		$data['applications'] = $this->Student_model->get_all_applications();
+		$data['enquiry_stats'] = $this->Enquiry_model->get_stats();
+		$data['recent_enquiries'] = $this->Enquiry_model->get_all_enquiries('All', 5);
 
 		$this->load->view('admin/layout/header');
 		$this->load->view('admin/layout/sidebar');
@@ -375,5 +378,63 @@ class Admin extends CI_Controller {
 			$debugger = $this->email->print_debugger(array('headers'));
 			echo json_encode(array('status' => 'error', 'message' => 'Failed to send email. Check SMTP server details.', 'debug' => strip_tags($debugger)));
 		}
+	}
+
+	// ---------------------------------------------------------
+	// CONTACT FORM ENQUIRIES MANAGEMENT
+	// ---------------------------------------------------------
+
+	public function contact_enquiries()
+	{
+		$this->_check_auth();
+		$status = $this->input->get('status') ? $this->input->get('status') : null;
+		$data['stats'] = $this->Enquiry_model->get_stats();
+		$data['enquiries'] = $this->Enquiry_model->get_all_enquiries($status);
+		$data['current_filter'] = $status ? $status : 'All';
+
+		$this->load->view('admin/layout/header');
+		$this->load->view('admin/layout/sidebar');
+		$this->load->view('admin/contact_enquiries', $data);
+		$this->load->view('admin/layout/footer');
+	}
+
+	public function get_enquiry_details($id)
+	{
+		$this->_check_auth();
+		$enquiry = $this->Enquiry_model->get_enquiry_by_id($id);
+		header('Content-Type: application/json');
+		if ($enquiry) {
+			echo json_encode(array('status' => 'success', 'data' => $enquiry));
+		} else {
+			echo json_encode(array('status' => 'error', 'message' => 'Enquiry not found'));
+		}
+	}
+
+	public function update_enquiry_status()
+	{
+		$this->_check_auth();
+		$id = $this->input->post('id');
+		$status = $this->input->post('status');
+		$remarks = $this->input->post('admin_notes');
+
+		if ($id && $status) {
+			$this->Enquiry_model->update_status($id, $status, $remarks);
+			$this->session->set_flashdata('success', 'Enquiry status updated to ' . $status);
+		} else {
+			$this->session->set_flashdata('error', 'Failed to update enquiry status.');
+		}
+		redirect($this->input->server('HTTP_REFERER') ? $this->input->server('HTTP_REFERER') : 'admin/contact_enquiries');
+	}
+
+	public function delete_enquiry($id)
+	{
+		$this->_check_auth();
+		if ($id) {
+			$this->Enquiry_model->delete_enquiry($id);
+			$this->session->set_flashdata('success', 'Contact form enquiry deleted successfully.');
+		} else {
+			$this->session->set_flashdata('error', 'Invalid enquiry ID.');
+		}
+		redirect('admin/contact_enquiries');
 	}
 }

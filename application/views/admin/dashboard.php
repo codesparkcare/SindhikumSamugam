@@ -172,6 +172,61 @@
 
                 </div>
             </div>
+    <!-- Recent Contact Form Enquiries Section -->
+    <div class="card border-0 shadow-sm mb-4" style="border-radius: 24px; background: #ffffff; border: 1px solid #e2e8f0; overflow: hidden;">
+        <div class="card-header bg-transparent border-0 p-4 pb-0 d-flex justify-content-between align-items-center flex-wrap gap-2">
+            <div>
+                <h5 class="fw-bold mb-1" style="color: #0f172a; font-size: 1.1rem; display: flex; align-items: center; gap: 0.5rem;">
+                    <i class="fa-solid fa-comments text-primary"></i> Recent Contact Form Enquiries
+                </h5>
+                <p class="text-muted mb-0" style="font-size: 0.88rem;">Messages submitted by visitors via the public website contact form.</p>
+            </div>
+            <a href="<?php echo base_url('admin/contact_enquiries'); ?>" class="btn btn-sm btn-outline-primary fw-bold" style="border-radius: 10px;">
+                View All Enquiries (<?php echo isset($enquiry_stats['total']) ? $enquiry_stats['total'] : 0; ?>) →
+            </a>
+        </div>
+        <div class="card-body p-4">
+            <?php if (!empty($recent_enquiries)): ?>
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0" style="font-size: 0.88rem;">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Sender Name</th>
+                                <th>Email Address</th>
+                                <th>Phone</th>
+                                <th style="width: 35%;">Message</th>
+                                <th>Status</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($recent_enquiries as $req): ?>
+                                <tr>
+                                    <td class="fw-bold text-dark"><?php echo htmlspecialchars($req['name']); ?></td>
+                                    <td><a href="mailto:<?php echo htmlspecialchars($req['email']); ?>" class="text-decoration-none text-primary"><?php echo htmlspecialchars($req['email']); ?></a></td>
+                                    <td><?php echo htmlspecialchars($req['phone']); ?></td>
+                                    <td><div class="text-truncate" style="max-width: 280px;"><?php echo htmlspecialchars($req['message']); ?></div></td>
+                                    <td>
+                                        <?php if ($req['status'] == 'Replied'): ?>
+                                            <span class="badge bg-success">Replied</span>
+                                        <?php elseif ($req['status'] == 'Read'): ?>
+                                            <span class="badge bg-info text-white">Read</span>
+                                        <?php else: ?>
+                                            <span class="badge bg-warning text-dark">New</span>
+                                        <?php endif; ?>
+                                    </td>
+                                    <td class="text-muted" style="font-size: 0.8rem;"><?php echo date('d M Y, h:i A', strtotime($req['created_at'])); ?></td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            <?php else: ?>
+                <div class="text-center py-4 text-muted">
+                    <i class="fa-solid fa-envelope-open fa-2x mb-2 d-block opacity-50"></i>
+                    No contact form enquiries received yet.
+                </div>
+            <?php endif; ?>
         </div>
     </div>
 

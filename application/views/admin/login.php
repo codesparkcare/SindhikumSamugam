@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Portal Sign In | Sindhikum Samugam</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="<?php echo base_url('assets/images/faviicon.png?v=' . time()); ?>">
     <!-- Core CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
@@ -151,7 +153,7 @@
         <!-- Header Banner -->
         <div class="login-header">
             <div class="logo-badge">
-                <img src="<?php echo base_url('assets/images/logo.png'); ?>" alt="Sindhikum Samugam Logo">
+                <img src="<?php echo base_url('assets/images/logo.png?v=' . time()); ?>" alt="Sindhikum Samugam Logo">
             </div>
             <h4 class="fw-extrabold mb-1" style="letter-spacing: -0.01em;">Sindhikum Samugam</h4>
             <p class="mb-0 text-white-50" style="font-size: 0.88rem; font-weight: 500;">Scholarship Trust Admin Control Portal</p>

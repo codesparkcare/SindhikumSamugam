@@ -3,7 +3,7 @@
     <div class="d-flex justify-content-between align-items-center mb-4">
         <div>
             <h3 class="fw-extrabold mb-1" style="color: #0f172a; letter-spacing: -0.02em;">Donor Pledges & Contributions</h3>
-            <p class="text-muted mb-0" style="font-size: 0.9rem;">Review donor pledges, track payment verifications, and issue 80G tax certificates.</p>
+            <p class="text-muted mb-0" style="font-size: 0.9rem;">Review donor pledges and track payment verifications.</p>
         </div>
         <div class="d-flex gap-2">
             <a href="<?php echo site_url('donors'); ?>" target="_blank" class="btn btn-outline-primary btn-sm">
@@ -29,7 +29,7 @@
     <!-- Summary Stats Row -->
     <div class="row g-3 mb-4">
         <div class="col-md-4">
-            <div class="card border-0 shadow-sm p-3 style="background: linear-gradient(135deg, #059669, #047857); color: white;">
+            <div class="card border-0 shadow-sm p-3" style="background: linear-gradient(135deg, #059669, #047857); color: white;">
                 <div class="d-flex justify-content-between align-items-center">
                     <div>
                         <span class="text-white-50 text-uppercase fw-bold" style="font-size: 0.75rem;">Total Pledges</span>
@@ -40,7 +40,7 @@
             </div>
         </div>
         <div class="col-md-4">
-            <div class="card border-0 shadow-sm p-3 style="background: linear-gradient(135deg, #0284c7, #0369a1); color: white;">
+            <div class="card border-0 shadow-sm p-3" style="background: linear-gradient(135deg, #0284c7, #0369a1); color: white;">
                 <div class="d-flex justify-content-between align-items-center">
                     <div>
                         <span class="text-white-50 text-uppercase fw-bold" style="font-size: 0.75rem;">Verified Funds Collected</span>
@@ -51,7 +51,7 @@
             </div>
         </div>
         <div class="col-md-4">
-            <div class="card border-0 shadow-sm p-3 style="background: linear-gradient(135deg, #d97706, #b45309); color: white;">
+            <div class="card border-0 shadow-sm p-3" style="background: linear-gradient(135deg, #d97706, #b45309); color: white;">
                 <div class="d-flex justify-content-between align-items-center">
                     <div>
                         <span class="text-white-50 text-uppercase fw-bold" style="font-size: 0.75rem;">Total Donors</span>
@@ -84,7 +84,7 @@
                         <th>Contact Information</th>
                         <th>Contribution Amount</th>
                         <th>Fund Target / Student</th>
-                        <th>PAN (80G)</th>
+                        <th>PAN Number</th>
                         <th>Status</th>
                         <th>Pledged Date</th>
                         <th class="text-end pe-3">Actions</th>
@@ -134,7 +134,7 @@
                                     <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#updateModal<?php echo $d['id']; ?>">
                                         <i class="fa-solid fa-pen"></i> Status
                                     </button>
-                                    <a href="<?php echo site_url('admin/delete_donor/' . $d['id']); ?>" onclick="return confirm('Are you sure you want to delete this donor pledge record?');" class="btn btn-sm btn-outline-danger">
+                                    <a href="javascript:void(0)" onclick="showAppConfirm('Are you sure you want to delete this donor pledge record?', 'Delete Donor Pledge', '<?php echo site_url('admin/delete_donor/' . $d['id']); ?>')" class="btn btn-sm btn-outline-danger">
                                         <i class="fa-solid fa-trash"></i>
                                     </a>
 

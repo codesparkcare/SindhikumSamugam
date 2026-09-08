@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sindhikum Samugam - Premium Student Donation Platform</title>
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="<?php echo base_url('assets/images/faviicon.png'); ?>">
+    <link rel="icon" type="image/png" href="<?php echo base_url('assets/images/faviicon.png?v=' . time()); ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/style.css?v=' . time()); ?>">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
@@ -17,7 +17,7 @@
         <div class="main-header-bar">
             <div class="header-container">
                 <a href="<?php echo base_url(); ?>" class="logo" style="gap: 0.85rem;">
-                    <img src="<?php echo base_url('assets/images/logo.png'); ?>" alt="Sindhikum Samugam Foundation Logo"
+                    <img src="<?php echo base_url('assets/images/logo.png?v=' . time()); ?>" alt="Sindhikum Samugam Foundation Logo"
                         class="logo-img" style="height: 56px; width: auto; object-fit: contain;">
                     <span class="logo-text-stacked"
                         style="display: flex; flex-direction: column; line-height: 1.1; font-weight: 800;">
@@ -38,15 +38,21 @@
                     <span></span>
                 </button>
 
+<?php 
+    $s1 = strtolower($this->uri->segment(1) ?? '');
+    $s2 = strtolower($this->uri->segment(2) ?? '');
+    $is_home = (empty($s1) || ($s1 == 'welcome' && (empty($s2) || $s2 == 'index')));
+    $is_donors = ($s1 == 'donors');
+    $is_students = ($s1 == 'students');
+    $is_contact = ($s1 == 'contact' || ($s1 == 'welcome' && $s2 == 'contact'));
+?>
+
                 <nav class="main-nav" id="mainNav">
                     <ul class="nav-list">
-                        <li class="nav-item"><a href="<?php echo base_url(); ?>" class="nav-link active">Home</a></li>
-                        <li class="nav-item"><a href="<?php echo base_url('donors'); ?>" class="nav-link">Donor Page</a>
-                        </li>
-                        <li class="nav-item"><a href="<?php echo base_url('students'); ?>" class="nav-link">Students</a>
-                        </li>
-                        <li class="nav-item"><a href="<?php echo base_url('welcome/contact'); ?>"
-                                class="nav-link">Contact Us</a></li>
+                        <li class="nav-item"><a href="<?php echo base_url(); ?>" class="nav-link <?php echo $is_home ? 'active' : ''; ?>">Home</a></li>
+                        <li class="nav-item"><a href="<?php echo base_url('donors'); ?>" class="nav-link <?php echo $is_donors ? 'active' : ''; ?>">Donor Page</a></li>
+                        <li class="nav-item"><a href="<?php echo base_url('students'); ?>" class="nav-link <?php echo $is_students ? 'active' : ''; ?>">Students</a></li>
+                        <li class="nav-item"><a href="<?php echo base_url('welcome/contact'); ?>" class="nav-link <?php echo $is_contact ? 'active' : ''; ?>">Contact Us</a></li>
                     </ul>
                 </nav>
 
@@ -86,10 +92,10 @@
         </div>
         <div class="drawer-body">
             <ul class="drawer-nav-list">
-                <li><a href="<?php echo base_url(); ?>" class="drawer-link active">Home</a></li>
-                <li><a href="<?php echo base_url('donors'); ?>" class="drawer-link">Donor Page</a></li>
-                <li><a href="<?php echo base_url('students'); ?>" class="drawer-link">Students</a></li>
-                <li><a href="<?php echo base_url('welcome/contact'); ?>" class="drawer-link">Contact Us</a></li>
+                <li><a href="<?php echo base_url(); ?>" class="drawer-link <?php echo $is_home ? 'active' : ''; ?>">Home</a></li>
+                <li><a href="<?php echo base_url('donors'); ?>" class="drawer-link <?php echo $is_donors ? 'active' : ''; ?>">Donor Page</a></li>
+                <li><a href="<?php echo base_url('students'); ?>" class="drawer-link <?php echo $is_students ? 'active' : ''; ?>">Students</a></li>
+                <li><a href="<?php echo base_url('welcome/contact'); ?>" class="drawer-link <?php echo $is_contact ? 'active' : ''; ?>">Contact Us</a></li>
             </ul>
         </div>
         <div class="drawer-footer">

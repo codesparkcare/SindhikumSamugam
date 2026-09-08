@@ -30,12 +30,6 @@ class Donor_model extends CI_Model {
             `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;";
         $this->db->query($query);
-
-        // Seed default donors if table is empty
-        $count = $this->db->count_all_results('donor_pledges');
-        if ($count == 0) {
-            $this->seed_default_donors();
-        }
     }
 
     private function seed_default_donors() {

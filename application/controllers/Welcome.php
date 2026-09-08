@@ -23,6 +23,17 @@ class Welcome extends CI_Controller {
 		$this->load->view('students');
 	}
 
+	public function mission()
+	{
+		// Load the mission view
+		$this->load->view('mission');
+	}
+
+	public function our_mission()
+	{
+		$this->mission();
+	}
+
 	public function privacy_policy()
 	{
 		// Load the privacy policy view
@@ -154,7 +165,7 @@ class Welcome extends CI_Controller {
 		header('Content-Type: application/json');
 		echo json_encode(array(
 			'status' => 'success',
-			'message' => 'Thank you for your generous pledge! Our trustee team will contact you with 80G tax receipt details.',
+			'message' => 'Thank you for your generous pledge! Our trustee team will contact you soon.',
 			'pledge_id' => $pledge_id
 		));
 	}
@@ -167,14 +178,26 @@ class Welcome extends CI_Controller {
 
 	public function save_enquiry()
 	{
-		$data = array(
-			'name'    => $this->input->post('name'),
-			'email'   => $this->input->post('email'),
-			'phone'   => $this->input->post('phone'),
-			'message' => $this->input->post('message')
-		);
-		$this->db->insert('enquiries', $data);
-		echo "Enquiry Submitted Successfully. <a href='".site_url('welcome')."'>Go back</a>";
+		$this->load->model('Enquiry_model');
+		$name    = trim($this->input->post('name'));
+		$email   = trim($this->input->post('email'));
+		$phone   = trim($this->input->post('phone'));
+		$message = trim($this->input->post('message'));
+
+		if (!empty($name) && !empty($email) && !empty($message)) {
+			$data = array(
+				'name'    => $name,
+				'email'   => $email,
+				'phone'   => $phone,
+				'message' => $message,
+				'status'  => 'New'
+			);
+			$this->Enquiry_model->add_enquiry($data);
+			$this->session->set_flashdata('success', 'Thank you! Your enquiry has been received successfully. Our team will contact you shortly.');
+		} else {
+			$this->session->set_flashdata('error', 'Please fill in all required enquiry form fields.');
+		}
+		redirect($this->input->server('HTTP_REFERER') ? $this->input->server('HTTP_REFERER') : 'welcome/contact');
 	}
 
 	public function save_application()
@@ -192,6 +215,7 @@ class Welcome extends CI_Controller {
 
 		$doc_fields = array(
 			'doc_student_photo' => 'Student Photo',
+			'doc_gov_id' => 'Government ID',
 			'doc_aadhaar' => 'Aadhaar / Govt ID',
 			'doc_income_certificate' => 'Income Certificate',
 			'doc_community_certificate' => 'Community Certificate',
@@ -199,7 +223,6 @@ class Welcome extends CI_Controller {
 			'doc_admission_letter' => 'Admission / Offer Letter',
 			'doc_fee_structure' => 'College Fee Structure',
 			'doc_bonafide' => 'Bonafide Certificate',
-			'doc_bank_passbook' => 'Bank Passbook Copy',
 			'doc_supporting' => 'Supporting Document'
 		);
 
@@ -218,32 +241,45 @@ class Welcome extends CI_Controller {
 		}
 
 		$data = array(
-			'ref_no'                 => $ref_no,
-			'full_name'              => $this->input->post('full_name'),
-			'dob'                    => $this->input->post('dob'),
-			'gender'                 => $this->input->post('gender'),
-			'mobile'                 => $this->input->post('mobile'),
-			'email'                  => $this->input->post('email'),
-			'city_district_state'    => $this->input->post('city_district_state'),
-			'address'                => $this->input->post('address'),
-			'qualification'          => $this->input->post('qualification'),
-			'school_college_name'    => $this->input->post('school_college_name'),
-			'board_university'       => $this->input->post('board_university'),
-			'course_applying'        => $this->input->post('course_applying'),
-			'target_college'         => $this->input->post('target_college'),
-			'academic_year'          => $this->input->post('academic_year'),
-			'marks_cgpa'             => $this->input->post('marks_cgpa'),
-			'father_guardian_name'   => $this->input->post('father_guardian_name'),
-			'mother_name'            => $this->input->post('mother_name'),
-			'occupation'             => $this->input->post('occupation'),
-			'family_members_count'   => $this->input->post('family_members_count') ? $this->input->post('family_members_count') : 1,
-			'annual_income'          => $this->input->post('annual_income') ? $this->input->post('annual_income') : 0,
-			'earning_members_count'  => $this->input->post('earning_members_count') ? $this->input->post('earning_members_count') : 1,
-			'financial_description'  => $this->input->post('financial_description'),
-			'other_scholarships'     => $this->input->post('other_scholarships'),
-			'documents_json'         => !empty($uploaded_docs) ? json_encode($uploaded_docs) : NULL,
-			'status'                 => 'Pending',
-			'created_at'             => date('Y-m-d H:i:s')
+			'ref_no'                    => $ref_no,
+			'full_name'                 => $this->input->post('full_name'),
+			'dob'                       => $this->input->post('dob'),
+			'gender'                    => $this->input->post('gender'),
+			'mobile'                    => $this->input->post('mobile'),
+			'email'                     => $this->input->post('email'),
+			'city_district_state'       => $this->input->post('city_district_state'),
+			'address'                   => $this->input->post('address'),
+			'parent_contact'            => $this->input->post('parent_contact'),
+			'preferred_language'       => $this->input->post('preferred_language'),
+			'qualification'             => $this->input->post('qualification'),
+			'school_college_name'       => $this->input->post('school_college_name'),
+			'board_university'          => $this->input->post('board_university'),
+			'course_applying'           => $this->input->post('course_applying'),
+			'target_college'            => $this->input->post('target_college'),
+			'academic_year'             => $this->input->post('academic_year'),
+			'marks_cgpa'                => $this->input->post('marks_cgpa'),
+			'admission_status'          => $this->input->post('admission_status'),
+			'annual_tuition_fee'        => $this->input->post('annual_tuition_fee') ? (float)$this->input->post('annual_tuition_fee') : 0.00,
+			'hostel_required'           => $this->input->post('hostel_required'),
+			'career_goal'               => $this->input->post('career_goal'),
+			'father_guardian_name'      => $this->input->post('father_guardian_name'),
+			'mother_name'               => $this->input->post('mother_name'),
+			'occupation'                => $this->input->post('father_occupation') ? $this->input->post('father_occupation') : $this->input->post('occupation'),
+			'father_occupation'         => $this->input->post('father_occupation'),
+			'mother_occupation'         => $this->input->post('mother_occupation'),
+			'family_members_count'      => $this->input->post('family_members_count') ? $this->input->post('family_members_count') : 1,
+			'annual_income'             => $this->input->post('annual_income') ? $this->input->post('annual_income') : 0,
+			'father_monthly_income'     => $this->input->post('father_monthly_income') ? (float)$this->input->post('father_monthly_income') : 0.00,
+			'earning_members_count'     => $this->input->post('earning_members_count') ? $this->input->post('earning_members_count') : 1,
+			'financial_commitments'     => $this->input->post('financial_commitments'),
+			'why_seeking_support'       => $this->input->post('why_seeking_support'),
+			'required_support_amount'   => $this->input->post('required_support_amount') ? (float)$this->input->post('required_support_amount') : 0.00,
+			'financial_description'     => $this->input->post('why_seeking_support') ? $this->input->post('why_seeking_support') : $this->input->post('financial_description'),
+			'other_scholarships'        => $this->input->post('other_scholarships'),
+			'additional_financial_info' => $this->input->post('additional_financial_info'),
+			'documents_json'            => !empty($uploaded_docs) ? json_encode($uploaded_docs) : NULL,
+			'status'                    => 'Application Received',
+			'created_at'                => date('Y-m-d H:i:s')
 		);
 
 		$insert_id = $this->Student_model->save_application($data);

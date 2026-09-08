@@ -1,77 +1,342 @@
 <?php $this->load->view('includes/header'); ?>
 
+<style>
+/* Student Portal Responsive Mobile Styling & Alignment */
+@media (max-width: 768px) {
+    .student-slider {
+        min-height: auto !important;
+        margin-top: 75px !important;
+        padding-top: 1.2rem !important;
+        padding-bottom: 3.5rem !important;
+    }
+    .student-hero-content {
+        padding: 0.5rem 0.75rem 1rem 0.75rem !important;
+    }
+    .student-hero-content .section-badge {
+        padding: 0.25rem 0.75rem !important;
+        font-size: 0.72rem !important;
+        margin-bottom: 0.4rem !important;
+    }
+    .student-hero-heading {
+        font-size: 1.45rem !important;
+        line-height: 1.22 !important;
+        margin-top: 0.25rem !important;
+        margin-bottom: 0.45rem !important;
+    }
+    .hero-br {
+        display: none !important;
+    }
+    .student-hero-heading span.highlight-text {
+        display: block !important;
+        margin-top: 0.15rem !important;
+    }
+    .student-hero-desc {
+        font-size: 0.85rem !important;
+        line-height: 1.42 !important;
+        margin: 0 auto 0.75rem auto !important;
+        max-width: 100% !important;
+    }
+    .support-badge-wrapper {
+        margin-bottom: 0.75rem !important;
+    }
+    .support-type-badge {
+        display: inline-flex !important;
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 0.3rem 0.55rem !important;
+        padding: 0.32rem 0.8rem !important;
+        border-radius: 20px !important;
+        border: 1.5px solid #059669 !important;
+        font-size: 0.76rem !important;
+        text-align: center !important;
+        line-height: 1.3 !important;
+        width: auto !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.3) !important;
+    }
+    .support-badge-divider {
+        display: inline !important;
+        color: rgba(255, 255, 255, 0.45) !important;
+        font-size: 0.7rem !important;
+    }
+    .hero-action-buttons {
+        flex-direction: column !important;
+        width: 100% !important;
+        gap: 0.35rem !important;
+        align-items: center !important;
+    }
+    .hero-action-buttons .btn {
+        width: 100% !important;
+        max-width: 250px !important;
+        text-align: center !important;
+        justify-content: center !important;
+        padding: 0.42rem 0.85rem !important;
+        font-size: 0.78rem !important;
+        font-weight: 700 !important;
+        border-radius: 8px !important;
+        box-sizing: border-box !important;
+    }
+
+    /* About Section Mobile Alignment */
+    .about-container {
+        grid-template-columns: 1fr !important;
+        gap: 2rem !important;
+    }
+    .about-section {
+        padding: 2.5rem 1rem !important;
+    }
+
+    /* Beyond Academic Marks Section Mobile Alignment */
+    .whole-story-section {
+        padding: 2.5rem 1rem !important;
+    }
+    .story-glass-card {
+        padding: 1.85rem 1.1rem !important;
+        border-radius: 18px !important;
+    }
+    .story-heading {
+        font-size: 1.75rem !important;
+        line-height: 1.28 !important;
+        margin-bottom: 1rem !important;
+    }
+    .story-desc-1 {
+        font-size: 0.98rem !important;
+        line-height: 1.55 !important;
+        margin-bottom: 1rem !important;
+    }
+    .story-desc-2 {
+        font-size: 0.92rem !important;
+        line-height: 1.55 !important;
+        margin-bottom: 1.35rem !important;
+    }
+    .story-pills-container {
+        flex-direction: column !important;
+        width: 100% !important;
+        gap: 0.65rem !important;
+        margin-bottom: 1.35rem !important;
+        align-items: stretch !important;
+    }
+    .story-pill {
+        width: 100% !important;
+        justify-content: center !important;
+        padding: 0.7rem 1rem !important;
+        font-size: 0.88rem !important;
+        box-sizing: border-box !important;
+        border-radius: 25px !important;
+    }
+    .story-highlight-box {
+        display: block !important;
+        width: 100% !important;
+        padding: 1rem 1.1rem !important;
+        margin-bottom: 1.5rem !important;
+        box-sizing: border-box !important;
+        border-radius: 14px !important;
+        text-align: center !important;
+    }
+    .story-highlight-box p {
+        font-size: 0.95rem !important;
+        line-height: 1.5 !important;
+    }
+    .story-cta-wrapper {
+        width: 100% !important;
+    }
+    .story-cta-btn {
+        width: 100% !important;
+        justify-content: center !important;
+        text-align: center !important;
+        padding: 0.9rem 1.25rem !important;
+        font-size: 1rem !important;
+        box-sizing: border-box !important;
+    }
+
+    /* Stepper Section Mobile Alignment */
+    .registration-container {
+        padding: 2rem 1.1rem !important;
+        border-radius: 18px !important;
+    }
+    .registration-process-section {
+        padding: 2.5rem 1rem !important;
+    }
+    .stepper-overview-flex {
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        gap: 1.25rem 0.5rem !important;
+    }
+    .stepper-step-node {
+        width: 45% !important;
+        max-width: 140px !important;
+    }
+    .stepper-line-bg {
+        display: none !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .student-slider {
+        margin-top: 72px !important;
+        padding-top: 0.9rem !important;
+        padding-bottom: 3.2rem !important;
+    }
+    .student-hero-content {
+        padding: 0.35rem 0.5rem 0.75rem 0.5rem !important;
+    }
+    .student-hero-content .section-badge {
+        font-size: 0.68rem !important;
+        padding: 0.2rem 0.6rem !important;
+        margin-bottom: 0.35rem !important;
+    }
+    .student-hero-heading {
+        font-size: 1.3rem !important;
+        line-height: 1.2 !important;
+        margin-bottom: 0.35rem !important;
+    }
+    .student-hero-desc {
+        font-size: 0.80rem !important;
+        line-height: 1.38 !important;
+        margin-bottom: 0.65rem !important;
+    }
+    .support-badge-wrapper {
+        margin-bottom: 0.65rem !important;
+    }
+    .support-type-badge {
+        font-size: 0.72rem !important;
+        padding: 0.28rem 0.65rem !important;
+        gap: 0.25rem 0.45rem !important;
+    }
+    .hero-action-buttons {
+        gap: 0.35rem !important;
+    }
+    .hero-action-buttons .btn {
+        max-width: 235px !important;
+        padding: 0.4rem 0.75rem !important;
+        font-size: 0.76rem !important;
+        border-radius: 8px !important;
+    }
+    .story-heading {
+        font-size: 1.4rem !important;
+    }
+}
+</style>
+
 <!-- Student Page Hero Section -->
 <section class="student-slider"
-    style="margin-top: 110px; position: relative; width: 100%; min-height: 520px; background-color: #0f172a; overflow: hidden; display: flex; align-items: center; justify-content: center; border-radius: 24px; max-width: 1350px; margin-left: auto; margin-right: auto;">
+    style="margin-top: 85px; position: relative; width: 100%; min-height: 560px; background-color: #0f172a; overflow: hidden; display: flex; align-items: center; justify-content: center; border-radius: 0; max-width: 100%; margin-left: 0; margin-right: 0;">
     <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;">
-        <img src="<?php echo base_url('assets/images/studentslider.jpg'); ?>" alt="Empowering Students Banner"
-            style="width: 100%; height: 100%; object-fit: cover; filter: brightness(0.95);">
+        <img src="<?php echo base_url('assets/images/student_portal_slider.png'); ?>"
+            alt="Student Support Portal Banner"
+            style="width: 100%; height: 100%; object-fit: cover; object-position: center 20%;">
     </div>
-    <div class="student-slider-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2; background: linear-gradient(180deg, rgba(15, 23, 42, 0.55) 0%, rgba(15, 23, 42, 0.35) 50%, rgba(15, 23, 42, 0.70) 100%); pointer-events: none;"></div>
-    <div
-        style="position: relative; z-index: 3; text-align: center; padding: 5rem 1.5rem 5rem; max-width: 900px; margin: 0 auto; width: 100%;">
+    <div class="student-hero-content"
+        style="position: relative; z-index: 3; text-align: center; padding: 6rem 1.5rem 5.5rem; max-width: 950px; margin: 0 auto; width: 100%;">
         <span class="section-badge"
-            style="background: rgba(15, 23, 42, 0.65); color: #ffffff; backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.4); padding: 0.5rem 1.25rem; border-radius: 50px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.85rem; margin-bottom: 1.25rem; display: inline-block;">
-            Student Portal
+            style="background: #0f172a; color: #38bdf8; border: 1px solid #0284c7; padding: 0.55rem 1.4rem; border-radius: 50px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.88rem; margin-bottom: 1.25rem; display: inline-block; box-shadow: 0 8px 20px rgba(0,0,0,0.3);">
+            🎓 STUDENT SUPPORT PORTAL
         </span>
-        <h1
-            style="color: #ffffff; font-size: 3.5rem; font-weight: 800; line-height: 1.15; margin-bottom: 1.25rem; text-shadow: 0 4px 20px rgba(0, 0, 0, 0.9);">
-            Empowering Your <span class="highlight-text" style="color: #facc15; background: none; -webkit-text-fill-color: #facc15; text-shadow: 0 2px 12px rgba(0, 0, 0, 0.95), 0 0 20px rgba(250, 204, 21, 0.7);">Academic Future</span>
+        <h1 class="student-hero-heading"
+            style="color: #ffffff; font-size: 3.4rem; font-weight: 800; line-height: 1.18; margin-bottom: 1.25rem; text-shadow: 0 4px 18px rgba(15, 23, 42, 0.95), 0 2px 6px rgba(0, 0, 0, 1);">
+            Your Education. Your Future.<br class="hero-br">
+            <span class="highlight-text"
+                style="color: #facc15; background: none; -webkit-text-fill-color: #facc15; text-shadow: 0 3px 15px rgba(0, 0, 0, 0.95), 0 0 25px rgba(250, 204, 21, 0.8);">Your
+                Opportunity.</span>
         </h1>
-        <p
-            style="color: rgba(255, 255, 255, 0.95); font-size: 1.2rem; max-width: 680px; margin: 0 auto 2.25rem; line-height: 1.6; text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9);">
-            Financial barriers should never stop your dreams. Access direct scholarships, expert mentorship, and
-            continuous career guidance.
+        <p class="student-hero-desc"
+            style="color: #ffffff; font-size: 1.18rem; font-weight: 600; max-width: 820px; margin: 0 auto 1.5rem; line-height: 1.6; text-shadow: 0 2px 14px rgba(0, 0, 0, 0.95), 0 1px 4px rgba(0, 0, 0, 1);">
+            Financial difficulties or lack of proper guidance should not stop a student from pursuing higher education.
+            Sindhikum Samugam helps students find the right educational path and access the support they may need.
         </p>
-        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+
+        <!-- Support Types Badge Bar -->
+        <div class="support-badge-wrapper" style="margin-bottom: 2rem;">
+            <span class="support-type-badge"
+                style="display: inline-block; background: #0f172a; color: #ffffff; padding: 0.6rem 1.5rem; border-radius: 30px; font-weight: 700; font-size: 0.95rem; border: 2px solid #059669; box-shadow: 0 10px 25px rgba(0,0,0,0.35);">
+                <span style="color: #34d399;">Educational Guidance</span> <span class="support-badge-divider">•</span> <span style="color: #fbbf24;">Fee
+                    Assistance</span> <span class="support-badge-divider">•</span> <span style="color: #38bdf8;">Career Direction</span>
+            </span>
+        </div>
+
+        <div class="hero-action-buttons" style="display: flex; gap: 1.25rem; justify-content: center; flex-wrap: wrap; align-items: center;">
             <a href="javascript:void(0)" onclick="openRegistrationModal()" class="btn btn-primary"
-                style="padding: 0.9rem 2.25rem; font-size: 1.05rem;">Register for Support →</a>
+                style="padding: 1rem 2.25rem; font-size: 1.05rem; font-weight: 800; border-radius: 14px; background: #059669; color: #ffffff; border: 2px solid #34d399; box-shadow: 0 10px 25px rgba(5, 150, 105, 0.5); text-decoration: none;">
+                Register for Educational Support →
+            </a>
+            <a href="#registerSection" class="btn btn-secondary"
+                style="padding: 1rem 2.25rem; font-size: 1.05rem; font-weight: 800; border-radius: 14px; background: #0f172a; color: #ffffff; border: 2px solid #94a3b8; box-shadow: 0 10px 25px rgba(15, 23, 42, 0.5); text-decoration: none; transition: all 0.3s ease;">
+                Check Application Status
+            </a>
         </div>
     </div>
 </section>
 
 <!-- Why Sindhikum Samugam Section -->
-<section class="about-section" style="padding: 5rem 2rem; background: #ffffff;">
+<section class="about-section" style="padding: 3.5rem 1.5rem; background: #ffffff;">
     <div class="about-container"
-        style="max-width: 1250px; margin: 0 auto; display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center;">
+        style="max-width: 1250px; margin: 0 auto; display: grid; grid-template-columns: 1.2fr 1fr; gap: 3rem; align-items: center;">
         <!-- Content on the Left -->
         <div class="about-content">
-            <div class="premium-section-header text-left" style="margin-bottom: 2rem;">
+            <div class="premium-section-header text-left" style="margin-bottom: 1rem;">
                 <span class="section-badge"
                     style="background: #e0f2fe; color: #0284c7; border: 1px solid rgba(2, 132, 199, 0.25);">About
                     Us</span>
                 <h2>Why <span class="gradient-text">Sindhikum Samugam</span></h2>
             </div>
             <p class="section-description"
-                style="color: #475569; font-size: 1.1rem; line-height: 1.7; margin-bottom: 2rem;">
-                Sindhikum Samugam is dedicated to empowering students by removing financial barriers.
-                We connect you with generous donors and mentors who believe in your dreams and want to see you succeed.
-                Our transparent platform ensures you get the support you need, when you need it most.
+                style="color: #475569; font-size: 1.02rem; line-height: 1.6; margin-bottom: 0.65rem;">
+                Sindhikum Samugam is committed to helping students pursue higher education despite financial or personal
+                challenges. We provide educational guidance and need-based fee assistance to students who genuinely need
+                support to move forward.
             </p>
-            <ul class="about-features" style="list-style: none; margin-bottom: 2.5rem; padding: 0;">
-                <li
-                    style="margin-bottom: 0.85rem; font-size: 1.05rem; font-weight: 500; color: #0f172a; display: flex; align-items: center; gap: 0.75rem;">
+            <p class="section-description"
+                style="color: #475569; font-size: 1.02rem; line-height: 1.6; margin-bottom: 1.25rem;">
+                We believe that a student's future should not be limited by their financial circumstances. What matters
+                is their determination to learn, grow and build a better life.
+            </p>
+
+            <ul class="about-features"
+                style="list-style: none; margin-bottom: 1.5rem; padding: 0; display: flex; flex-direction: column; gap: 0.85rem;">
+                <li style="display: flex; align-items: flex-start; gap: 0.75rem;">
                     <span class="feature-icon"
-                        style="width: 24px; height: 24px; border-radius: 50%; background: #e0f2fe; color: #0284c7; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; font-weight: bold;">✓</span>
-                    100% Financial Support for tuition & books
+                        style="width: 24px; height: 24px; border-radius: 50%; background: #e0f2fe; color: #0284c7; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: bold; flex-shrink: 0; margin-top: 0.15rem;">✓</span>
+                    <div>
+                        <strong
+                            style="display: block; font-size: 1rem; color: #0f172a; font-weight: 700; margin-bottom: 0.1rem;">Educational
+                            Guidance & Direction</strong>
+                        <span style="color: #64748b; font-size: 0.92rem; line-height: 1.45; display: block;">Helping
+                            students make informed decisions about their education and future.</span>
+                    </div>
                 </li>
-                <li
-                    style="margin-bottom: 0.85rem; font-size: 1.05rem; font-weight: 500; color: #0f172a; display: flex; align-items: center; gap: 0.75rem;">
+                <li style="display: flex; align-items: flex-start; gap: 0.75rem;">
                     <span class="feature-icon"
-                        style="width: 24px; height: 24px; border-radius: 50%; background: #e0f2fe; color: #0284c7; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; font-weight: bold;">✓</span>
-                    Expert Mentorship from industry professionals
+                        style="width: 24px; height: 24px; border-radius: 50%; background: #e0f2fe; color: #0284c7; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: bold; flex-shrink: 0; margin-top: 0.15rem;">✓</span>
+                    <div>
+                        <strong
+                            style="display: block; font-size: 1rem; color: #0f172a; font-weight: 700; margin-bottom: 0.1rem;">Need-Based
+                            Fee Assistance</strong>
+                        <span style="color: #64748b; font-size: 0.92rem; line-height: 1.45; display: block;">Supporting
+                            eligible students facing genuine financial difficulties with their higher education
+                            fees.</span>
+                    </div>
                 </li>
-                <li
-                    style="margin-bottom: 0.85rem; font-size: 1.05rem; font-weight: 500; color: #0f172a; display: flex; align-items: center; gap: 0.75rem;">
+                <li style="display: flex; align-items: flex-start; gap: 0.75rem;">
                     <span class="feature-icon"
-                        style="width: 24px; height: 24px; border-radius: 50%; background: #e0f2fe; color: #0284c7; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; font-weight: bold;">✓</span>
-                    Career Guidance and skill development
+                        style="width: 24px; height: 24px; border-radius: 50%; background: #e0f2fe; color: #0284c7; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: bold; flex-shrink: 0; margin-top: 0.15rem;">✓</span>
+                    <div>
+                        <strong
+                            style="display: block; font-size: 1rem; color: #0f172a; font-weight: 700; margin-bottom: 0.1rem;">Every
+                            Student Deserves an Opportunity</strong>
+                        <span style="color: #64748b; font-size: 0.92rem; line-height: 1.45; display: block;">We look
+                            beyond academic marks and consider the student's circumstances, determination and genuine
+                            need.</span>
+                    </div>
                 </li>
             </ul>
-            <a href="javascript:void(0)" onclick="openRegistrationModal()" class="btn btn-primary mt-4"
-                style="font-size: 1.05rem; padding: 1rem 2.25rem; display: inline-flex;">
-                <span class="btn-text">Register Now</span>
-                <span class="btn-icon">→</span>
+
+            <a href="javascript:void(0)" onclick="openRegistrationModal()" class="btn btn-primary"
+                style="font-size: 1rem; padding: 0.85rem 2rem; display: inline-flex; font-weight: 700; border-radius: 12px;">
+                <span class="btn-text">Register for Educational Support →</span>
             </a>
         </div>
 
@@ -79,7 +344,7 @@
         <div class="about-image-wrapper">
             <div class="image-card"
                 style="overflow: hidden; border-radius: 1.5rem; box-shadow: var(--shadow-lg); aspect-ratio: 4/3;">
-                <img src="<?php echo base_url('assets/images/studentabout.jpg'); ?>"
+                <img src="<?php echo base_url('assets/images/studentabout.png'); ?>"
                     alt="Graduating students celebrating"
                     style="width: 100%; height: 100%; object-fit: cover; object-position: center 25%; display: block;">
             </div>
@@ -87,80 +352,161 @@
     </div>
 </section>
 
+<!-- Section: Beyond Academic Marks -->
+<section class="whole-story-section"
+    style="padding: 5rem 1.5rem; background: linear-gradient(135deg, #ecfdf5 0%, #f0f9ff 100%); position: relative; overflow: hidden; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0;">
+    <!-- Background Glow Effect -->
+    <div
+        style="position: absolute; top: -50px; right: -50px; width: 350px; height: 350px; background: rgba(5, 150, 105, 0.08); border-radius: 50%; filter: blur(60px); pointer-events: none;">
+    </div>
+    <div
+        style="position: absolute; bottom: -50px; left: -50px; width: 350px; height: 350px; background: rgba(2, 132, 199, 0.08); border-radius: 50%; filter: blur(60px); pointer-events: none;">
+    </div>
+
+    <div style="max-width: 1100px; margin: 0 auto; position: relative; z-index: 2;">
+        <div class="story-glass-card"
+            style="background: #ffffff; border: 1px solid rgba(5, 150, 105, 0.18); border-radius: 24px; padding: 3.5rem 2.5rem; box-shadow: 0 20px 45px -10px rgba(15, 23, 42, 0.06);">
+            <div style="text-align: center; max-width: 850px; margin: 0 auto;">
+
+                <span class="section-badge story-badge"
+                    style="background: #ecfdf5; color: #059669; border: 1px solid rgba(5, 150, 105, 0.25); padding: 0.45rem 1.25rem; border-radius: 50px; font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; display: inline-block; margin-bottom: 1.25rem;">
+                    EQUAL OPPORTUNITY FOR ALL
+                </span>
+
+                <h2 class="story-heading"
+                    style="font-size: 2.5rem; font-weight: 800; color: #0f172a; margin-bottom: 1.25rem; line-height: 1.25;">
+                    Your Marks Don't Tell <span
+                        style="background: linear-gradient(135deg, #059669, #0284c7); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Your
+                        Whole Story.</span>
+                </h2>
+
+                <p class="story-desc-1"
+                    style="color: #334155; font-size: 1.12rem; font-weight: 500; line-height: 1.7; margin-bottom: 1.25rem;">
+                    We do not believe that academic marks alone should determine whether a student deserves an
+                    opportunity.
+                </p>
+
+                <p class="story-desc-2" style="color: #64748b; font-size: 1.05rem; line-height: 1.7; margin-bottom: 1.75rem;">
+                    We look at the complete picture — your circumstances, educational goals, financial need,
+                    determination and the challenges you are facing.
+                </p>
+
+                <!-- 4 Core Pillars Pills -->
+                <div class="story-pills-container"
+                    style="display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; margin-bottom: 2rem;">
+                    <span class="story-pill"
+                        style="background: #e0f2fe; border: 1px solid rgba(2, 132, 199, 0.25); color: #0284c7; padding: 0.55rem 1.2rem; border-radius: 30px; font-size: 0.92rem; font-weight: 600; display: inline-flex; align-items: center; gap: 0.4rem;">
+                        <span>📋</span> Personal Circumstances
+                    </span>
+                    <span class="story-pill"
+                        style="background: #dcfce7; border: 1px solid rgba(5, 150, 105, 0.25); color: #059669; padding: 0.55rem 1.2rem; border-radius: 30px; font-size: 0.92rem; font-weight: 600; display: inline-flex; align-items: center; gap: 0.4rem;">
+                        <span>🎯</span> Educational Goals
+                    </span>
+                    <span class="story-pill"
+                        style="background: #fef3c7; border: 1px solid rgba(217, 119, 6, 0.25); color: #d97706; padding: 0.55rem 1.2rem; border-radius: 30px; font-size: 0.92rem; font-weight: 600; display: inline-flex; align-items: center; gap: 0.4rem;">
+                        <span>🤝</span> Genuine Financial Need
+                    </span>
+                    <span class="story-pill"
+                        style="background: #fce7f3; border: 1px solid rgba(219, 39, 119, 0.25); color: #db2777; padding: 0.55rem 1.2rem; border-radius: 30px; font-size: 0.92rem; font-weight: 600; display: inline-flex; align-items: center; gap: 0.4rem;">
+                        <span>🔥</span> Determination & Grit
+                    </span>
+                </div>
+
+                <div class="story-highlight-box"
+                    style="background: rgba(5, 150, 105, 0.08); border: 1px solid rgba(5, 150, 105, 0.2); border-radius: 16px; padding: 1.25rem 2rem; margin-bottom: 0; display: inline-block;">
+                    <p style="color: #047857; font-size: 1.1rem; font-weight: 700; margin: 0;">
+                        If you have the determination to learn and move forward, you can reach out to us.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- Registration Process Section -->
-<section id="registerSection" class="registration-process-section" style="padding: 5rem 2rem; background: #f8fafc;">
+<section id="registerSection" class="registration-process-section" style="padding: 4.5rem 1.5rem; background: #f8fafc;">
     <div class="registration-container"
         style="max-width: 1050px; margin: 0 auto; padding: 3.5rem 2.5rem; background: #ffffff; border-radius: 24px; border: 1px solid #e2e8f0; box-shadow: 0 20px 40px -10px rgba(15, 23, 42, 0.08);">
         <div class="premium-section-header" style="text-align: center; margin-bottom: 3rem;">
             <span class="section-badge"
-                style="background: #e0f2fe; color: #0284c7; padding: 0.4rem 1.1rem; border-radius: 50px; font-weight: 600; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; display: inline-block; margin-bottom: 0.85rem;">Scholarship
-                Application</span>
-            <h2 style="font-size: 2.5rem; font-weight: 800; color: #0f172a; margin-bottom: 0.5rem;">Student <span
-                    class="gradient-text"
-                    style="background: linear-gradient(135deg, #059669, #D97706); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Registration
-                    Process</span></h2>
-            <p style="color: #64748b; font-size: 1.05rem; max-width: 650px; margin: 0 auto;">Review the 4-step
-                application flow below and click <strong>Start Registration</strong> to open the application form.</p>
+                style="background: #e0f2fe; color: #0284c7; padding: 0.4rem 1.1rem; border-radius: 50px; font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; display: inline-block; margin-bottom: 0.85rem;">
+                HOW TO APPLY
+            </span>
+            <h2 style="font-size: 2.4rem; font-weight: 800; color: #0f172a; margin-bottom: 0.6rem; line-height: 1.2;">
+                Simple Steps. <span class="gradient-text"
+                    style="background: linear-gradient(135deg, #059669, #D97706); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Clear
+                    Process.</span>
+            </h2>
+            <p style="color: #64748b; font-size: 1.05rem; max-width: 680px; margin: 0 auto; line-height: 1.6;">
+                Complete your application with accurate information and supporting documents. Our team will review your
+                request and guide you through the next steps.
+            </p>
         </div>
 
-        <!-- 5-Step Horizontal Stepper Overview (Exact design from screenshot) -->
-        <div style="margin-bottom: 3.5rem; position: relative; padding: 1.5rem 0;">
-            <div
-                style="display: flex; justify-content: space-between; align-items: flex-start; position: relative; z-index: 2; max-width: 850px; margin: 0 auto;">
-                <!-- Step 1 -->
-                <div
-                    style="display: flex; flex-direction: column; align-items: center; width: 110px; text-align: center;">
+        <!-- 5-Step Horizontal Stepper Overview -->
+        <div style="margin-bottom: 3.5rem; position: relative; padding: 1rem 0;">
+            <div class="stepper-overview-flex"
+                style="display: flex; justify-content: space-between; align-items: flex-start; position: relative; z-index: 2; max-width: 950px; margin: 0 auto; flex-wrap: wrap; gap: 1rem;">
+                <!-- Step 01 -->
+                <div class="stepper-step-node"
+                    style="display: flex; flex-direction: column; align-items: center; width: 140px; text-align: center;">
                     <div
-                        style="width: 52px; height: 52px; border-radius: 50%; background: #F59E0B; color: #FFFFFF; font-weight: 700; font-size: 1.35rem; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 14px rgba(245, 158, 11, 0.4);">
-                        1</div>
-                    <span style="margin-top: 0.85rem; font-size: 0.95rem; font-weight: 800; color: #0F172A;">Basic
+                        style="width: 52px; height: 52px; border-radius: 50%; background: #059669; color: #FFFFFF; font-weight: 800; font-size: 1.2rem; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 14px rgba(5, 150, 105, 0.4);">
+                        01
+                    </div>
+                    <span style="margin-top: 0.85rem; font-size: 0.92rem; font-weight: 700; color: #0F172A;">Basic
                         Details</span>
                 </div>
-                <!-- Step 2 -->
-                <div
-                    style="display: flex; flex-direction: column; align-items: center; width: 110px; text-align: center;">
+                <!-- Step 02 -->
+                <div class="stepper-step-node"
+                    style="display: flex; flex-direction: column; align-items: center; width: 140px; text-align: center;">
                     <div
-                        style="width: 52px; height: 52px; border-radius: 50%; background: #FFFFFF; border: 2px solid #CBD5E1; color: #475569; font-weight: 700; font-size: 1.35rem; display: flex; align-items: center; justify-content: center;">
-                        2</div>
+                        style="width: 52px; height: 52px; border-radius: 50%; background: #FFFFFF; border: 2px solid #CBD5E1; color: #475569; font-weight: 800; font-size: 1.2rem; display: flex; align-items: center; justify-content: center;">
+                        02
+                    </div>
                     <span
-                        style="margin-top: 0.85rem; font-size: 0.95rem; font-weight: 600; color: #64748B;">Education</span>
+                        style="margin-top: 0.85rem; font-size: 0.92rem; font-weight: 600; color: #475569;">Education</span>
                 </div>
-                <!-- Step 3 -->
-                <div
-                    style="display: flex; flex-direction: column; align-items: center; width: 110px; text-align: center;">
+                <!-- Step 03 -->
+                <div class="stepper-step-node"
+                    style="display: flex; flex-direction: column; align-items: center; width: 140px; text-align: center;">
                     <div
-                        style="width: 52px; height: 52px; border-radius: 50%; background: #FFFFFF; border: 2px solid #CBD5E1; color: #475569; font-weight: 700; font-size: 1.35rem; display: flex; align-items: center; justify-content: center;">
-                        3</div>
-                    <span
-                        style="margin-top: 0.85rem; font-size: 0.95rem; font-weight: 600; color: #64748B;">Family</span>
+                        style="width: 52px; height: 52px; border-radius: 50%; background: #FFFFFF; border: 2px solid #CBD5E1; color: #475569; font-weight: 800; font-size: 1.2rem; display: flex; align-items: center; justify-content: center;">
+                        03
+                    </div>
+                    <span style="margin-top: 0.85rem; font-size: 0.92rem; font-weight: 600; color: #475569;">Family &
+                        Circumstances</span>
                 </div>
-                <!-- Step 4 -->
-                <div
-                    style="display: flex; flex-direction: column; align-items: center; width: 110px; text-align: center;">
+                <!-- Step 04 -->
+                <div class="stepper-step-node"
+                    style="display: flex; flex-direction: column; align-items: center; width: 140px; text-align: center;">
                     <div
-                        style="width: 52px; height: 52px; border-radius: 50%; background: #FFFFFF; border: 2px solid #CBD5E1; color: #475569; font-weight: 700; font-size: 1.35rem; display: flex; align-items: center; justify-content: center;">
-                        4</div>
-                    <span
-                        style="margin-top: 0.85rem; font-size: 0.95rem; font-weight: 600; color: #64748B;">Documents</span>
+                        style="width: 52px; height: 52px; border-radius: 50%; background: #FFFFFF; border: 2px solid #CBD5E1; color: #475569; font-weight: 800; font-size: 1.2rem; display: flex; align-items: center; justify-content: center;">
+                        04
+                    </div>
+                    <span style="margin-top: 0.85rem; font-size: 0.92rem; font-weight: 600; color: #475569;">Supporting
+                        Documents</span>
                 </div>
-                <!-- Step 5 -->
-                <div
-                    style="display: flex; flex-direction: column; align-items: center; width: 110px; text-align: center;">
+                <!-- Step 05 -->
+                <div class="stepper-step-node"
+                    style="display: flex; flex-direction: column; align-items: center; width: 140px; text-align: center;">
                     <div
-                        style="width: 52px; height: 52px; border-radius: 50%; background: #FFFFFF; border: 2px solid #CBD5E1; color: #475569; font-weight: 700; font-size: 1.35rem; display: flex; align-items: center; justify-content: center;">
-                        5</div>
-                    <span
-                        style="margin-top: 0.85rem; font-size: 0.95rem; font-weight: 600; color: #64748B;">Submit</span>
+                        style="width: 52px; height: 52px; border-radius: 50%; background: #FFFFFF; border: 2px solid #CBD5E1; color: #475569; font-weight: 800; font-size: 1.2rem; display: flex; align-items: center; justify-content: center;">
+                        05
+                    </div>
+                    <span style="margin-top: 0.85rem; font-size: 0.92rem; font-weight: 600; color: #475569;">Submit
+                        Application</span>
                 </div>
             </div>
             <!-- Connecting line behind number nodes -->
-            <div
-                style="position: absolute; top: 40px; left: 15%; right: 15%; height: 2px; background: #E2E8F0; z-index: 1;">
+            <div class="stepper-line-bg"
+                style="position: absolute; top: 36px; left: 12%; right: 12%; height: 2px; background: #E2E8F0; z-index: 1;">
             </div>
         </div>
 
-        <!-- Action Buttons on Page -->
-        <div style="display: flex; flex-direction: column; gap: 1.25rem; max-width: 500px; margin: 0 auto;">
+        <!-- Action Buttons -->
+        <div style="display: flex; flex-direction: column; gap: 1.25rem; max-width: 480px; margin: 0 auto;">
             <button type="button" onclick="openRegistrationModal()" class="btn btn-primary"
                 style="width: 100%; padding: 1.1rem; font-size: 1.1rem; border-radius: 12px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #059669 0%, #047857 100%); color: white; box-shadow: 0 10px 25px rgba(5, 150, 105, 0.3); border: none; cursor: pointer; font-weight: 700;">
                 Start Registration <span style="margin-left: 0.5rem; font-size: 1.2rem;">→</span>
@@ -265,7 +611,7 @@
                             <label
                                 style="display: block; font-weight: 600; color: #334155; margin-bottom: 0.35rem; font-size: 0.9rem;">Full
                                 Name *</label>
-                            <input type="text" name="full_name" required placeholder="Enter student's full name"
+                            <input type="text" name="full_name" required
                                 style="width: 100%; padding: 0.75rem 0.9rem; border-radius: 10px; border: 1px solid #cbd5e1; font-size: 0.925rem; outline: none;">
                         </div>
                         <div class="form-group">
@@ -291,14 +637,14 @@
                             <label
                                 style="display: block; font-weight: 600; color: #334155; margin-bottom: 0.35rem; font-size: 0.9rem;">Mobile
                                 Number *</label>
-                            <input type="tel" name="mobile" required placeholder="+91 10-digit mobile number"
+                            <input type="tel" name="mobile" required
                                 style="width: 100%; padding: 0.75rem 0.9rem; border-radius: 10px; border: 1px solid #cbd5e1; font-size: 0.925rem; outline: none;">
                         </div>
                         <div class="form-group">
                             <label
                                 style="display: block; font-weight: 600; color: #334155; margin-bottom: 0.35rem; font-size: 0.9rem;">Email
                                 Address *</label>
-                            <input type="email" name="email" required placeholder="example@domain.com"
+                            <input type="email" name="email" required
                                 style="width: 100%; padding: 0.75rem 0.9rem; border-radius: 10px; border: 1px solid #cbd5e1; font-size: 0.925rem; outline: none;">
                         </div>
                         <div class="form-group">
@@ -306,7 +652,6 @@
                                 style="display: block; font-weight: 600; color: #334155; margin-bottom: 0.35rem; font-size: 0.9rem;">City
                                 / District / State *</label>
                             <input type="text" name="city_district_state" required
-                                placeholder="e.g. Chennai, Tamil Nadu"
                                 style="width: 100%; padding: 0.75rem 0.9rem; border-radius: 10px; border: 1px solid #cbd5e1; font-size: 0.925rem; outline: none;">
                         </div>
                         <div class="form-group" style="grid-column: 1 / -1;">
@@ -314,15 +659,34 @@
                                 style="display: block; font-weight: 600; color: #334155; margin-bottom: 0.35rem; font-size: 0.9rem;">Residential
                                 Address *</label>
                             <textarea name="address" rows="2" required
-                                placeholder="Full street address, door number, area, pincode"
                                 style="width: 100%; padding: 0.75rem 0.9rem; border-radius: 10px; border: 1px solid #cbd5e1; font-size: 0.925rem; outline: none; font-family: inherit;"></textarea>
                         </div>
-                        <div class="form-group" style="grid-column: 1 / -1;">
+                        <div class="form-group">
                             <label
                                 style="display: block; font-weight: 600; color: #334155; margin-bottom: 0.35rem; font-size: 0.9rem;">Profile
                                 Photo</label>
                             <input type="file" name="profile_photo" accept="image/*"
                                 style="width: 100%; padding: 0.65rem; border-radius: 10px; border: 1px dashed #cbd5e1; background: #f8fafc;">
+                        </div>
+                        <div class="form-group">
+                            <label
+                                style="display: block; font-weight: 600; color: #334155; margin-bottom: 0.35rem; font-size: 0.9rem;">Parent
+                                / Guardian Contact Number *</label>
+                            <input type="tel" name="parent_contact" required
+                                style="width: 100%; padding: 0.75rem 0.9rem; border-radius: 10px; border: 1px solid #cbd5e1; font-size: 0.925rem; outline: none;">
+                        </div>
+                        <div class="form-group" style="grid-column: 1 / -1;">
+                            <label
+                                style="display: block; font-weight: 600; color: #334155; margin-bottom: 0.35rem; font-size: 0.9rem;">Preferred
+                                Language *</label>
+                            <select name="preferred_language" required
+                                style="width: 100%; padding: 0.75rem 0.9rem; border-radius: 10px; border: 1px solid #cbd5e1; font-size: 0.925rem; outline: none; background: white;">
+                                <option value="">Select Preferred Language</option>
+                                <option value="Tamil">Tamil</option>
+                                <option value="English">English</option>
+                                <option value="Both">Both Tamil & English</option>
+                                <option value="Other">Other</option>
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -340,14 +704,13 @@
                                 style="display: block; font-weight: 600; color: #334155; margin-bottom: 0.35rem; font-size: 0.9rem;">Current
                                 / Last Completed Qualification *</label>
                             <input type="text" name="qualification" required
-                                placeholder="e.g. 12th Standard / HSC / Diploma"
                                 style="width: 100%; padding: 0.75rem 0.9rem; border-radius: 10px; border: 1px solid #cbd5e1; font-size: 0.925rem; outline: none;">
                         </div>
                         <div class="form-group">
                             <label
                                 style="display: block; font-weight: 600; color: #334155; margin-bottom: 0.35rem; font-size: 0.9rem;">School
                                 / College Name *</label>
-                            <input type="text" name="school_college_name" required placeholder="Name of institution"
+                            <input type="text" name="school_college_name" required
                                 style="width: 100%; padding: 0.75rem 0.9rem; border-radius: 10px; border: 1px solid #cbd5e1; font-size: 0.925rem; outline: none;">
                         </div>
                         <div class="form-group">
@@ -355,7 +718,6 @@
                                 style="display: block; font-weight: 600; color: #334155; margin-bottom: 0.35rem; font-size: 0.9rem;">Board
                                 / University *</label>
                             <input type="text" name="board_university" required
-                                placeholder="e.g. State Board, CBSE, Anna Univ"
                                 style="width: 100%; padding: 0.75rem 0.9rem; border-radius: 10px; border: 1px solid #cbd5e1; font-size: 0.925rem; outline: none;">
                         </div>
                         <div class="form-group">
@@ -363,7 +725,6 @@
                                 style="display: block; font-weight: 600; color: #334155; margin-bottom: 0.35rem; font-size: 0.9rem;">Course
                                 Applying For *</label>
                             <input type="text" name="course_applying" required
-                                placeholder="e.g. B.E. Computer Science, B.Sc, MBBS"
                                 style="width: 100%; padding: 0.75rem 0.9rem; border-radius: 10px; border: 1px solid #cbd5e1; font-size: 0.925rem; outline: none;">
                         </div>
                         <div class="form-group">
@@ -371,7 +732,6 @@
                                 style="display: block; font-weight: 600; color: #334155; margin-bottom: 0.35rem; font-size: 0.9rem;">College
                                 / University for Higher Studies *</label>
                             <input type="text" name="target_college" required
-                                placeholder="Target institution for higher studies"
                                 style="width: 100%; padding: 0.75rem 0.9rem; border-radius: 10px; border: 1px solid #cbd5e1; font-size: 0.925rem; outline: none;">
                         </div>
                         <div class="form-group">
@@ -388,8 +748,8 @@
                         <div class="form-group">
                             <label
                                 style="display: block; font-weight: 600; color: #334155; margin-bottom: 0.35rem; font-size: 0.9rem;">Marks
-                                / Percentage / CGPA *</label>
-                            <input type="text" name="marks_cgpa" required placeholder="e.g. 88% / 8.5 CGPA"
+                                / Percentage / CGPA</label>
+                            <input type="text" name="marks_cgpa"
                                 style="width: 100%; padding: 0.75rem 0.9rem; border-radius: 10px; border: 1px solid #cbd5e1; font-size: 0.925rem; outline: none;">
                         </div>
                         <div class="form-group">
@@ -399,15 +759,60 @@
                             <input type="file" name="academic_certificates" accept=".pdf,image/*"
                                 style="width: 100%; padding: 0.65rem; border-radius: 10px; border: 1px dashed #cbd5e1; background: #f8fafc;">
                         </div>
+                        <div class="form-group">
+                            <label
+                                style="display: block; font-weight: 600; color: #334155; margin-bottom: 0.35rem; font-size: 0.9rem;">Admission
+                                Status *</label>
+                            <select name="admission_status" required
+                                style="width: 100%; padding: 0.75rem 0.9rem; border-radius: 10px; border: 1px solid #cbd5e1; font-size: 0.925rem; outline: none; background: white;">
+                                <option value="">Select Status</option>
+                                <option value="Not Yet Admitted">Not Yet Admitted</option>
+                                <option value="Applied">Applied</option>
+                                <option value="Admission Confirmed">Admission Confirmed</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label
+                                style="display: block; font-weight: 600; color: #334155; margin-bottom: 0.35rem; font-size: 0.9rem;">Annual
+                                Tuition Fee (₹) *</label>
+                            <input type="number" name="annual_tuition_fee" required
+                                style="width: 100%; padding: 0.75rem 0.9rem; border-radius: 10px; border: 1px solid #cbd5e1; font-size: 0.925rem; outline: none;">
+                        </div>
+                        <div class="form-group">
+                            <label
+                                style="display: block; font-weight: 600; color: #334155; margin-bottom: 0.35rem; font-size: 0.9rem;">Hostel
+                                / Accommodation Required? *</label>
+                            <select name="hostel_required" required
+                                style="width: 100%; padding: 0.75rem 0.9rem; border-radius: 10px; border: 1px solid #cbd5e1; font-size: 0.925rem; outline: none; background: white;">
+                                <option value="">Select Option</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+                        <div class="form-group" style="grid-column: 1 / -1;">
+                            <label
+                                style="display: block; font-weight: 600; color: #334155; margin-bottom: 0.35rem; font-size: 0.9rem;">Academic
+                                / Career Goal *</label>
+                            <textarea name="career_goal" rows="2" required
+                                style="width: 100%; padding: 0.75rem 0.9rem; border-radius: 10px; border: 1px solid #cbd5e1; font-size: 0.925rem; outline: none; font-family: inherit;"></textarea>
+                        </div>
                     </div>
                 </div>
 
                 <!-- STEP 3: Family & Financial Details -->
                 <div class="form-step-panel" id="stepPanel3" style="display: none;">
                     <h3
-                        style="font-size: 1.3rem; font-weight: 700; color: #0f172a; margin-bottom: 1.25rem; border-bottom: 2px solid #f1f5f9; padding-bottom: 0.65rem; display: flex; align-items: center; gap: 0.5rem;">
-                        <span style="color: #059669;">👨‍👩‍👧‍👦</span> Step 3: Family & Financial Details
+                        style="font-size: 1.3rem; font-weight: 700; color: #0f172a; margin-bottom: 1rem; border-bottom: 2px solid #f1f5f9; padding-bottom: 0.65rem; display: flex; align-items: center; gap: 0.5rem;">
+                        Step 3: Family & Financial Details
                     </h3>
+
+                    <!-- Important Guidance Callout -->
+                    <div
+                        style="background: #eff6ff; border-left: 4px solid #0284c7; padding: 0.85rem 1.1rem; border-radius: 8px; margin-bottom: 1.25rem; font-size: 0.9rem; color: #0369a1; font-weight: 600;">
+                        💡 <strong>Important Note:</strong> The financial section focuses on understanding your actual
+                        circumstances and genuine need, not only family income.
+                    </div>
+
                     <div
                         style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.15rem;">
                         <div class="form-group">
@@ -415,73 +820,125 @@
                                 style="display: block; font-weight: 600; color: #334155; margin-bottom: 0.35rem; font-size: 0.9rem;">Father's
                                 / Guardian's Name *</label>
                             <input type="text" name="father_guardian_name" required
-                                placeholder="Full name of father/guardian"
                                 style="width: 100%; padding: 0.75rem 0.9rem; border-radius: 10px; border: 1px solid #cbd5e1; font-size: 0.925rem; outline: none;">
                         </div>
                         <div class="form-group">
                             <label
                                 style="display: block; font-weight: 600; color: #334155; margin-bottom: 0.35rem; font-size: 0.9rem;">Mother's
                                 Name *</label>
-                            <input type="text" name="mother_name" required placeholder="Full name of mother"
+                            <input type="text" name="mother_name" required
                                 style="width: 100%; padding: 0.75rem 0.9rem; border-radius: 10px; border: 1px solid #cbd5e1; font-size: 0.925rem; outline: none;">
                         </div>
                         <div class="form-group">
                             <label
-                                style="display: block; font-weight: 600; color: #334155; margin-bottom: 0.35rem; font-size: 0.9rem;">Occupation
-                                *</label>
-                            <input type="text" name="occupation" required placeholder="Father/Guardian occupation"
+                                style="display: block; font-weight: 600; color: #334155; margin-bottom: 0.35rem; font-size: 0.9rem;">Father's
+                                / Guardian's Occupation *</label>
+                            <input type="text" name="father_occupation" required
+                                style="width: 100%; padding: 0.75rem 0.9rem; border-radius: 10px; border: 1px solid #cbd5e1; font-size: 0.925rem; outline: none;">
+                        </div>
+                        <div class="form-group">
+                            <label
+                                style="display: block; font-weight: 600; color: #334155; margin-bottom: 0.35rem; font-size: 0.9rem;">Mother's
+                                Occupation</label>
+                            <input type="text" name="mother_occupation"
                                 style="width: 100%; padding: 0.75rem 0.9rem; border-radius: 10px; border: 1px solid #cbd5e1; font-size: 0.925rem; outline: none;">
                         </div>
                         <div class="form-group">
                             <label
                                 style="display: block; font-weight: 600; color: #334155; margin-bottom: 0.35rem; font-size: 0.9rem;">Number
                                 of Family Members *</label>
-                            <input type="number" name="family_members_count" min="1" required placeholder="e.g. 4"
-                                style="width: 100%; padding: 0.75rem 0.9rem; border-radius: 10px; border: 1px solid #cbd5e1; font-size: 0.925rem; outline: none;">
-                        </div>
-                        <div class="form-group">
-                            <label
-                                style="display: block; font-weight: 600; color: #334155; margin-bottom: 0.35rem; font-size: 0.9rem;">Annual
-                                Family Income (₹) *</label>
-                            <input type="number" name="annual_income" required placeholder="e.g. 75000"
+                            <input type="number" name="family_members_count" min="1" required
                                 style="width: 100%; padding: 0.75rem 0.9rem; border-radius: 10px; border: 1px solid #cbd5e1; font-size: 0.925rem; outline: none;">
                         </div>
                         <div class="form-group">
                             <label
                                 style="display: block; font-weight: 600; color: #334155; margin-bottom: 0.35rem; font-size: 0.9rem;">Number
                                 of Earning Members *</label>
-                            <input type="number" name="earning_members_count" min="0" required placeholder="e.g. 1"
+                            <input type="number" name="earning_members_count" min="0" required
+                                style="width: 100%; padding: 0.75rem 0.9rem; border-radius: 10px; border: 1px solid #cbd5e1; font-size: 0.925rem; outline: none;">
+                        </div>
+                        <div class="form-group">
+                            <label
+                                style="display: block; font-weight: 600; color: #334155; margin-bottom: 0.35rem; font-size: 0.9rem;">Annual
+                                Family Income (₹) *</label>
+                            <input type="number" name="annual_income" required
+                                style="width: 100%; padding: 0.75rem 0.9rem; border-radius: 10px; border: 1px solid #cbd5e1; font-size: 0.925rem; outline: none;">
+                        </div>
+                        <div class="form-group">
+                            <label
+                                style="display: block; font-weight: 600; color: #334155; margin-bottom: 0.35rem; font-size: 0.9rem;">Father's
+                                / Guardian's Monthly Income (₹)</label>
+                            <input type="number" name="father_monthly_income"
                                 style="width: 100%; padding: 0.75rem 0.9rem; border-radius: 10px; border: 1px solid #cbd5e1; font-size: 0.925rem; outline: none;">
                         </div>
                         <div class="form-group" style="grid-column: 1 / -1;">
                             <label
-                                style="display: block; font-weight: 600; color: #334155; margin-bottom: 0.35rem; font-size: 0.9rem;">Financial
-                                Situation Description *</label>
-                            <textarea name="financial_description" rows="3" required
-                                placeholder="Describe your family's current financial background and why scholarship support is needed"
-                                style="width: 100%; padding: 0.75rem 0.9rem; border-radius: 10px; border: 1px solid #cbd5e1; font-size: 0.925rem; outline: none; font-family: inherit;"></textarea>
+                                style="display: block; font-weight: 600; color: #334155; margin-bottom: 0.35rem; font-size: 0.9rem;">Family's
+                                Major Financial Commitments</label>
+                            <input type="text" name="financial_commitments"
+                                style="width: 100%; padding: 0.75rem 0.9rem; border-radius: 10px; border: 1px solid #cbd5e1; font-size: 0.925rem; outline: none;">
                         </div>
                         <div class="form-group" style="grid-column: 1 / -1;">
+                            <label
+                                style="display: block; font-weight: 600; color: #334155; margin-bottom: 0.35rem; font-size: 0.9rem;">Why
+                                are you seeking financial support for your education? *</label>
+                            <textarea name="why_seeking_support" rows="3" required
+                                style="width: 100%; padding: 0.75rem 0.9rem; border-radius: 10px; border: 1px solid #cbd5e1; font-size: 0.925rem; outline: none; font-family: inherit;"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label
+                                style="display: block; font-weight: 600; color: #334155; margin-bottom: 0.35rem; font-size: 0.9rem;">How
+                                much financial support do you require? (₹) *</label>
+                            <input type="number" name="required_support_amount" required
+                                style="width: 100%; padding: 0.75rem 0.9rem; border-radius: 10px; border: 1px solid #cbd5e1; font-size: 0.925rem; outline: none;">
+                        </div>
+                        <div class="form-group">
                             <label
                                 style="display: block; font-weight: 600; color: #334155; margin-bottom: 0.35rem; font-size: 0.9rem;">Other
                                 Scholarships / Financial Support Received</label>
                             <input type="text" name="other_scholarships"
-                                placeholder="Mention if any existing government/private scholarship is received (or None)"
                                 style="width: 100%; padding: 0.75rem 0.9rem; border-radius: 10px; border: 1px solid #cbd5e1; font-size: 0.925rem; outline: none;">
+                        </div>
+                        <div class="form-group" style="grid-column: 1 / -1;">
+                            <label
+                                style="display: block; font-weight: 600; color: #334155; margin-bottom: 0.35rem; font-size: 0.9rem;">Additional
+                                Information About Your Financial Situation</label>
+                            <textarea name="additional_financial_info" rows="2"
+                                style="width: 100%; padding: 0.75rem 0.9rem; border-radius: 10px; border: 1px solid #cbd5e1; font-size: 0.925rem; outline: none; font-family: inherit;"></textarea>
                         </div>
                     </div>
                 </div>
 
-                <!-- STEP 4: Documents Upload -->
+                <!-- STEP 4: Verification Documents -->
                 <div class="form-step-panel" id="stepPanel4" style="display: none;">
                     <h3
-                        style="font-size: 1.3rem; font-weight: 700; color: #0f172a; margin-bottom: 1.25rem; border-bottom: 2px solid #f1f5f9; padding-bottom: 0.65rem; display: flex; align-items: center; gap: 0.5rem;">
-                        <span style="color: #059669;">📂</span> Step 4: Verification Documents Upload
+                        style="font-size: 1.3rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem; border-bottom: 2px solid #f1f5f9; padding-bottom: 0.65rem; display: flex; align-items: center; gap: 0.5rem;">
+                        <span style="color: #059669;">📂</span> Step 4: Verification Documents
                     </h3>
-                    <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 1.25rem;">Upload clear copies (PDF, JPG,
-                        PNG - Max 5MB per file) for verification.</p>
+                    <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 1rem;">
+                        Please upload clear and valid documents for application verification. Accepted formats: PDF,
+                        JPG, PNG (Max 5MB per file).
+                    </p>
+
+                    <!-- Important Documents Callout -->
+                    <div
+                        style="background: #f0fdf4; border-left: 4px solid #059669; padding: 0.85rem 1.1rem; border-radius: 8px; margin-bottom: 1.25rem; font-size: 0.88rem; color: #065f46; font-weight: 500; line-height: 1.5;">
+                        ℹ️ <strong>Note on Fee Payment:</strong>Since Sindhikum Samugam provides eligible educational
+                        fee support directly to the institution, student bank details should not be required during the
+                        initial application.
+
+                        Government ID and other sensitive documents can be used strictly for verification purposes.
+                    </div>
+
                     <div
                         style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.15rem;">
+
+                        <!-- Required Documents Section Header -->
+                        <div
+                            style="grid-column: 1 / -1; font-weight: 700; color: #0f172a; font-size: 0.98rem; margin-top: 0.25rem;">
+                            Required Documents:
+                        </div>
+
                         <div class="form-group">
                             <label
                                 style="display: block; font-weight: 600; color: #334155; margin-bottom: 0.35rem; font-size: 0.9rem;">1.
@@ -492,8 +949,8 @@
                         <div class="form-group">
                             <label
                                 style="display: block; font-weight: 600; color: #334155; margin-bottom: 0.35rem; font-size: 0.9rem;">2.
-                                Aadhaar / Government ID *</label>
-                            <input type="file" name="doc_aadhaar" required accept=".pdf,image/*"
+                                Government ID *</label>
+                            <input type="file" name="doc_gov_id" required accept=".pdf,image/*"
                                 style="width: 100%; padding: 0.6rem; border-radius: 10px; border: 1px dashed #cbd5e1; background: #f8fafc;">
                         </div>
                         <div class="form-group">
@@ -506,29 +963,36 @@
                         <div class="form-group">
                             <label
                                 style="display: block; font-weight: 600; color: #334155; margin-bottom: 0.35rem; font-size: 0.9rem;">4.
-                                Community Certificate</label>
-                            <input type="file" name="doc_community_certificate" accept=".pdf,image/*"
+                                Previous Academic Mark Sheets</label>
+                            <input type="file" name="doc_marksheets" accept=".pdf,image/*"
                                 style="width: 100%; padding: 0.6rem; border-radius: 10px; border: 1px dashed #cbd5e1; background: #f8fafc;">
                         </div>
                         <div class="form-group">
                             <label
                                 style="display: block; font-weight: 600; color: #334155; margin-bottom: 0.35rem; font-size: 0.9rem;">5.
-                                Previous Academic Mark Sheets *</label>
-                            <input type="file" name="doc_marksheets" required accept=".pdf,image/*"
-                                style="width: 100%; padding: 0.6rem; border-radius: 10px; border: 1px dashed #cbd5e1; background: #f8fafc;">
-                        </div>
-                        <div class="form-group">
-                            <label
-                                style="display: block; font-weight: 600; color: #334155; margin-bottom: 0.35rem; font-size: 0.9rem;">6.
                                 College Admission / Offer Letter *</label>
                             <input type="file" name="doc_admission_letter" required accept=".pdf,image/*"
                                 style="width: 100%; padding: 0.6rem; border-radius: 10px; border: 1px dashed #cbd5e1; background: #f8fafc;">
                         </div>
                         <div class="form-group">
                             <label
-                                style="display: block; font-weight: 600; color: #334155; margin-bottom: 0.35rem; font-size: 0.9rem;">7.
+                                style="display: block; font-weight: 600; color: #334155; margin-bottom: 0.35rem; font-size: 0.9rem;">6.
                                 College Fee Structure *</label>
                             <input type="file" name="doc_fee_structure" required accept=".pdf,image/*"
+                                style="width: 100%; padding: 0.6rem; border-radius: 10px; border: 1px dashed #cbd5e1; background: #f8fafc;">
+                        </div>
+
+                        <!-- Optional Documents Section Header -->
+                        <div
+                            style="grid-column: 1 / -1; font-weight: 700; color: #0f172a; font-size: 0.98rem; margin-top: 0.75rem; border-top: 1px dashed #e2e8f0; padding-top: 0.85rem;">
+                            Optional Documents:
+                        </div>
+
+                        <div class="form-group">
+                            <label
+                                style="display: block; font-weight: 600; color: #334155; margin-bottom: 0.35rem; font-size: 0.9rem;">7.
+                                Community Certificate</label>
+                            <input type="file" name="doc_community_certificate" accept=".pdf,image/*"
                                 style="width: 100%; padding: 0.6rem; border-radius: 10px; border: 1px dashed #cbd5e1; background: #f8fafc;">
                         </div>
                         <div class="form-group">
@@ -541,17 +1005,50 @@
                         <div class="form-group">
                             <label
                                 style="display: block; font-weight: 600; color: #334155; margin-bottom: 0.35rem; font-size: 0.9rem;">9.
-                                Bank Account Details / Passbook Copy *</label>
-                            <input type="file" name="doc_bank_passbook" required accept=".pdf,image/*"
-                                style="width: 100%; padding: 0.6rem; border-radius: 10px; border: 1px dashed #cbd5e1; background: #f8fafc;">
-                        </div>
-                        <div class="form-group">
-                            <label
-                                style="display: block; font-weight: 600; color: #334155; margin-bottom: 0.35rem; font-size: 0.9rem;">10.
-                                Supporting Documents (Optional)</label>
+                                Supporting Documents</label>
                             <input type="file" name="doc_supporting" accept=".pdf,image/*"
                                 style="width: 100%; padding: 0.6rem; border-radius: 10px; border: 1px dashed #cbd5e1; background: #f8fafc;">
                         </div>
+                    </div>
+                </div>
+
+                <!-- STEP 5: Declaration & Submit -->
+                <div class="form-step-panel" id="stepPanel5" style="display: none;">
+                    <h3
+                        style="font-size: 1.3rem; font-weight: 700; color: #0f172a; margin-bottom: 1rem; border-bottom: 2px solid #f1f5f9; padding-bottom: 0.65rem; display: flex; align-items: center; gap: 0.5rem;">
+                        <span style="color: #059669;">✍️</span> Step 5: Declaration & Submission
+                    </h3>
+                    <p style="color: #64748b; font-size: 0.92rem; margin-bottom: 1.5rem;">
+                        Before submitting the application, please review and confirm the following statements:
+                    </p>
+
+                    <div
+                        style="display: flex; flex-direction: column; gap: 1.15rem; background: #f8fafc; padding: 1.5rem; border-radius: 16px; border: 1px solid #e2e8f0;">
+                        <label style="display: flex; align-items: flex-start; gap: 0.75rem; cursor: pointer;">
+                            <input type="checkbox" name="decl_true_info" required
+                                style="width: 18px; height: 18px; margin-top: 0.15rem; accent-color: #059669;">
+                            <span style="color: #1e293b; font-size: 0.95rem; font-weight: 600; line-height: 1.5;">
+                                I confirm that the information provided in this application is true and complete to the
+                                best of my knowledge. *
+                            </span>
+                        </label>
+
+                        <label style="display: flex; align-items: flex-start; gap: 0.75rem; cursor: pointer;">
+                            <input type="checkbox" name="decl_no_guarantee" required
+                                style="width: 18px; height: 18px; margin-top: 0.15rem; accent-color: #059669;">
+                            <span style="color: #1e293b; font-size: 0.95rem; font-weight: 600; line-height: 1.5;">
+                                I understand that submitting an application does not guarantee financial assistance. *
+                            </span>
+                        </label>
+
+                        <label style="display: flex; align-items: flex-start; gap: 0.75rem; cursor: pointer;">
+                            <input type="checkbox" name="decl_consent" required
+                                style="width: 18px; height: 18px; margin-top: 0.15rem; accent-color: #059669;">
+                            <span style="color: #1e293b; font-size: 0.95rem; font-weight: 600; line-height: 1.5;">
+                                I consent to Sindhikum Samugam verifying the information and documents provided for the
+                                purpose of assessing my application. *
+                            </span>
+                        </label>
                     </div>
                 </div>
 
@@ -569,7 +1066,7 @@
                         </button>
                         <button type="submit" id="submitFormBtn"
                             style="display: none; padding: 0.85rem 2.2rem; border-radius: 10px; font-weight: 600; font-size: 0.95rem; border: none; background: linear-gradient(135deg, #059669, #D97706); color: #ffffff; cursor: pointer; box-shadow: 0 4px 14px rgba(5, 150, 105, 0.3); transition: all 0.2s ease;">
-                            Submit Application 🤲
+                            Submit Application →
                         </button>
                     </div>
                 </div>
@@ -580,11 +1077,12 @@
             <div id="formSuccessMessage"
                 style="display: none; margin-top: 2rem; padding: 2.5rem; background: #ecfdf5; border: 1px solid #a7f3d0; border-radius: 18px; text-align: center; color: #065f46;">
                 <span style="font-size: 3.5rem; display: block; margin-bottom: 0.5rem;">✅</span>
-                <h3 style="font-size: 1.65rem; font-weight: 800; margin-bottom: 0.5rem;">Scholarship Application
-                    Submitted!</h3>
+                <h3 style="font-size: 1.65rem; font-weight: 800; margin-bottom: 0.5rem;">Application Submitted
+                    Successfully</h3>
                 <p style="font-size: 1.05rem; max-width: 600px; margin: 0 auto 1.25rem;">Your application has been
-                    successfully submitted to the Sindhikum Samugam Trust verification committee. Our verification team
-                    will review your application and contact you soon.</p>
+                    received successfully.
+                    Our team will review your application and contact you if any additional information or documents are
+                    required.</p>
                 <p style="font-weight: 700; color: #047857; font-size: 1.1rem; margin-bottom: 1.5rem;">Application
                     Reference No: <span id="appRefNo"
                         style="background: #ffffff; padding: 0.4rem 1rem; border-radius: 8px; border: 1.5px solid #6ee7b7; font-family: monospace; font-size: 1.15rem;">SS-2026-9842</span>
@@ -611,7 +1109,7 @@
             <label style="display: block; font-weight: 600; color: #334155; margin-bottom: 0.5rem;">Enter Application
                 Reference Number</label>
             <div style="display: flex; gap: 0.75rem; margin-bottom: 1.5rem;">
-                <input type="text" id="statusRefInput" placeholder="e.g. SS-2026-9842"
+                <input type="text" id="statusRefInput"
                     style="flex: 1; padding: 0.8rem 1rem; border-radius: 10px; border: 1px solid #cbd5e1; font-size: 1rem; outline: none;">
                 <button type="button" onclick="checkStatusAction()" class="btn btn-primary"
                     style="padding: 0.8rem 1.5rem; border-radius: 10px; border: none; background: #0284c7; color: white; font-weight: 700; cursor: pointer;">Track</button>
@@ -633,7 +1131,7 @@
 
 <script>
     let currentStep = 1;
-    const totalSteps = 4;
+    const totalSteps = 5;
 
     function openRegistrationModal() {
         currentStep = 1;
@@ -764,29 +1262,51 @@
                         resultBox.style.display = 'block';
                         if (data.status === 'found') {
                             const app = data.data;
-                            let badgeClass = 'background: #fef3c7; color: #d97706; border: 1px solid #fde68a;';
-                            if (app.status === 'Approved') badgeClass = 'background: #d1fae5; color: #059669; border: 1px solid #a7f3d0;';
-                            if (app.status === 'Rejected') badgeClass = 'background: #fee2e2; color: #dc2626; border: 1px solid #fca5a5;';
-                            if (app.status === 'Under Review') badgeClass = 'background: #e0f2fe; color: #0284c7; border: 1px solid #bae6fd;';
+                            let statusName = app.status;
+                            let badgeStyle = 'background: #fef3c7; color: #d97706; border: 1px solid #fde68a;';
+                            let statusEmoji = '🟡';
+                            let statusDesc = 'Your application has been successfully received. Our team will review the submitted details and documents. If further information is required, we will contact you.';
+
+                            if (app.status === 'Under Review') {
+                                statusEmoji = '🔵';
+                                badgeStyle = 'background: #e0f2fe; color: #0284c7; border: 1px solid #bae6fd;';
+                                statusDesc = 'Your application is currently under detailed committee review and document verification. We will notify you once a decision is made.';
+                            } else if (app.status === 'Approved') {
+                                statusEmoji = '🟢';
+                                badgeStyle = 'background: #d1fae5; color: #047857; border: 1px solid #a7f3d0;';
+                                statusDesc = 'Congratulations! Your scholarship application has been approved by Sindhikum Samugam Educational Trust. Our team will coordinate fee disbursement directly with your institution.';
+                            } else if (app.status === 'Not Approved' || app.status === 'Rejected') {
+                                statusName = 'Not Approved';
+                                statusEmoji = '🔴';
+                                badgeStyle = 'background: #fee2e2; color: #dc2626; border: 1px solid #fca5a5;';
+                                statusDesc = 'Thank you for applying. After careful review, we regret to inform you that your application could not be approved at this time based on available trust funds and criteria.';
+                            } else {
+                                statusName = 'Application Received';
+                            }
 
                             resultBox.innerHTML = `
-                        <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 1.25rem; text-align: left; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
-                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
-                                <strong style="font-size: 1.05rem; color: #0f172a;">${app.full_name}</strong>
-                                <span style="font-size: 0.85rem; font-weight: 700; padding: 0.3rem 0.8rem; border-radius: 50px; ${badgeClass}">${app.status}</span>
+                        <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 1.5rem; text-align: left; box-shadow: 0 10px 25px rgba(15,23,42,0.06);">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem;">
+                                <strong style="font-size: 1.1rem; color: #0f172a;">${app.full_name}</strong>
+                                <span style="font-size: 0.88rem; font-weight: 700; padding: 0.35rem 0.9rem; border-radius: 50px; ${badgeStyle}">
+                                    ${statusEmoji} Status: ${statusName}
+                                </span>
                             </div>
-                            <div style="font-size: 0.9rem; color: #64748b; margin-bottom: 0.5rem; line-height: 1.5;">
-                                <strong>Ref No:</strong> ${app.ref_no}<br>
+                            <div style="font-size: 0.95rem; color: #334155; margin-bottom: 1rem; line-height: 1.6; background: #f8fafc; padding: 1rem; border-radius: 12px; border: 1px solid #f1f5f9;">
+                                ${statusDesc}
+                            </div>
+                            <div style="font-size: 0.88rem; color: #64748b; line-height: 1.6;">
+                                <strong>Reference No:</strong> <span style="font-family: monospace; font-weight: 700; color: #0f172a;">${app.ref_no}</span><br>
                                 <strong>Course:</strong> ${app.course_applying || 'N/A'}<br>
-                                <strong>Submitted:</strong> ${app.created_at}
+                                <strong>Submitted On:</strong> ${app.created_at}
                             </div>
-                            ${app.admin_remarks ? `<div style="font-size: 0.85rem; background: #e0f2fe; color: #0369a1; padding: 0.5rem 0.75rem; border-radius: 8px; margin-top: 0.5rem;"><strong>Note:</strong> ${app.admin_remarks}</div>` : ''}
+                            ${app.admin_remarks ? `<div style="font-size: 0.88rem; background: #eff6ff; color: #1e40af; padding: 0.75rem 1rem; border-radius: 10px; margin-top: 0.85rem; border: 1px solid #bfdbfe;"><strong>Trust Board Note:</strong> ${app.admin_remarks}</div>` : ''}
                         </div>
                     `;
                         } else {
                             resultBox.innerHTML = `
-                        <div style="background: #fef2f2; border: 1px solid #fecaca; color: #991b1b; border-radius: 12px; padding: 1rem; font-size: 0.9rem; text-align: center;">
-                            No application record found for Reference ID: <strong>${refNo}</strong>
+                        <div style="background: #fef2f2; border: 1px solid #fecaca; color: #991b1b; border-radius: 14px; padding: 1.25rem; font-size: 0.95rem; text-align: center; font-weight: 600;">
+                            ❌ No application record found for Reference ID: <strong style="font-family: monospace;">${refNo}</strong>
                         </div>
                     `;
                         }
@@ -848,50 +1368,115 @@
     });
 </script>
 
-<!-- Post Submission Section -->
-<section class="post-submission-section" style="padding: 5rem 2rem 6rem; background-color: #f8fafc;">
-    <div class="post-submission-container" style="max-width: 1100px; margin: 0 auto;">
-        <div class="premium-section-header">
-            <span class="section-badge">Next Steps</span>
-            <h2>After Submission – <span class="gradient-text">What Happens Next?</span></h2>
-            <p>Our transparent 7-step verification and disbursement process.</p>
+<!-- Section: After You Apply - What Happens Next? -->
+<section id="whatHappensNextSection" class="post-submission-section"
+    style="padding: 5rem 1.5rem; background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%); border-top: 1px solid #e2e8f0;">
+    <div class="post-submission-container" style="max-width: 1280px; margin: 0 auto;">
+
+        <!-- Section Header -->
+        <div class="premium-section-header text-center"
+            style="text-align: center; max-width: 760px; margin: 0 auto 3.5rem auto;">
+            <span class="section-badge"
+                style="background: #e0f2fe; color: #0284c7; padding: 0.4rem 1.1rem; border-radius: 50px; font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; display: inline-block; margin-bottom: 0.85rem; border: 1px solid rgba(2, 132, 199, 0.2);">
+                NEXT STEPS
+            </span>
+            <h2 style="font-size: 2.3rem; font-weight: 800; color: #0f172a; margin-top: 0.5rem; line-height: 1.2;">
+                After You Apply — <span class="gradient-text"
+                    style="background: linear-gradient(135deg, #059669, #0284c7); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">What
+                    Happens Next?</span>
+            </h2>
+            <p style="color: #64748b; font-size: 1.05rem; margin-top: 0.75rem; line-height: 1.6;">
+                Our transparent process helps us understand your needs, verify your information and determine the
+                appropriate support.
+            </p>
         </div>
 
-        <div class="submission-stepper-wrapper" style="overflow-x: auto; padding: 1rem 0 2rem;">
-            <div class="submission-stepper">
-                <div class="sub-step">
-                    <div class="sub-icon">📄</div>
-                    <div class="sub-label">Application<br>Received</div>
+        <!-- 7 Steps Flow Container -->
+        <div class="submission-stepper-wrapper" style="overflow-x: auto; padding: 0.5rem 0 1.5rem;">
+            <div class="submission-stepper"
+                style="display: flex; align-items: center; justify-content: space-between; min-width: 1050px; gap: 0.6rem;">
+
+                <!-- Step 01 -->
+                <div class="sub-step-card"
+                    style="background: #ffffff; border-radius: 16px; padding: 1.5rem 1rem; border: 1px solid #e2e8f0; box-shadow: 0 8px 20px rgba(15, 23, 42, 0.04); text-align: center; flex: 1; min-width: 125px;">
+                    <div style="font-size: 1.8rem; margin-bottom: 0.4rem;">📄</div>
+                    <div
+                        style="font-size: 0.8rem; font-weight: 800; color: #059669; background: rgba(5, 150, 105, 0.1); padding: 0.2rem 0.6rem; border-radius: 8px; display: inline-block; margin-bottom: 0.5rem; font-family: monospace;">
+                        01</div>
+                    <div style="font-size: 0.88rem; font-weight: 700; color: #0f172a; line-height: 1.3;">
+                        Application<br>Received</div>
                 </div>
-                <div class="sub-arrow">→</div>
-                <div class="sub-step">
-                    <div class="sub-icon">🔍</div>
-                    <div class="sub-label">Verification in<br>Progress</div>
+                <div style="color: #cbd5e1; font-weight: 800; font-size: 1.2rem; flex-shrink: 0;">→</div>
+
+                <!-- Step 02 -->
+                <div class="sub-step-card"
+                    style="background: #ffffff; border-radius: 16px; padding: 1.5rem 1rem; border: 1px solid #e2e8f0; box-shadow: 0 8px 20px rgba(15, 23, 42, 0.04); text-align: center; flex: 1; min-width: 125px;">
+                    <div style="font-size: 1.8rem; margin-bottom: 0.4rem;">🔍</div>
+                    <div
+                        style="font-size: 0.8rem; font-weight: 800; color: #0284c7; background: rgba(2, 132, 199, 0.1); padding: 0.2rem 0.6rem; border-radius: 8px; display: inline-block; margin-bottom: 0.5rem; font-family: monospace;">
+                        02</div>
+                    <div style="font-size: 0.88rem; font-weight: 700; color: #0f172a; line-height: 1.3;">
+                        Document<br>Verification</div>
                 </div>
-                <div class="sub-arrow">→</div>
-                <div class="sub-step">
-                    <div class="sub-icon">👥</div>
-                    <div class="sub-label">Counselling<br>Session</div>
+                <div style="color: #cbd5e1; font-weight: 800; font-size: 1.2rem; flex-shrink: 0;">→</div>
+
+                <!-- Step 03 -->
+                <div class="sub-step-card"
+                    style="background: #ffffff; border-radius: 16px; padding: 1.5rem 1rem; border: 1px solid #e2e8f0; box-shadow: 0 8px 20px rgba(15, 23, 42, 0.04); text-align: center; flex: 1; min-width: 125px;">
+                    <div style="font-size: 1.8rem; margin-bottom: 0.4rem;">💬</div>
+                    <div
+                        style="font-size: 0.8rem; font-weight: 800; color: #7c3aed; background: rgba(124, 58, 237, 0.1); padding: 0.2rem 0.6rem; border-radius: 8px; display: inline-block; margin-bottom: 0.5rem; font-family: monospace;">
+                        03</div>
+                    <div style="font-size: 0.88rem; font-weight: 700; color: #0f172a; line-height: 1.3;">Counselling
+                        &<br>Guidance</div>
                 </div>
-                <div class="sub-arrow">→</div>
-                <div class="sub-step">
-                    <div class="sub-icon">⚖️</div>
-                    <div class="sub-label">Committee<br>Review</div>
+                <div style="color: #cbd5e1; font-weight: 800; font-size: 1.2rem; flex-shrink: 0;">→</div>
+
+                <!-- Step 04 -->
+                <div class="sub-step-card"
+                    style="background: #ffffff; border-radius: 16px; padding: 1.5rem 1rem; border: 1px solid #e2e8f0; box-shadow: 0 8px 20px rgba(15, 23, 42, 0.04); text-align: center; flex: 1; min-width: 125px;">
+                    <div style="font-size: 1.8rem; margin-bottom: 0.4rem;">⚖️</div>
+                    <div
+                        style="font-size: 0.8rem; font-weight: 800; color: #d97706; background: rgba(217, 119, 6, 0.1); padding: 0.2rem 0.6rem; border-radius: 8px; display: inline-block; margin-bottom: 0.5rem; font-family: monospace;">
+                        04</div>
+                    <div style="font-size: 0.88rem; font-weight: 700; color: #0f172a; line-height: 1.3;">
+                        Eligibility<br>Review</div>
                 </div>
-                <div class="sub-arrow">→</div>
-                <div class="sub-step">
-                    <div class="sub-icon">🤝</div>
-                    <div class="sub-label">Sponsor<br>Approval</div>
+                <div style="color: #cbd5e1; font-weight: 800; font-size: 1.2rem; flex-shrink: 0;">→</div>
+
+                <!-- Step 05 -->
+                <div class="sub-step-card"
+                    style="background: #ffffff; border-radius: 16px; padding: 1.5rem 1rem; border: 1px solid #e2e8f0; box-shadow: 0 8px 20px rgba(15, 23, 42, 0.04); text-align: center; flex: 1; min-width: 125px;">
+                    <div style="font-size: 1.8rem; margin-bottom: 0.4rem;">🎯</div>
+                    <div
+                        style="font-size: 0.8rem; font-weight: 800; color: #059669; background: rgba(5, 150, 105, 0.1); padding: 0.2rem 0.6rem; border-radius: 8px; display: inline-block; margin-bottom: 0.5rem; font-family: monospace;">
+                        05</div>
+                    <div style="font-size: 0.88rem; font-weight: 700; color: #0f172a; line-height: 1.3;">
+                        Support<br>Decision</div>
                 </div>
-                <div class="sub-arrow">→</div>
-                <div class="sub-step">
-                    <div class="sub-icon">💰</div>
-                    <div class="sub-label">Fees Paid to<br>Institution</div>
+                <div style="color: #cbd5e1; font-weight: 800; font-size: 1.2rem; flex-shrink: 0;">→</div>
+
+                <!-- Step 06 -->
+                <div class="sub-step-card"
+                    style="background: #ffffff; border-radius: 16px; padding: 1.5rem 1rem; border: 1px solid #e2e8f0; box-shadow: 0 8px 20px rgba(15, 23, 42, 0.04); text-align: center; flex: 1; min-width: 125px;">
+                    <div style="font-size: 1.8rem; margin-bottom: 0.4rem;">🏛️</div>
+                    <div
+                        style="font-size: 0.8rem; font-weight: 800; color: #0284c7; background: rgba(2, 132, 199, 0.1); padding: 0.2rem 0.6rem; border-radius: 8px; display: inline-block; margin-bottom: 0.5rem; font-family: monospace;">
+                        06</div>
+                    <div style="font-size: 0.88rem; font-weight: 700; color: #0f172a; line-height: 1.3;">Direct
+                        Fee<br>Payment</div>
                 </div>
-                <div class="sub-arrow">→</div>
-                <div class="sub-step">
-                    <div class="sub-icon">📈</div>
-                    <div class="sub-label">Regular<br>Follow-up</div>
+                <div style="color: #cbd5e1; font-weight: 800; font-size: 1.2rem; flex-shrink: 0;">→</div>
+
+                <!-- Step 07 -->
+                <div class="sub-step-card"
+                    style="background: #ffffff; border-radius: 16px; padding: 1.5rem 1rem; border: 1px solid #e2e8f0; box-shadow: 0 8px 20px rgba(15, 23, 42, 0.04); text-align: center; flex: 1; min-width: 125px;">
+                    <div style="font-size: 1.8rem; margin-bottom: 0.4rem;">🌱</div>
+                    <div
+                        style="font-size: 0.8rem; font-weight: 800; color: #7c3aed; background: rgba(124, 58, 237, 0.1); padding: 0.2rem 0.6rem; border-radius: 8px; display: inline-block; margin-bottom: 0.5rem; font-family: monospace;">
+                        07</div>
+                    <div style="font-size: 0.88rem; font-weight: 700; color: #0f172a; line-height: 1.3;">Follow-up
+                        &<br>Support</div>
                 </div>
             </div>
         </div>

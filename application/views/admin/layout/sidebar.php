@@ -1,7 +1,7 @@
 <!-- Cyber-SaaS Sidebar Navigation -->
 <nav id="sidebar">
     <div class="sidebar-header">
-        <img src="<?php echo base_url('assets/images/logo.png'); ?>" alt="Logo" style="height: 38px; width: auto; filter: drop-shadow(0 2px 8px rgba(255,255,255,0.15));">
+        <img src="<?php echo base_url('assets/images/logo.png?v=' . time()); ?>" alt="Logo" style="height: 38px; width: auto; filter: drop-shadow(0 2px 8px rgba(255,255,255,0.15));">
         <div>
             <h6 class="mb-0 fw-extrabold text-white" style="font-size: 1rem; letter-spacing: -0.01em;">Sindhikum Admin</h6>
             <span class="badge px-2 py-0.5" style="background: rgba(99, 102, 241, 0.2); color: #818cf8; font-size: 0.68rem; font-weight: 700;">Executive Trust</span>
@@ -26,6 +26,12 @@
             <a href="<?php echo base_url('admin/manage_donors'); ?>" class="<?php echo ($this->uri->segment(2) == 'manage_donors') ? 'active' : ''; ?>">
                 <i class="fa-solid fa-hand-holding-heart" style="font-size: 1.05rem;"></i>
                 <span>Donor Management</span>
+            </a>
+        </li>
+        <li>
+            <a href="<?php echo base_url('admin/contact_enquiries'); ?>" class="<?php echo ($this->uri->segment(2) == 'contact_enquiries') ? 'active' : ''; ?>">
+                <i class="fa-solid fa-comments" style="font-size: 1.05rem;"></i>
+                <span>Contact Enquiries</span>
             </a>
         </li>
         <li>

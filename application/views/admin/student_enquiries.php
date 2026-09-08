@@ -151,22 +151,22 @@
                                         <i class="fa-solid fa-phone me-1 text-muted" style="font-size: 0.8rem;"></i> <?php echo htmlspecialchars($app['mobile']); ?>
                                     </td>
                                     <td>
-                                        <?php if($app['status'] == 'Approved'): ?>
-                                            <span class="badge px-3 py-2" style="background: #d1fae5; color: #047857; border: 1px solid #a7f3d0; border-radius: 50px; font-weight: 700;"><i class="fa-solid fa-circle-check me-1"></i> Approved</span>
-                                        <?php elseif($app['status'] == 'Rejected'): ?>
-                                            <span class="badge px-3 py-2" style="background: #fee2e2; color: #dc2626; border: 1px solid #fca5a5; border-radius: 50px; font-weight: 700;"><i class="fa-solid fa-circle-xmark me-1"></i> Rejected</span>
-                                        <?php elseif($app['status'] == 'Under Review'): ?>
-                                            <span class="badge px-3 py-2" style="background: #e0f2fe; color: #0284c7; border: 1px solid #bae6fd; border-radius: 50px; font-weight: 700;"><i class="fa-solid fa-magnifying-glass me-1"></i> Under Review</span>
-                                        <?php else: ?>
-                                            <span class="badge px-3 py-2" style="background: #fef3c7; color: #d97706; border: 1px solid #fde68a; border-radius: 50px; font-weight: 700;"><i class="fa-solid fa-clock me-1"></i> Pending</span>
-                                        <?php endif; ?>
-                                    </td>
+                                         <?php if($app['status'] == 'Approved'): ?>
+                                             <span class="badge px-3 py-2" style="background: #d1fae5; color: #047857; border: 1px solid #a7f3d0; border-radius: 50px; font-weight: 700;">🟢 Approved</span>
+                                         <?php elseif($app['status'] == 'Not Approved' || $app['status'] == 'Rejected'): ?>
+                                             <span class="badge px-3 py-2" style="background: #fee2e2; color: #dc2626; border: 1px solid #fca5a5; border-radius: 50px; font-weight: 700;">🔴 Not Approved</span>
+                                         <?php elseif($app['status'] == 'Under Review'): ?>
+                                             <span class="badge px-3 py-2" style="background: #e0f2fe; color: #0284c7; border: 1px solid #bae6fd; border-radius: 50px; font-weight: 700;">🔵 Under Review</span>
+                                         <?php else: ?>
+                                             <span class="badge px-3 py-2" style="background: #fef3c7; color: #d97706; border: 1px solid #fde68a; border-radius: 50px; font-weight: 700;">🟡 Application Received</span>
+                                         <?php endif; ?>
+                                     </td>
                                     <td class="text-end pe-4">
                                         <div class="d-inline-flex gap-2">
                                             <button type="button" class="btn btn-sm" onclick="viewApplicationModal(<?php echo htmlspecialchars(json_encode($app)); ?>)" style="background: #6366f1; color: white; border-radius: 10px; font-weight: 700; padding: 0.45rem 0.9rem; box-shadow: 0 4px 10px rgba(99, 102, 241, 0.25); border: none;">
                                                 <i class="fa-solid fa-eye me-1"></i> View
                                             </button>
-                                            <a href="<?php echo base_url('admin/delete_application/' . $app['id']); ?>" onclick="return confirm('Are you sure you want to delete this application enquiry?');" class="btn btn-sm" style="background: #fee2e2; color: #dc2626; border-radius: 10px; font-weight: 700; padding: 0.45rem 0.9rem; border: 1px solid #fca5a5;">
+                                            <a href="javascript:void(0)" onclick="showAppConfirm('Are you sure you want to delete this application enquiry?', 'Delete Application', '<?php echo base_url('admin/delete_application/' . $app['id']); ?>')" class="btn btn-sm" style="background: #fee2e2; color: #dc2626; border-radius: 10px; font-weight: 700; padding: 0.45rem 0.9rem; border: 1px solid #fca5a5;">
                                                 <i class="fa-solid fa-trash-can me-1"></i> Delete
                                             </a>
                                         </div>
@@ -336,10 +336,10 @@
                         <div class="col-md-4">
                             <label class="form-label fw-bold text-dark" style="font-size: 0.85rem;">Decision Status</label>
                             <select name="status" id="m_status_select" class="form-select" style="border-radius: 10px; font-weight: 600;">
-                                <option value="Pending">🟡 Pending Verification</option>
-                                <option value="Under Review">🔵 Under Board Review</option>
-                                <option value="Approved">🟢 Approved Scholarship</option>
-                                <option value="Rejected">🔴 Rejected Application</option>
+                                <option value="Application Received">🟡 Application Received</option>
+                                <option value="Under Review">🔵 Under Review</option>
+                                <option value="Approved">🟢 Approved</option>
+                                <option value="Not Approved">🔴 Not Approved</option>
                             </select>
                         </div>
                         <div class="col-md-5">

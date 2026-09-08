@@ -20,6 +20,8 @@ class Student_model extends CI_Model {
             `email` VARCHAR(255) NOT NULL,
             `city_district_state` VARCHAR(255) NULL,
             `address` TEXT NULL,
+            `parent_contact` VARCHAR(20) NULL,
+            `preferred_language` VARCHAR(50) NULL,
             `qualification` VARCHAR(255) NULL,
             `school_college_name` VARCHAR(255) NULL,
             `board_university` VARCHAR(255) NULL,
@@ -27,20 +29,54 @@ class Student_model extends CI_Model {
             `target_college` VARCHAR(255) NULL,
             `academic_year` VARCHAR(50) NULL,
             `marks_cgpa` VARCHAR(50) NULL,
+            `admission_status` VARCHAR(50) NULL,
+            `annual_tuition_fee` DECIMAL(12,2) DEFAULT 0.00,
+            `hostel_required` VARCHAR(10) NULL,
+            `career_goal` TEXT NULL,
             `father_guardian_name` VARCHAR(255) NULL,
             `mother_name` VARCHAR(255) NULL,
             `occupation` VARCHAR(255) NULL,
+            `father_occupation` VARCHAR(255) NULL,
+            `mother_occupation` VARCHAR(255) NULL,
             `family_members_count` INT DEFAULT 1,
             `annual_income` DECIMAL(12,2) DEFAULT 0.00,
+            `father_monthly_income` DECIMAL(12,2) DEFAULT 0.00,
             `earning_members_count` INT DEFAULT 1,
+            `financial_commitments` TEXT NULL,
+            `why_seeking_support` TEXT NULL,
+            `required_support_amount` DECIMAL(12,2) DEFAULT 0.00,
             `financial_description` TEXT NULL,
             `other_scholarships` VARCHAR(255) NULL,
+            `additional_financial_info` TEXT NULL,
             `documents_json` TEXT NULL,
             `status` VARCHAR(50) DEFAULT 'Pending',
             `admin_remarks` TEXT NULL,
             `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;";
         $this->db->query($query);
+
+        // Run alter queries for existing table columns if they do not exist
+        $cols = array(
+            'parent_contact' => "VARCHAR(20) NULL",
+            'preferred_language' => "VARCHAR(50) NULL",
+            'admission_status' => "VARCHAR(50) NULL",
+            'annual_tuition_fee' => "DECIMAL(12,2) DEFAULT 0.00",
+            'hostel_required' => "VARCHAR(10) NULL",
+            'career_goal' => "TEXT NULL",
+            'father_occupation' => "VARCHAR(255) NULL",
+            'mother_occupation' => "VARCHAR(255) NULL",
+            'father_monthly_income' => "DECIMAL(12,2) DEFAULT 0.00",
+            'financial_commitments' => "TEXT NULL",
+            'why_seeking_support' => "TEXT NULL",
+            'required_support_amount' => "DECIMAL(12,2) DEFAULT 0.00",
+            'additional_financial_info' => "TEXT NULL"
+        );
+        foreach ($cols as $col_name => $col_def) {
+            $check = $this->db->query("SHOW COLUMNS FROM `student_applications` LIKE '{$col_name}'");
+            if ($check && $check->num_rows() == 0) {
+                @$this->db->query("ALTER TABLE `student_applications` ADD COLUMN `{$col_name}` {$col_def}");
+            }
+        }
 
         $settings_query = "CREATE TABLE IF NOT EXISTS `site_settings` (
             `setting_key` VARCHAR(100) NOT NULL PRIMARY KEY,
@@ -110,7 +146,7 @@ class Student_model extends CI_Model {
     public function get_stats() {
         $total = $this->db->count_all_results('student_applications');
         
-        $this->db->where('status', 'Pending');
+        $this->db->where_in('status', array('Application Received', 'Pending'));
         $pending = $this->db->count_all_results('student_applications');
 
         $this->db->where('status', 'Under Review');
@@ -119,7 +155,7 @@ class Student_model extends CI_Model {
         $this->db->where('status', 'Approved');
         $approved = $this->db->count_all_results('student_applications');
 
-        $this->db->where('status', 'Rejected');
+        $this->db->where_in('status', array('Not Approved', 'Rejected'));
         $rejected = $this->db->count_all_results('student_applications');
 
         // Calculate total fees paid for approved applications
@@ -131,7 +167,7 @@ class Student_model extends CI_Model {
 
         // Calculate financial aid needed this month for pending & under review applications
         $this->db->select_sum('annual_income');
-        $this->db->where_in('status', array('Pending', 'Under Review'));
+        $this->db->where_in('status', array('Application Received', 'Pending', 'Under Review'));
         $query2 = $this->db->get('student_applications');
         $row2 = $query2->row();
         $need_this_month_db = ($row2 && $row2->annual_income > 0) ? (float)$row2->annual_income : 0;
