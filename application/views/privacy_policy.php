@@ -2,9 +2,9 @@
 
 <!-- Privacy Policy Hero Banner -->
 <section class="privacy-hero" style="margin-top: 70px; background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); padding: 4.5rem 1.5rem 3.5rem; text-align: center; color: #ffffff; position: relative; overflow: hidden;">
-    <div style="max-width: 900px; margin: 0 auto; position: relative; z-index: 2;">
-        <span class="section-badge" style="background: rgba(5, 150, 105, 0.2); color: #34d399; border: 1px solid rgba(52, 211, 153, 0.3); padding: 0.4rem 1.25rem; border-radius: 50px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.85rem; margin-bottom: 1rem; display: inline-block;">
-            Legal Documentation
+    <div class="reveal" style="max-width: 900px; margin: 0 auto; position: relative; z-index: 2;">
+        <span class="section-badge hero-slider-badge badge-privacy">
+            🛡️ LEGAL DOCUMENTATION
         </span>
         <h1 style="font-size: 2.75rem; font-weight: 800; line-height: 1.2; margin-bottom: 1rem; color: #ffffff;">
             Privacy <span style="background: linear-gradient(135deg, #34d399, #fbbf24); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Policy</span>

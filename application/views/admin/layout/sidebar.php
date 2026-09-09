@@ -3,7 +3,7 @@
     <div class="sidebar-header">
         <img src="<?php echo base_url('assets/images/logo.png?v=' . time()); ?>" alt="Logo" style="height: 38px; width: auto; filter: drop-shadow(0 2px 8px rgba(255,255,255,0.15));">
         <div>
-            <h6 class="mb-0 fw-extrabold text-white" style="font-size: 1rem; letter-spacing: -0.01em;">Sindhikum Admin</h6>
+            <h6 class="mb-0 fw-extrabold text-white" style="font-size: 0.82rem; letter-spacing: -0.01em; line-height: 1.2;"><span style="color: #4ade80;">Sindhikum Samugam</span> Foundation Admin</h6>
             <span class="badge px-2 py-0.5" style="background: rgba(99, 102, 241, 0.2); color: #818cf8; font-size: 0.68rem; font-weight: 700;">Executive Trust</span>
         </div>
     </div>
@@ -59,7 +59,7 @@
                 <i class="fa-solid fa-bars-staggered"></i>
             </button>
             <div>
-                <span class="fw-bold" style="color: #0f172a; font-size: 0.95rem;">Executive Control Panel</span>
+                <span class="fw-bold" style="color: #0f172a; font-size: 0.95rem;"><span style="color: #059669;">Sindhikum Samugam</span> Foundation</span>
             </div>
         </div>
     </header>

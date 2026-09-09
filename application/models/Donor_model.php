@@ -13,7 +13,7 @@ class Donor_model extends CI_Model {
         $query = "CREATE TABLE IF NOT EXISTS `donor_pledges` (
             `id` INT AUTO_INCREMENT PRIMARY KEY,
             `donor_name` VARCHAR(255) NOT NULL,
-            `email` VARCHAR(255) NOT NULL,
+            `email` VARCHAR(255) NULL,
             `phone` VARCHAR(50) NOT NULL,
             `donor_type` VARCHAR(50) DEFAULT 'Individual',
             `amount` DECIMAL(12,2) NOT NULL,
@@ -30,6 +30,7 @@ class Donor_model extends CI_Model {
             `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;";
         $this->db->query($query);
+        @$this->db->query("ALTER TABLE `donor_pledges` MODIFY `email` VARCHAR(255) NULL;");
     }
 
     private function seed_default_donors() {

@@ -2559,24 +2559,27 @@ main {
 
     /* Hero section home page - Mobile full photo slider with text content overlayed inside image */
     .hero-section {
-        padding-top: 65px !important;
-        padding-bottom: 0 !important;
-        padding-inline: 0 !important;
+        padding-top: 75px !important;
+        padding-bottom: 2rem !important;
+        padding-inline: 1rem !important;
         min-height: auto !important;
         width: 100% !important;
         box-sizing: border-box !important;
         background-color: #0f172a !important;
         position: relative !important;
         overflow: hidden !important;
-        display: block !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        align-items: center !important;
     }
 
     .home-slider-bg {
         position: absolute !important;
-        top: 65px !important;
+        top: 0 !important;
         left: 0 !important;
         width: 100% !important;
-        height: 260px !important;
+        height: 100% !important;
         z-index: 1 !important;
         overflow: hidden !important;
     }
@@ -2602,34 +2605,42 @@ main {
         left: 0 !important;
         width: 100% !important;
         height: 100% !important;
-        background: linear-gradient(180deg, rgba(15, 23, 42, 0.40) 0%, rgba(15, 23, 42, 0.15) 50%, rgba(15, 23, 42, 0.50) 100%) !important;
+        background: linear-gradient(180deg, rgba(15, 23, 42, 0.65) 0%, rgba(15, 23, 42, 0.45) 45%, rgba(15, 23, 42, 0.85) 100%) !important;
         z-index: 2 !important;
     }
 
     .slider-arrow {
         display: flex !important;
-        width: 34px !important;
-        height: 34px !important;
-        font-size: 1rem !important;
-        z-index: 50 !important;
-        top: 175px !important;
+        width: 32px !important;
+        height: 32px !important;
+        font-size: 1.05rem !important;
+        z-index: 25 !important;
+        top: 50% !important;
         transform: translateY(-50%) !important;
+        background: rgba(15, 23, 42, 0.45) !important;
+        backdrop-filter: blur(4px) !important;
+        border: 1px solid rgba(255, 255, 255, 0.25) !important;
+        opacity: 0.75 !important;
     }
 
     .prev-arrow {
-        left: 0.5rem !important;
+        left: 6px !important;
     }
 
     .next-arrow {
-        right: 0.5rem !important;
+        right: 6px !important;
     }
 
     .home-slider-dots.mobile-dots {
         display: flex !important;
-        gap: 8px !important;
+        position: absolute !important;
+        bottom: 0.6rem !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        z-index: 20 !important;
+        gap: 6px !important;
         justify-content: center !important;
         align-items: center !important;
-        margin-top: 0.4rem !important;
     }
 
     .home-slider-dots.desktop-dots {
@@ -2644,17 +2655,19 @@ main {
         box-sizing: border-box !important;
         position: relative !important;
         z-index: 3 !important;
+        align-items: center !important;
+        text-align: center !important;
     }
 
     .hero-text-content {
         order: 1 !important;
         display: flex !important;
         flex-direction: column !important;
-        align-items: flex-start !important;
-        text-align: left !important;
+        align-items: center !important;
+        text-align: center !important;
         width: 100% !important;
-        min-height: 260px !important;
-        padding: 1.85rem 3.25rem 0.85rem 3.25rem !important;
+        min-height: auto !important;
+        padding: 0.5rem 0.25rem !important;
         background: transparent !important;
         box-sizing: border-box !important;
         border-bottom: none !important;
@@ -2662,40 +2675,48 @@ main {
 
     .hero-text-content .badge {
         font-size: 0.68rem !important;
-        padding: 0.2rem 0.6rem !important;
-        margin-bottom: 0.35rem !important;
-        align-self: flex-start !important;
+        padding: 0.25rem 0.72rem !important;
+        margin-bottom: 0.45rem !important;
+        align-self: center !important;
     }
 
     .hero-text-content h1 {
-        font-size: 0.96rem !important;
-        text-align: left !important;
-        line-height: 1.25 !important;
+        font-size: 1.45rem !important;
+        text-align: center !important;
+        line-height: 1.22 !important;
         margin-bottom: 0.45rem !important;
         text-shadow: 0 3px 12px rgba(0, 0, 0, 0.85), 0 1px 3px rgba(0, 0, 0, 0.9) !important;
     }
 
     .hero-text-content p {
-        display: none !important;
+        display: block !important;
+        font-size: 0.82rem !important;
+        line-height: 1.4 !important;
+        max-width: 320px !important;
+        margin: 0 auto 0.75rem auto !important;
+        color: rgba(255, 255, 255, 0.92) !important;
+        text-align: center !important;
     }
 
     .hero-buttons {
         display: flex !important;
-        flex-direction: row !important;
-        justify-content: flex-start !important;
+        flex-direction: column !important;
+        justify-content: center !important;
         align-items: center !important;
         width: 100% !important;
-        gap: 0.45rem !important;
-        margin-bottom: 0 !important;
+        gap: 0.4rem !important;
+        margin-bottom: 0.75rem !important;
     }
 
     .hero-buttons .btn {
-        width: auto !important;
-        min-width: max-content !important;
+        width: 100% !important;
+        max-width: 240px !important;
         justify-content: center !important;
-        padding: 0.35rem 0.78rem !important;
-        font-size: 0.74rem !important;
-        border-radius: 30px !important;
+        text-align: center !important;
+        padding: 0.44rem 0.95rem !important;
+        font-size: 0.78rem !important;
+        font-weight: 700 !important;
+        border-radius: 25px !important;
     }
 
     /* Out of Slider Currently Waiting Card */
@@ -2943,5 +2964,868 @@ main {
 
     .contact-info p {
         font-size: 0.85rem !important;
+    }
+}
+
+/* ==========================================================================
+   PROFESSIONAL SECTION ENTER & HOVER ANIMATIONS
+   ========================================================================== */
+
+/* --- Scroll Reveal Base Styles --- */
+.reveal {
+    opacity: 0;
+    transform: translateY(35px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+}
+
+.reveal-left {
+    opacity: 0;
+    transform: translateX(-45px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+}
+
+.reveal-right {
+    opacity: 0;
+    transform: translateX(45px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+}
+
+.reveal-zoom {
+    opacity: 0;
+    transform: scale(0.92);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+}
+
+.reveal-flip {
+    opacity: 0;
+    transform: perspective(1000px) rotateX(15deg) translateY(30px);
+    transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+}
+
+/* Revealed Active State */
+.reveal.revealed,
+.reveal-left.revealed,
+.reveal-right.revealed,
+.reveal-zoom.revealed,
+.reveal-flip.revealed {
+    opacity: 1;
+    transform: translateY(0) translateX(0) scale(1) rotateX(0deg);
+}
+
+/* Stagger Delays for Grid/List Children */
+.stagger-children > *:nth-child(1) { transition-delay: 0.05s; }
+.stagger-children > *:nth-child(2) { transition-delay: 0.15s; }
+.stagger-children > *:nth-child(3) { transition-delay: 0.25s; }
+.stagger-children > *:nth-child(4) { transition-delay: 0.35s; }
+.stagger-children > *:nth-child(5) { transition-delay: 0.45s; }
+.stagger-children > *:nth-child(6) { transition-delay: 0.55s; }
+
+/* Individual Stagger Delays */
+.delay-1 { transition-delay: 0.1s !important; }
+.delay-2 { transition-delay: 0.2s !important; }
+.delay-3 { transition-delay: 0.3s !important; }
+.delay-4 { transition-delay: 0.4s !important; }
+.delay-5 { transition-delay: 0.5s !important; }
+
+/* --- Enhanced Hover Micro-Interactions --- */
+
+/* Modern Button Shimmer & Elevation */
+.btn {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+    transform: skewX(-20deg);
+    transition: left 0.65s ease;
+    pointer-events: none;
+}
+
+.btn:hover::before {
+    left: 140%;
+}
+
+.btn:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 12px 24px -6px rgba(5, 150, 105, 0.35);
+}
+
+.btn .btn-icon {
+    display: inline-block;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn:hover .btn-icon {
+    transform: translateX(5px);
+}
+
+/* Interactive Card Elevate & Ambient Glow */
+.stat-card,
+.vision-pillar-card,
+.video-card,
+.tier-card,
+.bank-card,
+.promo-banner,
+.process-step,
+.about-pillar-item {
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease !important;
+}
+
+/* Stat Card Hover */
+.stat-card:hover {
+    transform: translateY(-8px) scale(1.01);
+    box-shadow: 0 30px 60px rgba(15, 23, 42, 0.35), 0 0 20px rgba(5, 150, 105, 0.25) !important;
+}
+
+/* Vision Pillar Card Hover */
+.vision-pillar-card:hover {
+    transform: translateY(-6px) translateX(4px);
+    box-shadow: 0 15px 35px -5px rgba(2, 132, 199, 0.18), 0 0 0 1px rgba(2, 132, 199, 0.25) !important;
+    border-color: #0284c7 !important;
+}
+
+/* Sponsor Video Card Hover & Thumbnail Zoom */
+.video-card {
+    cursor: pointer;
+}
+
+.video-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 40px -10px rgba(15, 23, 42, 0.3) !important;
+}
+
+.video-card .video-thumbnail img,
+.video-card .video-thumbnail {
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.video-card:hover .video-thumbnail {
+    transform: scale(1.04);
+}
+
+.video-card:hover .play-icon {
+    transform: scale(1.18);
+    background: #059669;
+    color: #ffffff;
+    box-shadow: 0 0 25px rgba(5, 150, 105, 0.6);
+}
+
+/* Banner Stat Items Float */
+.banner-stat-item {
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: default;
+}
+
+.banner-stat-item:hover {
+    transform: translateY(-5px) scale(1.03);
+}
+
+.banner-stat-item:hover .banner-icon {
+    transform: scale(1.2) rotate(6deg);
+    transition: transform 0.35s ease;
+}
+
+/* Promo Banners Hover */
+.promo-banner:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 25px 50px rgba(15, 23, 42, 0.25) !important;
+}
+
+/* Process Step Card Hover */
+.process-step:hover {
+    transform: translateY(-8px);
+}
+
+.process-step:hover .step-number {
+    transform: scale(1.15);
+    box-shadow: 0 0 20px rgba(2, 132, 199, 0.5);
+    transition: all 0.3s ease;
+}
+
+/* Image Wrappers Dynamic Shadow & Tilt Hover */
+.about-image-wrapper img {
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), filter 0.5s ease;
+}
+
+.about-image-wrapper:hover img {
+    transform: translateY(-6px) scale(1.02);
+    filter: drop-shadow(0 30px 60px rgba(15, 23, 42, 0.22)) !important;
+}
+
+/* Reduced Motion Fallback */
+@media (prefers-reduced-motion: reduce) {
+    .reveal, .reveal-left, .reveal-right, .reveal-zoom, .reveal-flip {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+    }
+    .btn::before {
+        display: none !important;
+    }
+}
+
+/* ==========================================================================
+   SLIDER STAGGERED ENTRANCE ANIMATIONS & HIGHLIGHTED BADGES SYSTEM
+   ========================================================================== */
+
+/* --- Slider & Hero Badges Highlight & Enlargement --- */
+.badge,
+.section-badge,
+.donor-hero-badge,
+.hero-slider-badge,
+.support-type-badge {
+    font-size: 0.95rem !important;
+    font-weight: 800 !important;
+    padding: 0.55rem 1.4rem !important;
+    border-radius: 50px !important;
+    letter-spacing: 0.06em !important;
+    text-transform: uppercase !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.55rem !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25) !important;
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    margin-bottom: 1.25rem !important;
+    line-height: 1.3 !important;
+}
+
+.badge:hover,
+.section-badge:hover,
+.donor-hero-badge:hover,
+.hero-slider-badge:hover,
+.support-type-badge:hover {
+    transform: translateY(-2px) scale(1.03) !important;
+    box-shadow: 0 12px 30px rgba(52, 211, 153, 0.35) !important;
+}
+
+/* Individual Slider Badge Variants */
+.badge-slide-1 {
+    background: linear-gradient(135deg, rgba(5, 150, 105, 0.4), rgba(2, 132, 199, 0.4)) !important;
+    color: #ffffff !important;
+    border: 1.5px solid rgba(52, 211, 153, 0.7) !important;
+    box-shadow: 0 8px 25px rgba(5, 150, 105, 0.45) !important;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6) !important;
+}
+
+.badge-slide-2 {
+    background: linear-gradient(135deg, rgba(217, 119, 6, 0.4), rgba(124, 58, 237, 0.4)) !important;
+    color: #ffffff !important;
+    border: 1.5px solid rgba(251, 191, 36, 0.7) !important;
+    box-shadow: 0 8px 25px rgba(217, 119, 6, 0.45) !important;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6) !important;
+}
+
+.badge-slide-3 {
+    background: linear-gradient(135deg, rgba(2, 132, 199, 0.4), rgba(5, 150, 105, 0.4)) !important;
+    color: #ffffff !important;
+    border: 1.5px solid rgba(56, 189, 248, 0.7) !important;
+    box-shadow: 0 8px 25px rgba(2, 132, 199, 0.45) !important;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6) !important;
+}
+
+.badge-student {
+    background: linear-gradient(135deg, rgba(2, 132, 199, 0.4), rgba(5, 150, 105, 0.4)) !important;
+    color: #ffffff !important;
+    border: 1.5px solid rgba(56, 189, 248, 0.75) !important;
+    box-shadow: 0 8px 25px rgba(2, 132, 199, 0.5) !important;
+}
+
+.badge-donor {
+    background: linear-gradient(135deg, rgba(5, 150, 105, 0.4), rgba(217, 119, 6, 0.4)) !important;
+    color: #ffffff !important;
+    border: 1.5px solid rgba(52, 211, 153, 0.75) !important;
+    box-shadow: 0 8px 25px rgba(5, 150, 105, 0.5) !important;
+}
+
+.badge-mission {
+    background: linear-gradient(135deg, rgba(5, 150, 105, 0.4), rgba(2, 132, 199, 0.4)) !important;
+    color: #ffffff !important;
+    border: 1.5px solid rgba(52, 211, 153, 0.7) !important;
+    box-shadow: 0 8px 25px rgba(5, 150, 105, 0.45) !important;
+}
+
+.badge-terms {
+    background: linear-gradient(135deg, rgba(217, 119, 6, 0.4), rgba(245, 158, 11, 0.4)) !important;
+    color: #ffffff !important;
+    border: 1.5px solid rgba(251, 191, 36, 0.7) !important;
+    box-shadow: 0 8px 25px rgba(217, 119, 6, 0.45) !important;
+}
+
+.badge-privacy {
+    background: linear-gradient(135deg, rgba(5, 150, 105, 0.4), rgba(16, 185, 129, 0.4)) !important;
+    color: #ffffff !important;
+    border: 1.5px solid rgba(52, 211, 153, 0.7) !important;
+    box-shadow: 0 8px 25px rgba(5, 150, 105, 0.45) !important;
+}
+
+/* Mobile responsive badge styling */
+@media (max-width: 768px) {
+    .badge,
+    .section-badge,
+    .donor-hero-badge,
+    .hero-slider-badge,
+    .support-type-badge {
+        font-size: 0.82rem !important;
+        padding: 0.45rem 1.1rem !important;
+        margin-bottom: 0.85rem !important;
+        letter-spacing: 0.04em !important;
+    }
+}
+
+/* --- Slider Content Staggered Entrance Animations (One-by-One) --- */
+
+/* Homepage Hero Slider text slides */
+.home-text-slide:not(.active) > * {
+    opacity: 0;
+    transform: translateY(28px);
+}
+
+.home-text-slide > * {
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+}
+
+.home-text-slide.active > *:nth-child(1) { opacity: 1; transform: translateY(0); transition-delay: 0.1s; }
+.home-text-slide.active > *:nth-child(2) { opacity: 1; transform: translateY(0); transition-delay: 0.24s; }
+.home-text-slide.active > *:nth-child(3) { opacity: 1; transform: translateY(0); transition-delay: 0.38s; }
+.home-text-slide.active > *:nth-child(4) { opacity: 1; transform: translateY(0); transition-delay: 0.52s; }
+
+/* Staggered entrance for items inside reveal containers */
+.reveal:not(.revealed) > * {
+    opacity: 0;
+    transform: translateY(25px);
+}
+
+.reveal > * {
+    transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+}
+
+.reveal.revealed > *:nth-child(1) { opacity: 1; transform: translateY(0); transition-delay: 0.08s; }
+.reveal.revealed > *:nth-child(2) { opacity: 1; transform: translateY(0); transition-delay: 0.22s; }
+.reveal.revealed > *:nth-child(3) { opacity: 1; transform: translateY(0); transition-delay: 0.36s; }
+.reveal.revealed > *:nth-child(4) { opacity: 1; transform: translateY(0); transition-delay: 0.50s; }
+.reveal.revealed > *:nth-child(5) { opacity: 1; transform: translateY(0); transition-delay: 0.64s; }
+
+/* ==========================================================================
+   BUTTON STYLING ONLY (Normal: White BG & Green Border | Hover: Green BG & White Text)
+   ========================================================================== */
+.btn,
+.btn-primary,
+.btn-outline,
+.btn-secondary,
+.btn-dark,
+.btn-site-cta {
+    background: #ffffff !important;
+    color: #059669 !important;
+    border: 2px solid #059669 !important;
+    border-radius: 50px !important;
+    font-weight: 800 !important;
+    padding: 0.75rem 1.85rem !important;
+    font-size: 0.98rem !important;
+    box-shadow: 0 4px 15px rgba(5, 150, 105, 0.14) !important;
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    text-decoration: none !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 0.55rem !important;
+    cursor: pointer !important;
+}
+
+.btn:hover,
+.btn-primary:hover,
+.btn-outline:hover,
+.btn-secondary:hover,
+.btn-dark:hover,
+.btn-site-cta:hover {
+    background: #059669 !important;
+    color: #ffffff !important;
+    border-color: #059669 !important;
+    box-shadow: 0 10px 25px rgba(5, 150, 105, 0.4) !important;
+    transform: translateY(-2px) !important;
+}
+
+.btn *,
+.btn-primary *,
+.btn-outline *,
+.btn-secondary *,
+.btn-dark *,
+.btn-site-cta * {
+    color: inherit !important;
+}
+
+/* ==========================================================================
+   COMPREHENSIVE MOBILE SLIDER & HERO RESPONSIVE STYLES
+   Covers: Home Hero Slider, Student Hero Slider, Donor Hero Slider,
+           Video Carousel – Badges, Buttons, Text, Arrows all optimized
+   ========================================================================== */
+
+/* ---- Tablet / Mobile (≤ 768px) ---- */
+@media (max-width: 768px) {
+
+    /* =============================================
+       HOME HERO SLIDER
+    ============================================= */
+    .hero-section {
+        padding-top: 75px !important;
+        padding-bottom: 2rem !important;
+        padding-inline: 1rem !important;
+        min-height: auto !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+        background-color: #0f172a !important;
+        position: relative !important;
+        overflow: hidden !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        align-items: center !important;
+    }
+
+    .home-slider-bg {
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        z-index: 1 !important;
+        overflow: hidden !important;
+    }
+
+    .home-bg-slide {
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+        object-position: center top !important;
+        filter: brightness(0.95) contrast(1.02) !important;
+    }
+
+    .home-slider-overlay {
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        background: linear-gradient(180deg, rgba(15, 23, 42, 0.65) 0%, rgba(15, 23, 42, 0.45) 45%, rgba(15, 23, 42, 0.85) 100%) !important;
+        z-index: 2 !important;
+    }
+
+    .hero-container {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 0 !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+        position: relative !important;
+        z-index: 3 !important;
+        align-items: center !important;
+        text-align: center !important;
+    }
+
+    .hero-image-content {
+        display: none !important;
+    }
+
+    .slider-arrow {
+        display: flex !important;
+        width: 32px !important;
+        height: 32px !important;
+        font-size: 1.05rem !important;
+        z-index: 25 !important;
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+        background: rgba(15, 23, 42, 0.45) !important;
+        backdrop-filter: blur(4px) !important;
+        border: 1px solid rgba(255, 255, 255, 0.25) !important;
+        opacity: 0.75 !important;
+    }
+
+    .prev-arrow { left: 6px !important; }
+    .next-arrow { right: 6px !important; }
+
+    .home-slider-dots.mobile-dots {
+        display: flex !important;
+        position: absolute !important;
+        bottom: 0.6rem !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        z-index: 20 !important;
+        gap: 6px !important;
+        justify-content: center !important;
+        align-items: center !important;
+    }
+
+    .home-slider-dots.desktop-dots {
+        display: none !important;
+    }
+
+    .hero-text-content {
+        order: 1 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center !important;
+        width: 100% !important;
+        min-height: auto !important;
+        padding: 0.5rem 0.25rem !important;
+        background: transparent !important;
+        box-sizing: border-box !important;
+    }
+
+    .hero-br {
+        display: none !important;
+    }
+
+    .home-text-slide.active > * {
+        transition-delay: 0.04s !important;
+        transition-duration: 0.25s !important;
+    }
+
+    .home-text-slide h1 {
+        font-size: 1.45rem !important;
+        text-align: center !important;
+        line-height: 1.22 !important;
+        margin-bottom: 0.45rem !important;
+        text-shadow: 0 3px 12px rgba(0, 0, 0, 0.85), 0 1px 3px rgba(0, 0, 0, 0.9) !important;
+    }
+
+    .home-text-slide p {
+        display: block !important;
+        font-size: 0.82rem !important;
+        line-height: 1.4 !important;
+        max-width: 320px !important;
+        margin: 0 auto 0.75rem auto !important;
+        color: rgba(255, 255, 255, 0.92) !important;
+        text-align: center !important;
+    }
+
+    .hero-buttons {
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        align-items: center !important;
+        width: 100% !important;
+        gap: 0.4rem !important;
+        margin-bottom: 0.75rem !important;
+    }
+
+    .hero-buttons .btn,
+    .hero-buttons a.btn {
+        width: 100% !important;
+        max-width: 240px !important;
+        justify-content: center !important;
+        text-align: center !important;
+        padding: 0.44rem 0.95rem !important;
+        font-size: 0.78rem !important;
+        font-weight: 700 !important;
+        border-radius: 25px !important;
+        box-sizing: border-box !important;
+    }
+
+    /* =============================================
+       DONOR HERO SECTION
+    ============================================= */
+    .donor-hero {
+        padding-top: 75px !important;
+        padding-bottom: 2rem !important;
+        padding-inline: 1rem !important;
+        min-height: auto !important;
+    }
+
+    .donor-hero-badge,
+    .badge-donor {
+        font-size: 0.68rem !important;
+        padding: 0.25rem 0.72rem !important;
+        margin-bottom: 0.45rem !important;
+        letter-spacing: 0.03em !important;
+        white-space: nowrap !important;
+        gap: 0.35rem !important;
+    }
+
+    .donor-hero-title {
+        font-size: 1.55rem !important;
+        line-height: 1.22 !important;
+        margin-top: 0.2rem !important;
+        margin-bottom: 0.5rem !important;
+    }
+
+    .donor-hero-box {
+        padding: 0.85rem 1rem !important;
+        border-radius: 14px !important;
+        margin: 0.65rem auto 0.9rem auto !important;
+        max-width: 100% !important;
+    }
+
+    .donor-hero-desc {
+        font-size: 0.82rem !important;
+        line-height: 1.42 !important;
+        margin-bottom: 0.45rem !important;
+    }
+
+    .donor-hero-highlight {
+        font-size: 0.75rem !important;
+        line-height: 1.4 !important;
+    }
+
+    .donor-razorpay-badge {
+        padding: 0.35rem 0.85rem !important;
+        font-size: 0.74rem !important;
+        gap: 0.4rem !important;
+    }
+
+    .donor-razorpay-badge span {
+        font-size: 0.74rem !important;
+    }
+
+    /* =============================================
+       STUDENT HERO SLIDER
+    ============================================= */
+    .student-slider {
+        margin-top: 70px !important;
+        min-height: auto !important;
+        padding-top: 1.5rem !important;
+        padding-bottom: 2.2rem !important;
+    }
+
+    .student-hero-content {
+        padding: 0.25rem 0.75rem 0.5rem 0.75rem !important;
+    }
+
+    .student-hero-heading {
+        font-size: 1.35rem !important;
+        line-height: 1.22 !important;
+        margin-top: 0.2rem !important;
+        margin-bottom: 0.35rem !important;
+    }
+
+    .student-hero-desc {
+        font-size: 0.82rem !important;
+        line-height: 1.4 !important;
+        margin: 0 auto 0.65rem auto !important;
+        max-width: 100% !important;
+    }
+
+    .support-badge-wrapper {
+        margin-bottom: 0.65rem !important;
+    }
+
+    .support-type-badge {
+        font-size: 0.68rem !important;
+        padding: 0.25rem 0.65rem !important;
+        border-radius: 20px !important;
+        border: 1px solid #059669 !important;
+        gap: 0.2rem 0.45rem !important;
+        line-height: 1.35 !important;
+        display: inline-flex !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        max-width: calc(100vw - 2rem) !important;
+    }
+
+    .hero-action-buttons {
+        flex-direction: column !important;
+        width: 100% !important;
+        gap: 0.35rem !important;
+        align-items: center !important;
+    }
+
+    .hero-action-buttons .btn {
+        width: 100% !important;
+        max-width: 240px !important;
+        text-align: center !important;
+        justify-content: center !important;
+        padding: 0.44rem 0.9rem !important;
+        font-size: 0.76rem !important;
+        font-weight: 700 !important;
+        border-radius: 25px !important;
+        box-sizing: border-box !important;
+    }
+
+    /* =============================================
+       ALL HERO BADGES (Mobile ≤ 768px)
+    ============================================= */
+    .badge,
+    .section-badge,
+    .hero-slider-badge {
+        font-size: 0.68rem !important;
+        padding: 0.25rem 0.7rem !important;
+        margin-bottom: 0.45rem !important;
+        letter-spacing: 0.03em !important;
+        font-weight: 700 !important;
+        max-width: 100% !important;
+    }
+
+    /* =============================================
+       ALL BUTTONS (Mobile ≤ 768px)
+    ============================================= */
+    .btn,
+    .btn-primary,
+    .btn-outline,
+    .btn-secondary,
+    .btn-dark,
+    .btn-site-cta {
+        font-size: 0.78rem !important;
+        padding: 0.46rem 1rem !important;
+    }
+
+    .carousel-btn {
+        width: 32px !important;
+        height: 32px !important;
+        font-size: 1rem !important;
+    }
+}
+
+/* ---- Small Mobile (≤ 480px) ---- */
+@media (max-width: 480px) {
+
+    .hero-section {
+        padding-top: 72px !important;
+        padding-bottom: 1.75rem !important;
+        padding-inline: 0.75rem !important;
+    }
+
+    .slider-arrow {
+        width: 28px !important;
+        height: 28px !important;
+        font-size: 0.95rem !important;
+        opacity: 0.7 !important;
+    }
+
+    .prev-arrow { left: 4px !important; }
+    .next-arrow { right: 4px !important; }
+
+    .home-text-slide h1 {
+        font-size: 1.35rem !important;
+        line-height: 1.2 !important;
+    }
+
+    .home-text-slide p {
+        font-size: 0.78rem !important;
+        line-height: 1.38 !important;
+        max-width: 290px !important;
+    }
+
+    .hero-buttons .btn,
+    .hero-buttons a.btn {
+        max-width: 230px !important;
+        font-size: 0.75rem !important;
+        padding: 0.42rem 0.85rem !important;
+    }
+
+    .donor-hero {
+        padding-top: 72px !important;
+        padding-bottom: 1.75rem !important;
+        padding-inline: 0.75rem !important;
+    }
+
+    .donor-hero-badge {
+        font-size: 0.64rem !important;
+        padding: 0.22rem 0.65rem !important;
+    }
+
+    .donor-hero-title {
+        font-size: 1.38rem !important;
+    }
+
+    .donor-hero-box {
+        padding: 0.75rem 0.85rem !important;
+    }
+
+    .donor-hero-desc {
+        font-size: 0.78rem !important;
+        line-height: 1.38 !important;
+    }
+
+    .donor-hero-highlight {
+        font-size: 0.72rem !important;
+    }
+
+    .donor-razorpay-badge {
+        padding: 0.3rem 0.75rem !important;
+        font-size: 0.7rem !important;
+    }
+
+    .student-slider {
+        margin-top: 68px !important;
+        padding-top: 1.25rem !important;
+        padding-bottom: 2rem !important;
+    }
+
+    .student-hero-content .section-badge {
+        font-size: 0.64rem !important;
+        padding: 0.2rem 0.6rem !important;
+        margin-bottom: 0.3rem !important;
+    }
+
+    .student-hero-heading {
+        font-size: 1.25rem !important;
+        line-height: 1.2 !important;
+        margin-bottom: 0.3rem !important;
+    }
+
+    .student-hero-desc {
+        font-size: 0.78rem !important;
+        line-height: 1.38 !important;
+        margin-bottom: 0.55rem !important;
+    }
+
+    .support-badge-wrapper {
+        margin-bottom: 0.55rem !important;
+    }
+
+    .support-type-badge {
+        font-size: 0.64rem !important;
+        padding: 0.22rem 0.55rem !important;
+        gap: 0.18rem 0.35rem !important;
+    }
+
+    .hero-action-buttons .btn {
+        max-width: 230px !important;
+        padding: 0.42rem 0.8rem !important;
+        font-size: 0.74rem !important;
+        border-radius: 25px !important;
+    }
+
+    .badge,
+    .section-badge,
+    .hero-slider-badge {
+        font-size: 0.64rem !important;
+        padding: 0.22rem 0.65rem !important;
+        margin-bottom: 0.4rem !important;
+    }
+
+    .btn,
+    .btn-primary,
+    .btn-outline,
+    .btn-secondary,
+    .btn-dark,
+    .btn-site-cta {
+        font-size: 0.76rem !important;
+        padding: 0.44rem 0.9rem !important;
+    }
+
+    .carousel-btn {
+        width: 28px !important;
+        height: 28px !important;
+        font-size: 0.9rem !important;
     }
 }

@@ -52,7 +52,7 @@
                 <h4 class="footer-heading">Quick Links</h4>
                 <ul class="footer-links">
                     <li><a href="<?php echo base_url(); ?>">Home</a></li>
-                    <li><a href="<?php echo base_url('donors'); ?>">Donor Page</a></li>
+                    <li><a href="<?php echo base_url('mission'); ?>">Our Mission</a></li>
                     <li><a href="<?php echo base_url('students'); ?>">Students</a></li>
                     <li><a href="<?php echo base_url('welcome/contact'); ?>">Contact Us</a></li>
                 </ul>
@@ -127,8 +127,19 @@
         modalCallback = callback || null;
         msgEl.innerHTML = message;
 
+        if (!type) {
+            const lowerMsg = (message || '').toLowerCase();
+            if (lowerMsg.includes('fill') || lowerMsg.includes('required') || lowerMsg.includes('error') || lowerMsg.includes('please') || lowerMsg.includes('invalid') || lowerMsg.includes('select') || lowerMsg.includes('enter') || lowerMsg.includes('missing') || lowerMsg.includes('failed')) {
+                type = 'error';
+            } else if (lowerMsg.includes('thank') || lowerMsg.includes('success') || lowerMsg.includes('completed') || lowerMsg.includes('verified') || lowerMsg.includes('saved')) {
+                type = 'success';
+            } else {
+                type = 'info';
+            }
+        }
+
         if (!title) {
-            if (type === 'error') title = 'Notice';
+            if (type === 'error') title = 'Required Fields Missing';
             else if (type === 'info') title = 'Information';
             else title = 'Thank You!';
         }
@@ -138,7 +149,7 @@
             iconBg.style.background = 'rgba(225, 29, 72, 0.12)';
             iconBg.style.color = '#e11d48';
             iconBg.style.boxShadow = '0 10px 20px rgba(225, 29, 72, 0.15)';
-            iconSpan.textContent = '✕';
+            iconSpan.textContent = '⚠️';
             closeBtn.style.background = 'linear-gradient(135deg, #e11d48, #be123c)';
             closeBtn.style.boxShadow = '0 10px 20px rgba(225, 29, 72, 0.3)';
         } else if (type === 'info') {
@@ -175,6 +186,32 @@
         window.showAppNotification(msg);
     };
 })();
+
+// Global Scroll Reveal Observer for Enter Animations
+document.addEventListener('DOMContentLoaded', function () {
+    const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-zoom, .reveal-flip');
+    
+    if ('IntersectionObserver' in window) {
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px 0px -40px 0px',
+            threshold: 0.12
+        };
+
+        const observer = new IntersectionObserver((entries, obs) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                    obs.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        revealElements.forEach(el => observer.observe(el));
+    } else {
+        revealElements.forEach(el => el.classList.add('revealed'));
+    }
+});
 </script>
 </body>
 

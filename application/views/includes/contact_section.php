@@ -157,12 +157,12 @@
                 </div>
             <?php endif; ?>
 
-            <form action="<?php echo site_url('welcome/save_enquiry'); ?>" method="post">
+            <form action="<?php echo site_url('welcome/save_enquiry'); ?>" method="post" onsubmit="return validateContactForm(event)">
                 <!-- Name Field -->
                 <div class="form-group" style="margin-bottom: 1.25rem;">
                     <label
                         style="display: block; font-size: 0.875rem; font-weight: 600; color: #334155; margin-bottom: 0.4rem;">Full
-                        Name</label>
+                        Name *</label>
                     <div style="position: relative;">
                         <span
                             style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); display: flex; align-items: center; pointer-events: none;">
@@ -173,15 +173,15 @@
                             </svg>
                         </span>
                         <input class="pro-contact-input" type="text" name="name" required
-                            placeholder="Enter you full name ">
+                            placeholder="Enter your full name">
                     </div>
                 </div>
 
-                <!-- Email Field -->
+                <!-- Email Field (Optional) -->
                 <div class="form-group" style="margin-bottom: 1.25rem;">
                     <label
                         style="display: block; font-size: 0.875rem; font-weight: 600; color: #334155; margin-bottom: 0.4rem;">Email
-                        Address</label>
+                        Address <span style="font-weight: 400; color: #64748b;">(Optional)</span></label>
                     <div style="position: relative;">
                         <span
                             style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); display: flex; align-items: center; pointer-events: none;">
@@ -192,16 +192,16 @@
                                 <polyline points="22,6 12,13 2,6"></polyline>
                             </svg>
                         </span>
-                        <input class="pro-contact-input" type="email" name="email" required
-                            placeholder="Enter your email address ">
+                        <input class="pro-contact-input" type="email" name="email"
+                            placeholder="Enter your email address (optional)">
                     </div>
                 </div>
 
-                <!-- Phone Field -->
+                <!-- Phone Field (Mandatory with 10-12 digit validation) -->
                 <div class="form-group" style="margin-bottom: 1.25rem;">
                     <label
-                        style="display: block; font-size: 0.875rem; font-weight: 600; color: #334155; margin-bottom: 0.4rem;">Phone
-                        Number</label>
+                        style="display: block; font-size: 0.875rem; font-weight: 600; color: #334155; margin-bottom: 0.4rem;">Mobile
+                        Number *</label>
                     <div style="position: relative;">
                         <span
                             style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); display: flex; align-items: center; pointer-events: none;">
@@ -212,8 +212,8 @@
                                 </path>
                             </svg>
                         </span>
-                        <input class="pro-contact-input" type="tel" name="phone" required
-                            placeholder="Enter your phone number">
+                        <input class="pro-contact-input" type="tel" name="phone" id="contactPhoneInput" required
+                            placeholder="Enter your 10 to 12 digit mobile number">
                     </div>
                 </div>
 
@@ -221,7 +221,7 @@
                 <div class="form-group" style="margin-bottom: 1.75rem;">
                     <label
                         style="display: block; font-size: 0.875rem; font-weight: 600; color: #334155; margin-bottom: 0.4rem;">Your
-                        Message</label>
+                        Message *</label>
                     <div style="position: relative;">
                         <span
                             style="position: absolute; left: 1rem; top: 0.85rem; display: flex; align-items: center; pointer-events: none;">
@@ -243,5 +243,29 @@
             </form>
         </div>
     </div>
+
+    <script>
+    function validateContactForm(event) {
+        const phoneInput = document.getElementById('contactPhoneInput');
+        if (phoneInput) {
+            const rawPhone = phoneInput.value.trim();
+            const cleanPhone = rawPhone.replace(/[^0-9]/g, '');
+            if (cleanPhone.length < 10 || cleanPhone.length > 12) {
+                event.preventDefault();
+                phoneInput.style.borderColor = '#ef4444';
+                if (typeof window.showAppNotification === 'function') {
+                    window.showAppNotification('Please enter a valid mobile number (10 to 12 digits).', 'Invalid Mobile Number', 'error');
+                } else {
+                    alert('Please enter a valid mobile number (10 to 12 digits).');
+                }
+                phoneInput.focus();
+                return false;
+            } else {
+                phoneInput.style.borderColor = '#cbd5e1';
+            }
+        }
+        return true;
+    }
+    </script>
 
 </section>

@@ -132,11 +132,11 @@ class Welcome extends CI_Controller {
 		$payment_method = $this->input->post('payment_method') ? $this->input->post('payment_method') : 'UPI / Bank Transfer';
 		$transaction_ref = $this->input->post('transaction_ref');
 
-		if (empty($donor_name) || empty($email) || empty($phone) || $amount <= 0) {
+		if (empty($donor_name) || empty($phone) || $amount <= 0) {
 			header('Content-Type: application/json');
 			echo json_encode(array(
 				'status' => 'error',
-				'message' => 'Please fill in all required fields (Name, Email, Phone, and valid Amount).'
+				'message' => 'Please fill in all required fields (Name, Phone, and valid Amount).'
 			));
 			return;
 		}
@@ -184,7 +184,13 @@ class Welcome extends CI_Controller {
 		$phone   = trim($this->input->post('phone'));
 		$message = trim($this->input->post('message'));
 
-		if (!empty($name) && !empty($email) && !empty($message)) {
+		$clean_phone = preg_replace('/[^0-9]/', '', $phone);
+
+		if (empty($name) || empty($phone) || empty($message)) {
+			$this->session->set_flashdata('error', 'Please fill in all required enquiry fields (Name, Mobile Number, Message).');
+		} else if (strlen($clean_phone) < 10 || strlen($clean_phone) > 12) {
+			$this->session->set_flashdata('error', 'Please enter a valid mobile number (10 to 12 digits).');
+		} else {
 			$data = array(
 				'name'    => $name,
 				'email'   => $email,
@@ -194,8 +200,6 @@ class Welcome extends CI_Controller {
 			);
 			$this->Enquiry_model->add_enquiry($data);
 			$this->session->set_flashdata('success', 'Thank you! Your enquiry has been received successfully. Our team will contact you shortly.');
-		} else {
-			$this->session->set_flashdata('error', 'Please fill in all required enquiry form fields.');
 		}
 		redirect($this->input->server('HTTP_REFERER') ? $this->input->server('HTTP_REFERER') : 'welcome/contact');
 	}
@@ -261,6 +265,7 @@ class Welcome extends CI_Controller {
 			'admission_status'          => $this->input->post('admission_status'),
 			'annual_tuition_fee'        => $this->input->post('annual_tuition_fee') ? (float)$this->input->post('annual_tuition_fee') : 0.00,
 			'hostel_required'           => $this->input->post('hostel_required'),
+			'is_first_graduate'         => $this->input->post('is_first_graduate'),
 			'career_goal'               => $this->input->post('career_goal'),
 			'father_guardian_name'      => $this->input->post('father_guardian_name'),
 			'mother_name'               => $this->input->post('mother_name'),

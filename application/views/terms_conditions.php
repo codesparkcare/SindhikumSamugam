@@ -2,9 +2,9 @@
 
 <!-- Terms & Conditions Hero Banner -->
 <section class="terms-hero" style="margin-top: 70px; background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); padding: 4.5rem 1.5rem 3.5rem; text-align: center; color: #ffffff; position: relative; overflow: hidden;">
-    <div style="max-width: 900px; margin: 0 auto; position: relative; z-index: 2;">
-        <span class="section-badge" style="background: rgba(217, 119, 6, 0.2); color: #fbbf24; border: 1px solid rgba(251, 191, 36, 0.3); padding: 0.4rem 1.25rem; border-radius: 50px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.85rem; margin-bottom: 1rem; display: inline-block;">
-            Terms of Service
+    <div class="reveal" style="max-width: 900px; margin: 0 auto; position: relative; z-index: 2;">
+        <span class="section-badge hero-slider-badge badge-terms">
+            ⚖️ TERMS OF SERVICE
         </span>
         <h1 style="font-size: 2.75rem; font-weight: 800; line-height: 1.2; margin-bottom: 1rem; color: #ffffff;">
             Terms & <span style="background: linear-gradient(135deg, #fbbf24, #f59e0b); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Conditions</span>

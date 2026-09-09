@@ -86,8 +86,19 @@
             modalCallback = callback || null;
             msgEl.innerHTML = message;
 
+            if (!type) {
+                const lowerMsg = (message || '').toLowerCase();
+                if (lowerMsg.includes('fill') || lowerMsg.includes('required') || lowerMsg.includes('error') || lowerMsg.includes('please') || lowerMsg.includes('invalid') || lowerMsg.includes('select') || lowerMsg.includes('enter') || lowerMsg.includes('missing') || lowerMsg.includes('failed')) {
+                    type = 'error';
+                } else if (lowerMsg.includes('thank') || lowerMsg.includes('success') || lowerMsg.includes('completed') || lowerMsg.includes('verified') || lowerMsg.includes('saved')) {
+                    type = 'success';
+                } else {
+                    type = 'info';
+                }
+            }
+
             if (!title) {
-                if (type === 'error') title = 'Notice';
+                if (type === 'error') title = 'Required Fields Missing';
                 else if (type === 'info') title = 'Information';
                 else title = 'Notification';
             }
@@ -97,7 +108,7 @@
                 iconBg.style.background = 'rgba(225, 29, 72, 0.12)';
                 iconBg.style.color = '#e11d48';
                 iconBg.style.boxShadow = '0 10px 20px rgba(225, 29, 72, 0.15)';
-                iconSpan.textContent = '✕';
+                iconSpan.textContent = '⚠️';
                 closeBtn.style.background = 'linear-gradient(135deg, #e11d48, #be123c)';
                 closeBtn.style.boxShadow = '0 10px 20px rgba(225, 29, 72, 0.3)';
             } else if (type === 'info') {

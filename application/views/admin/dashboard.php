@@ -108,67 +108,91 @@
                 </div>
 
                 <div class="card-body p-4">
-                    <!-- SVG Interactive Curve Chart -->
-                    <div style="position: relative; width: 100%; height: 290px;">
-                        <svg viewBox="0 0 600 180" style="width: 100%; height: 100%; overflow: visible;">
-                            <defs>
-                                <linearGradient id="indigoGrad" x1="0" y1="0" x2="0" y2="1">
-                                    <stop offset="0%" stop-color="#6366f1" stop-opacity="0.45"/>
-                                    <stop offset="100%" stop-color="#6366f1" stop-opacity="0.0"/>
-                                </linearGradient>
-                                <linearGradient id="emeraldGrad" x1="0" y1="0" x2="0" y2="1">
-                                    <stop offset="0%" stop-color="#10b981" stop-opacity="0.32"/>
-                                    <stop offset="100%" stop-color="#10b981" stop-opacity="0.0"/>
-                                </linearGradient>
-                            </defs>
-                            
-                            <!-- Grid horizontal dotted lines -->
-                            <line x1="0" y1="35" x2="600" y2="35" stroke="#f1f5f9" stroke-width="1.5" stroke-dasharray="5"/>
-                            <line x1="0" y1="75" x2="600" y2="75" stroke="#f1f5f9" stroke-width="1.5" stroke-dasharray="5"/>
-                            <line x1="0" y1="115" x2="600" y2="115" stroke="#f1f5f9" stroke-width="1.5" stroke-dasharray="5"/>
-                            <line x1="0" y1="155" x2="600" y2="155" stroke="#e2e8f0" stroke-width="1.5"/>
-
-                            <!-- Area 1 (Applications) -->
-                            <path d="M0,135 Q75,105 150,85 T300,45 T450,28 T600,12 L600,155 L0,155 Z" fill="url(#indigoGrad)"/>
-                            <!-- Line 1 -->
-                            <path d="M0,135 Q75,105 150,85 T300,45 T450,28 T600,12" fill="none" stroke="#6366f1" stroke-width="4.5" stroke-linecap="round"/>
-
-                            <!-- Area 2 (Direct Aid Disbursed) -->
-                            <path d="M0,150 Q75,130 150,110 T300,80 T450,60 T600,40 L600,155 L0,155 Z" fill="url(#emeraldGrad)"/>
-                            <!-- Line 2 -->
-                            <path d="M0,150 Q75,130 150,110 T300,80 T450,60 T600,40" fill="none" stroke="#10b981" stroke-width="3.5" stroke-dasharray="7,4" stroke-linecap="round"/>
-
-                            <!-- Glowing Interactive Data Nodes -->
-                            <circle cx="150" cy="85" r="5.5" fill="#6366f1" stroke="#ffffff" stroke-width="2.5"/>
-                            <circle cx="300" cy="45" r="5.5" fill="#6366f1" stroke="#ffffff" stroke-width="2.5"/>
-                            <circle cx="450" cy="28" r="5.5" fill="#6366f1" stroke="#ffffff" stroke-width="2.5"/>
-                            <circle cx="600" cy="12" r="6.5" fill="#10b981" stroke="#ffffff" stroke-width="2.5"/>
-                        </svg>
+                    <!-- Chart.js Interactive Bar Chart -->
+                    <div style="position: relative; width: 100%; height: 350px;">
+                        <canvas id="growthChart"></canvas>
                     </div>
-
-                    <!-- Month Timeline Labels -->
-                    <div class="d-flex justify-content-between text-muted mt-3 fw-bold" style="font-size: 0.82rem; color: #64748b;">
-                        <span>Jan 2026</span>
-                        <span>Feb 2026</span>
-                        <span>Mar 2026</span>
-                        <span>Apr 2026</span>
-                        <span>May 2026</span>
-                        <span>Jun 2026</span>
-                        <span>Jul 2026</span>
-                        <span>Aug 2026</span>
-                    </div>
-
-                    <!-- Chart Legend Capsules -->
-                    <div class="d-flex flex-wrap align-items-center gap-4 mt-4 pt-3 border-top justify-content-center" style="font-size: 0.9rem;">
-                        <div class="d-flex align-items-center gap-2.5 px-3 py-1.5 rounded-pill" style="background: #e0e7ff; color: #3730a3; font-weight: 700;">
-                            <span style="width: 12px; height: 12px; background: #6366f1; border-radius: 50%; display: inline-block;"></span>
-                            <span>Applications Received</span>
-                        </div>
-                        <div class="d-flex align-items-center gap-2.5 px-3 py-1.5 rounded-pill" style="background: #d1fae5; color: #065f46; font-weight: 700;">
-                            <span style="width: 12px; height: 12px; background: #10b981; border-radius: 50%; display: inline-block;"></span>
-                            <span>Direct Aid Disbursed</span>
-                        </div>
-                    </div>
+                    
+                    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function() {
+                            const ctx = document.getElementById('growthChart').getContext('2d');
+                            new Chart(ctx, {
+                                type: 'bar',
+                                data: {
+                                    labels: <?php echo json_encode(isset($monthly_analytics) ? $monthly_analytics['labels'] : []); ?>,
+                                    datasets: [
+                                        {
+                                            label: 'Applications Received',
+                                            data: <?php echo json_encode(isset($monthly_analytics) ? $monthly_analytics['applications'] : []); ?>,
+                                            backgroundColor: '#6366f1',
+                                            borderRadius: 6,
+                                            barPercentage: 0.6,
+                                            categoryPercentage: 0.8
+                                        },
+                                        {
+                                            label: 'Direct Aid Disbursed',
+                                            data: <?php echo json_encode(isset($monthly_analytics) ? $monthly_analytics['disbursed'] : []); ?>,
+                                            backgroundColor: '#10b981',
+                                            borderRadius: 6,
+                                            barPercentage: 0.6,
+                                            categoryPercentage: 0.8
+                                        }
+                                    ]
+                                },
+                                options: {
+                                    responsive: true,
+                                    maintainAspectRatio: false,
+                                    plugins: {
+                                        legend: {
+                                            position: 'bottom',
+                                            labels: {
+                                                padding: 20,
+                                                font: {
+                                                    family: "'Inter', sans-serif",
+                                                    size: 13,
+                                                    weight: 'bold'
+                                                },
+                                                usePointStyle: true,
+                                                boxWidth: 10
+                                            }
+                                        },
+                                        tooltip: {
+                                            backgroundColor: '#0f172a',
+                                            titleFont: { size: 14, family: "'Inter', sans-serif" },
+                                            bodyFont: { size: 13, family: "'Inter', sans-serif" },
+                                            padding: 12,
+                                            cornerRadius: 8,
+                                            displayColors: true
+                                        }
+                                    },
+                                    scales: {
+                                        y: {
+                                            beginAtZero: true,
+                                            grid: {
+                                                color: '#f1f5f9',
+                                                drawBorder: false
+                                            },
+                                            ticks: {
+                                                font: { family: "'Inter', sans-serif", size: 12 },
+                                                color: '#64748b'
+                                            }
+                                        },
+                                        x: {
+                                            grid: {
+                                                display: false,
+                                                drawBorder: false
+                                            },
+                                            ticks: {
+                                                font: { family: "'Inter', sans-serif", size: 12, weight: '500' },
+                                                color: '#64748b'
+                                            }
+                                        }
+                                    }
+                                }
+                            });
+                        });
+                    </script>
 
                 </div>
             </div>

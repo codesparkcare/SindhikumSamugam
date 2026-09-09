@@ -26,9 +26,9 @@
         </div>
     <?php endif; ?>
 
-    <!-- Summary Stats Row -->
+    <!-- Summary Stats Row (2 cards only) -->
     <div class="row g-3 mb-4">
-        <div class="col-md-4">
+        <div class="col-md-6">
             <div class="card border-0 shadow-sm p-3" style="background: linear-gradient(135deg, #059669, #047857); color: white;">
                 <div class="d-flex justify-content-between align-items-center">
                     <div>
@@ -39,18 +39,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="card border-0 shadow-sm p-3" style="background: linear-gradient(135deg, #0284c7, #0369a1); color: white;">
-                <div class="d-flex justify-content-between align-items-center">
-                    <div>
-                        <span class="text-white-50 text-uppercase fw-bold" style="font-size: 0.75rem;">Verified Funds Collected</span>
-                        <h2 class="fw-bold mb-0 mt-1">₹<?php echo number_format(isset($donor_stats['completed_amount']) ? $donor_stats['completed_amount'] : 0); ?></h2>
-                    </div>
-                    <div style="font-size: 2.2rem; opacity: 0.8;">✅</div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
+        <div class="col-md-6">
             <div class="card border-0 shadow-sm p-3" style="background: linear-gradient(135deg, #d97706, #b45309); color: white;">
                 <div class="d-flex justify-content-between align-items-center">
                     <div>
@@ -70,6 +59,28 @@
             <a href="<?php echo site_url('admin/manage_donors'); ?>" class="btn btn-sm <?php echo ($current_filter == 'All') ? 'btn-dark' : 'btn-light'; ?>">All Pledges</a>
             <a href="<?php echo site_url('admin/manage_donors?status=Pledged'); ?>" class="btn btn-sm <?php echo ($current_filter == 'Pledged') ? 'btn-warning text-dark' : 'btn-light'; ?>">Pending Verification</a>
             <a href="<?php echo site_url('admin/manage_donors?status=Completed'); ?>" class="btn btn-sm <?php echo ($current_filter == 'Completed') ? 'btn-success' : 'btn-light'; ?>">Verified & Completed</a>
+        </div>
+    </div>
+
+    <!-- Excel Export with Date Filter -->
+    <div class="card border-0 shadow-sm mb-4" style="border-radius: 16px; border: 1px solid #e2e8f0;">
+        <div class="card-body p-3">
+            <form method="GET" action="<?php echo site_url('admin/export_donors_excel'); ?>" class="d-flex flex-wrap gap-3 align-items-end">
+                <div>
+                    <label class="form-label fw-bold text-secondary mb-1" style="font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.05em;"><i class="fa-solid fa-calendar-days me-1"></i> From Date</label>
+                    <input type="date" name="date_from" class="form-control form-control-sm" style="border-radius: 8px; min-width: 150px;" value="<?php echo isset($_GET['date_from']) ? htmlspecialchars($_GET['date_from']) : ''; ?>">
+                </div>
+                <div>
+                    <label class="form-label fw-bold text-secondary mb-1" style="font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.05em;"><i class="fa-solid fa-calendar-days me-1"></i> To Date</label>
+                    <input type="date" name="date_to" class="form-control form-control-sm" style="border-radius: 8px; min-width: 150px;" value="<?php echo isset($_GET['date_to']) ? htmlspecialchars($_GET['date_to']) : ''; ?>">
+                </div>
+                <div>
+                    <button type="submit" class="btn btn-success btn-sm fw-bold px-4" style="border-radius: 8px; box-shadow: 0 4px 12px rgba(5,150,105,0.2);">
+                        <i class="fa-solid fa-file-excel me-1"></i> Export to Excel
+                    </button>
+                </div>
+                <div class="text-muted" style="font-size: 0.8rem; align-self: center;">Leave dates blank to export all records</div>
+            </form>
         </div>
     </div>
 
@@ -103,7 +114,7 @@
                                     <?php endif; ?>
                                 </td>
                                 <td>
-                                    <div><i class="fa-solid fa-envelope me-1 text-muted" style="font-size: 0.8rem;"></i><?php echo htmlspecialchars($d['email']); ?></div>
+                                    <div><i class="fa-solid fa-envelope me-1 text-muted" style="font-size: 0.8rem;"></i><?php echo !empty($d['email']) ? htmlspecialchars($d['email']) : '<span class="text-muted fst-italic">N/A</span>'; ?></div>
                                     <div><i class="fa-solid fa-phone me-1 text-muted" style="font-size: 0.8rem;"></i><?php echo htmlspecialchars($d['phone']); ?></div>
                                 </td>
                                 <td>

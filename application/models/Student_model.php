@@ -32,6 +32,7 @@ class Student_model extends CI_Model {
             `admission_status` VARCHAR(50) NULL,
             `annual_tuition_fee` DECIMAL(12,2) DEFAULT 0.00,
             `hostel_required` VARCHAR(10) NULL,
+            `is_first_graduate` VARCHAR(10) NULL,
             `career_goal` TEXT NULL,
             `father_guardian_name` VARCHAR(255) NULL,
             `mother_name` VARCHAR(255) NULL,
@@ -62,6 +63,7 @@ class Student_model extends CI_Model {
             'admission_status' => "VARCHAR(50) NULL",
             'annual_tuition_fee' => "DECIMAL(12,2) DEFAULT 0.00",
             'hostel_required' => "VARCHAR(10) NULL",
+            'is_first_graduate' => "VARCHAR(10) NULL",
             'career_goal' => "TEXT NULL",
             'father_occupation' => "VARCHAR(255) NULL",
             'mother_occupation' => "VARCHAR(255) NULL",
@@ -199,5 +201,37 @@ class Student_model extends CI_Model {
             'custom_pending' => $custom_pending,
             'custom_need' => $custom_need
         );
+    }
+    public function get_monthly_analytics($year = null) {
+        if (!$year) {
+            $year = date('Y');
+        }
+        
+        $months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        $analytics = [
+            'labels' => [],
+            'applications' => [],
+            'disbursed' => []
+        ];
+        
+        // Loop through all 12 months.
+        for ($i = 1; $i <= 12; $i++) {
+            $analytics['labels'][] = $months[$i - 1] . ' ' . $year;
+            
+            // Applications received
+            $this->db->where('YEAR(created_at)', $year);
+            $this->db->where('MONTH(created_at)', $i);
+            $apps_count = $this->db->count_all_results('student_applications');
+            $analytics['applications'][] = $apps_count;
+            
+            // Disbursed (Approved scholarships count)
+            $this->db->where('YEAR(created_at)', $year);
+            $this->db->where('MONTH(created_at)', $i);
+            $this->db->where('status', 'Approved');
+            $disbursed_count = $this->db->count_all_results('student_applications');
+            $analytics['disbursed'][] = $disbursed_count;
+        }
+        
+        return $analytics;
     }
 }

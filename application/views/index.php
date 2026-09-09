@@ -35,11 +35,9 @@
             <div class="home-text-wrapper" style="position: relative; width: 100%;">
                 <!-- Slide 1 Text Content -->
                 <div class="home-text-slide active" style="transition: opacity 0.5s ease;">
-                    <span class="badge"
-                        style="background: rgba(255, 255, 255, 0.15); color: #ffffff; backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3);">Main
-                        Identity</span>
+                    <span class="badge hero-slider-badge badge-slide-1">✨ MAIN IDENTITY</span>
                     <h1 style="color: #ffffff; text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);">
-                        A Chance Can <br>
+                        A Chance Can <br class="hero-br">
                         <span class="highlight"
                             style="color: #facc15 !important; -webkit-text-fill-color: #facc15 !important; background: none !important; font-weight: 800; text-shadow: 0 2px 10px rgba(0, 0, 0, 0.95), 0 0 20px rgba(250, 204, 21, 0.65);">Change
                             a Life.</span>
@@ -48,8 +46,7 @@
                         We support students facing financial and personal challenges in pursuing higher education.
                     </p>
                     <div class="hero-buttons" style="margin-bottom: 1.5rem;">
-                        <a href="<?php echo base_url('students#registerForm'); ?>" class="btn btn-outline"
-                            style="color: white; border-color: rgba(255, 255, 255, 0.5);">Get Educational Support</a>
+                        <a href="<?php echo base_url('students#registerForm'); ?>" class="btn btn-outline">Get Educational Support</a>
                         <a href="<?php echo base_url('donors#donorForm'); ?>" class="btn btn-primary">
                             <span class="btn-text">Support Our Mission</span>
                             <span class="btn-icon">🤲</span>
@@ -59,10 +56,9 @@
 
                 <!-- Slide 2 Text Content -->
                 <div class="home-text-slide" style="display: none; opacity: 0; transition: opacity 0.5s ease;">
-                    <span class="badge"
-                        style="background: rgba(255, 255, 255, 0.15); color: #ffffff; backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3);">Guidance</span>
+                    <span class="badge hero-slider-badge badge-slide-2">🧭 CAREER & EDUCATIONAL GUIDANCE</span>
                     <h1 style="color: #ffffff; text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);">
-                        The Right Guidance <br>Can Change the <br>
+                        The Right Guidance <br class="hero-br">Can Change the <br class="hero-br">
                         <span class="highlight"
                             style="color: #facc15 !important; -webkit-text-fill-color: #facc15 !important; background: none !important; font-weight: 800; text-shadow: 0 2px 10px rgba(0, 0, 0, 0.95), 0 0 20px rgba(250, 204, 21, 0.65);">Direction
                             of a Life.</span>
@@ -71,6 +67,7 @@
                         Helping students make the right choices for their education, career and future.
                     </p>
                     <div class="hero-buttons" style="margin-bottom: 1.5rem;">
+                        <a href="<?php echo base_url('students#registerForm'); ?>" class="btn btn-outline">Get Educational Support</a>
                         <a href="<?php echo base_url('#who-we-help'); ?>" class="btn btn-primary">
                             <span class="btn-text">Get Guidance</span>
                             <span class="btn-icon">→</span>
@@ -80,11 +77,9 @@
 
                 <!-- Slide 3 Text Content -->
                 <div class="home-text-slide" style="display: none; opacity: 0; transition: opacity 0.5s ease;">
-                    <span class="badge"
-                        style="background: rgba(255, 255, 255, 0.15); color: #ffffff; backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3);">Direct
-                        Fee Support</span>
+                    <span class="badge hero-slider-badge badge-slide-3">🎓 DIRECT INSTITUTIONAL FEE SUPPORT</span>
                     <h1 style="color: #ffffff; text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);">
-                        Education Support. <br>
+                        Education Support. <br class="hero-br">
                         <span class="highlight"
                             style="color: #facc15 !important; -webkit-text-fill-color: #facc15 !important; background: none !important; font-weight: 800; text-shadow: 0 2px 10px rgba(0, 0, 0, 0.95), 0 0 20px rgba(250, 204, 21, 0.65);">With
                             Transparency.</span>
@@ -94,6 +89,7 @@
                         contribution reaches its intended purpose.
                     </p>
                     <div class="hero-buttons" style="margin-bottom: 1.5rem;">
+                        <a href="<?php echo base_url('students#registerForm'); ?>" class="btn btn-outline">Get Educational Support</a>
                         <a href="<?php echo base_url('#our-process'); ?>" class="btn btn-primary">
                             <span class="btn-text">How We Help</span>
                             <span class="btn-icon">→</span>
@@ -115,7 +111,7 @@
 
         <!-- Right Side: Stat Card -->
         <div class="hero-image-content">
-            <div class="stat-card"
+            <div class="stat-card reveal-right"
                 style="background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.4); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);">
                 <div class="stat-group">
                     <span class="stat-label">Currently Waiting</span>
@@ -174,10 +170,19 @@
             textSlides.forEach((tslide, idx) => {
                 if (idx === index) {
                     tslide.style.display = 'block';
+                    const childEls = tslide.querySelectorAll('.badge, h1, p, .hero-buttons');
+                    childEls.forEach(el => {
+                        el.style.opacity = '0';
+                        el.style.transform = 'translateY(32px)';
+                    });
                     setTimeout(() => {
                         tslide.classList.add('active');
                         tslide.style.opacity = '1';
-                    }, 20);
+                        childEls.forEach(el => {
+                            el.style.opacity = '';
+                            el.style.transform = '';
+                        });
+                    }, 30);
                 } else {
                     tslide.classList.remove('active');
                     tslide.style.opacity = '0';
@@ -251,7 +256,7 @@
 </script>
 
 <!-- Trust & Transparency Pillars Banner -->
-<div class="stats-banner">
+<div class="stats-banner reveal stagger-children">
     <div class="stats-banner-container">
         <div class="banner-stat-item">
             <div class="banner-icon">🎓</div>
@@ -305,7 +310,7 @@
 
 <!-- Why We Exist Section -->
 <section class="about-section" style="padding: 5.5rem 4.5rem; background: #ffffff;">
-    <div class="premium-section-header text-center" style="max-width: 900px; margin: 0 auto 3.5rem;">
+    <div class="premium-section-header text-center reveal" style="max-width: 900px; margin: 0 auto 3.5rem;">
         <span class="section-badge"
             style="background: #ecfdf5; color: #059669; border: 1px solid rgba(5, 150, 105, 0.25); padding: 0.45rem 1.25rem; font-size: 0.82rem;">Our
             Core Purpose</span>
@@ -316,7 +321,7 @@
     </div>
     <div class="about-container">
         <!-- Left Side: Content & Pillars -->
-        <div class="about-content">
+        <div class="about-content reveal-left">
             <p class="section-description"
                 style="color: #334155; font-size: 1.05rem; line-height: 1.75; font-weight: 500; margin-bottom: 1.25rem;">
                 Financial hardship, difficult family circumstances, or lack of proper guidance can prevent a student
@@ -328,7 +333,7 @@
                 have to decide their future.
             </p>
 
-            <div class="about-pillars"
+            <div class="about-pillars stagger-children"
                 style="display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2.25rem;">
                 <div class="about-pillar-item" style="display: flex; gap: 1rem; align-items: center;">
                     <div
@@ -362,7 +367,7 @@
         </div>
 
         <!-- Right Side: Graphic Card Image -->
-        <div class="about-image-wrapper"
+        <div class="about-image-wrapper reveal-right"
             style="display: flex; justify-content: center; align-items: center; width: 100%;">
             <div style="position: relative; width: 100%; max-width: 600px;">
                 <img src="<?php echo base_url('assets/images/why-we-exist.png'); ?>"
@@ -376,7 +381,7 @@
 <!-- Know Our Vision Section -->
 <section class="vision-section"
     style="padding: 5.5rem 4.5rem; background: linear-gradient(180deg, #ffffff 0%, #f0f9ff 100%); position: relative;">
-    <div class="premium-section-header text-center" style="max-width: 850px; margin: 0 auto 3.5rem;">
+    <div class="premium-section-header text-center reveal" style="max-width: 850px; margin: 0 auto 3.5rem;">
         <span class="section-badge"
             style="background: #e0f2fe; color: #0284c7; border: 1px solid rgba(2, 132, 199, 0.25); padding: 0.45rem 1.25rem; font-size: 0.82rem;">OUR
             VISION</span>
@@ -392,7 +397,7 @@
     <div class="about-container about-container-reverse"
         style="max-width: 1320px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 3.5rem; align-items: center;">
         <!-- Left Side Image -->
-        <div class="about-image-wrapper"
+        <div class="about-image-wrapper reveal-left"
             style="display: flex; justify-content: center; align-items: center; width: 100%;">
             <div style="position: relative; width: 100%; max-width: 600px;">
                 <img src="<?php echo base_url('assets/images/our-vision.png'); ?>"
@@ -402,10 +407,10 @@
         </div>
 
         <!-- Right Side Vision Pillars -->
-        <div class="vision-content">
-            <div class="vision-pillars" style="display: flex; flex-direction: column; gap: 1.35rem;">
+        <div class="vision-content reveal-right">
+            <div class="vision-pillars stagger-children" style="display: flex; flex-direction: column; gap: 1.35rem;">
                 <!-- 01 Card -->
-                <div class="vision-pillar-card"
+                <div class="vision-pillar-card reveal"
                     style="background: #ffffff; padding: 1.4rem 1.6rem; border-radius: 16px; border: 1px solid #e2e8f0; box-shadow: 0 4px 20px -5px rgba(15, 23, 42, 0.05); display: flex; gap: 1.25rem; align-items: flex-start; transition: transform 0.3s ease;">
                     <div
                         style="width: 48px; height: 48px; border-radius: 12px; background: linear-gradient(135deg, var(--primary), var(--secondary)); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; flex-shrink: 0; font-size: 1.2rem;">
@@ -422,7 +427,7 @@
                 </div>
 
                 <!-- 02 Card -->
-                <div class="vision-pillar-card"
+                <div class="vision-pillar-card reveal"
                     style="background: #ffffff; padding: 1.4rem 1.6rem; border-radius: 16px; border: 1px solid #e2e8f0; box-shadow: 0 4px 20px -5px rgba(15, 23, 42, 0.05); display: flex; gap: 1.25rem; align-items: flex-start; transition: transform 0.3s ease;">
                     <div
                         style="width: 48px; height: 48px; border-radius: 12px; background: linear-gradient(135deg, var(--secondary), #0284c7); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; flex-shrink: 0; font-size: 1.2rem;">
@@ -438,7 +443,7 @@
                 </div>
 
                 <!-- 03 Card -->
-                <div class="vision-pillar-card"
+                <div class="vision-pillar-card reveal"
                     style="background: #ffffff; padding: 1.4rem 1.6rem; border-radius: 16px; border: 1px solid #e2e8f0; box-shadow: 0 4px 20px -5px rgba(15, 23, 42, 0.05); display: flex; gap: 1.25rem; align-items: flex-start; transition: transform 0.3s ease;">
                     <div
                         style="width: 48px; height: 48px; border-radius: 12px; background: linear-gradient(135deg, #0f172a, #334155); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; flex-shrink: 0; font-size: 1.2rem;">
@@ -460,7 +465,7 @@
 
 <!-- Sponsors Videos Section -->
 <section class="video-requests-section" style="background-color: transparent; padding-top: 5rem; padding-bottom: 3rem;">
-    <div class="premium-section-header text-center" style="max-width: 850px; margin: 0 auto 3rem;">
+    <div class="premium-section-header text-center reveal" style="max-width: 850px; margin: 0 auto 3rem;">
         <span class="section-badge"
             style="background: #ecfdf5; color: #059669; border: 1px solid rgba(5, 150, 105, 0.25); padding: 0.45rem 1.25rem; font-size: 0.82rem; text-transform: uppercase;">OUR
             SPONSORS</span>
@@ -471,13 +476,13 @@
         </p>
     </div>
 
-    <div class="video-carousel-container">
+    <div class="video-carousel-container reveal-zoom">
         <button class="carousel-btn prev-btn">‹</button>
 
         <div class="video-track-wrapper">
-            <div class="video-track">
+            <div class="video-track stagger-children">
                 <!-- Sponsor Video Card 1 -->
-                <div class="video-card">
+                <div class="video-card reveal-zoom">
                     <div class="video-thumbnail">
                         <div class="play-btn-overlay">
                             <div class="play-icon">▶</div>
@@ -490,7 +495,7 @@
                 </div>
 
                 <!-- Sponsor Video Card 2 -->
-                <div class="video-card">
+                <div class="video-card reveal-zoom">
                     <div class="video-thumbnail">
                         <div class="play-btn-overlay">
                             <div class="play-icon">▶</div>
@@ -503,7 +508,7 @@
                 </div>
 
                 <!-- Sponsor Video Card 3 -->
-                <div class="video-card">
+                <div class="video-card reveal-zoom">
                     <div class="video-thumbnail">
                         <div class="play-btn-overlay">
                             <div class="play-icon">▶</div>
@@ -516,7 +521,7 @@
                 </div>
 
                 <!-- Sponsor Video Card 4 -->
-                <div class="video-card">
+                <div class="video-card reveal-zoom">
                     <div class="video-thumbnail">
                         <div class="play-btn-overlay">
                             <div class="play-icon">▶</div>
@@ -549,7 +554,7 @@
 
 <!-- Who We Help Section -->
 <section id="who-we-help" class="about-section" style="padding: 5.5rem 4.5rem; background: #ffffff;">
-    <div class="premium-section-header text-center" style="max-width: 900px; margin: 0 auto 3.5rem;">
+    <div class="premium-section-header text-center reveal" style="max-width: 900px; margin: 0 auto 3.5rem;">
         <span class="section-badge"
             style="background: #e0f2fe; color: #0284c7; border: 1px solid rgba(2, 132, 199, 0.25); padding: 0.45rem 1.25rem; font-size: 0.82rem; text-transform: uppercase;">Our
             Impact</span>
@@ -563,7 +568,7 @@
     <div class="about-container about-container-reverse"
         style="max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.1fr; gap: 4rem; align-items: center;">
         <!-- Image on the Left -->
-        <div class="about-image-wrapper"
+        <div class="about-image-wrapper reveal-left"
             style="display: flex; justify-content: center; align-items: center; width: 100%;">
             <div style="position: relative; width: 100%; max-width: 620px;">
                 <img src="<?php echo base_url('assets/images/whowehelp.png'); ?>"
@@ -573,8 +578,8 @@
         </div>
 
         <!-- Content on the Right: Bullet List -->
-        <div class="about-content">
-            <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 1.35rem;">
+        <div class="about-content reveal-right">
+            <ul class="stagger-children" style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 1.35rem;">
                 <!-- Bullet 01 -->
                 <li style="display: flex; gap: 1.1rem; align-items: flex-start;">
                     <span
@@ -640,7 +645,7 @@
     </div>
 
     <!-- Centered Statement Box -->
-    <div style="max-width: 950px; margin: 3.5rem auto 0;">
+    <div class="reveal-zoom" style="max-width: 950px; margin: 3.5rem auto 0;">
         <div
             style="background: #ecfdf5; border-left: 5px solid #059669; border-radius: 14px; padding: 1.25rem 2rem; box-shadow: 0 4px 20px -5px rgba(5, 150, 105, 0.08); text-align: center;">
             <h3
@@ -655,7 +660,7 @@
 <section class="dual-banner-section">
     <div class="dual-banner-container">
         <!-- Banner 1: For Donors -->
-        <div class="promo-banner banner-primary"
+        <div class="promo-banner banner-primary reveal-left"
             style="background-image: linear-gradient(90deg, rgba(15, 23, 42, 0.92) 0%, rgba(15, 23, 42, 0.75) 45%, rgba(15, 23, 42, 0.15) 100%), url('<?php echo base_url('assets/images/banner_donor.jpg'); ?>'); background-size: cover; background-position: center right;">
             <div class="promo-content">
                 <span class="promo-badge">FOR DONORS</span>
@@ -669,7 +674,7 @@
         </div>
 
         <!-- Banner 2: For Students -->
-        <div class="promo-banner banner-secondary"
+        <div class="promo-banner banner-secondary reveal-right"
             style="background-image: linear-gradient(90deg, rgba(4, 78, 57, 0.92) 0%, rgba(4, 120, 87, 0.75) 45%, rgba(4, 120, 87, 0.15) 100%), url('<?php echo base_url('assets/images/banner_student.jpg'); ?>'); background-size: cover; background-position: center;">
             <div class="promo-content">
                 <span class="promo-badge promo-badge-student">FOR STUDENTS</span>
@@ -687,15 +692,15 @@
 
 <!-- Our Process Section -->
 <section id="our-process" class="process-section" style="padding: 5.5rem 2rem; background: #f8fafc; position: relative;">
-    <div class="premium-section-header text-center" style="max-width: 850px; margin: 0 auto 4rem;">
+    <div class="premium-section-header text-center reveal" style="max-width: 850px; margin: 0 auto 4rem;">
         <span class="section-badge" style="background: #ede9fe; color: #059669; border: 1px solid rgba(5, 150, 105, 0.2); padding: 0.45rem 1.25rem; font-size: 0.82rem; text-transform: uppercase; font-weight: 700; border-radius: 50px;">HOW IT WORKS</span>
         <h2 style="font-size: 2.3rem; font-weight: 800; color: #0f172a; margin-top: 0.5rem;">Our <span class="gradient-text">Process</span></h2>
     </div>
 
     <div class="process-container" style="max-width: 1300px; margin: 0 auto;">
-        <div class="process-track">
+        <div class="process-track stagger-children">
             <!-- Step 1 -->
-            <div class="process-step">
+            <div class="process-step reveal-flip">
                 <div class="step-icon-wrapper">
                     <div class="step-number" style="background: #0284c7; color: white;">1</div>
                     <div class="step-icon">✍️</div>
@@ -705,7 +710,7 @@
             <div class="step-connector"></div>
 
             <!-- Step 2 -->
-            <div class="process-step">
+            <div class="process-step reveal-flip">
                 <div class="step-icon-wrapper">
                     <div class="step-number" style="background: #0284c7; color: white;">2</div>
                     <div class="step-icon">🔍</div>
@@ -715,7 +720,7 @@
             <div class="step-connector"></div>
 
             <!-- Step 3 -->
-            <div class="process-step">
+            <div class="process-step reveal-flip">
                 <div class="step-icon-wrapper">
                     <div class="step-number" style="background: #0284c7; color: white;">3</div>
                     <div class="step-icon">💬</div>
@@ -725,7 +730,7 @@
             <div class="step-connector"></div>
 
             <!-- Step 4 -->
-            <div class="process-step">
+            <div class="process-step reveal-flip">
                 <div class="step-icon-wrapper">
                     <div class="step-number" style="background: #0284c7; color: white;">4</div>
                     <div class="step-icon">📋</div>
@@ -735,7 +740,7 @@
             <div class="step-connector"></div>
 
             <!-- Step 5 -->
-            <div class="process-step">
+            <div class="process-step reveal-flip">
                 <div class="step-icon-wrapper">
                     <div class="step-number" style="background: #0284c7; color: white;">5</div>
                     <div class="step-icon">✅</div>
@@ -745,7 +750,7 @@
             <div class="step-connector"></div>
 
             <!-- Step 6 -->
-            <div class="process-step">
+            <div class="process-step reveal-flip">
                 <div class="step-icon-wrapper">
                     <div class="step-number" style="background: #0284c7; color: white;">6</div>
                     <div class="step-icon">🏛️</div>
@@ -755,7 +760,7 @@
             <div class="step-connector"></div>
 
             <!-- Step 7 -->
-            <div class="process-step">
+            <div class="process-step reveal-flip">
                 <div class="step-icon-wrapper">
                     <div class="step-number" style="background: #0284c7; color: white;">7</div>
                     <div class="step-icon">🤝</div>

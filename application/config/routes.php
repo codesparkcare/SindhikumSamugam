@@ -59,5 +59,7 @@ $route['privacy_policy'] = 'welcome/privacy_policy';
 $route['terms'] = 'welcome/terms_conditions';
 $route['terms-conditions'] = 'welcome/terms_conditions';
 $route['terms_conditions'] = 'welcome/terms_conditions';
+$route['mission'] = 'welcome/mission';
+$route['our-mission'] = 'welcome/mission';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

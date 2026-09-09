@@ -108,6 +108,28 @@
             </form>
         </div>
     </div>
+    <!-- Excel Export with Date Filter -->
+    <div class="card border-0 shadow-sm mb-3" style="border-radius: 16px; border: 1px solid #e2e8f0;">
+        <div class="card-body p-3">
+            <form method="GET" action="<?php echo site_url('admin/export_students_excel'); ?>" class="d-flex flex-wrap gap-3 align-items-end">
+                <div>
+                    <label class="form-label fw-bold text-secondary mb-1" style="font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.05em;"><i class="fa-solid fa-calendar-days me-1"></i> From Date</label>
+                    <input type="date" name="date_from" class="form-control form-control-sm" style="border-radius: 8px; min-width: 150px;" value="<?php echo isset($_GET['date_from']) ? htmlspecialchars($_GET['date_from']) : ''; ?>">
+                </div>
+                <div>
+                    <label class="form-label fw-bold text-secondary mb-1" style="font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.05em;"><i class="fa-solid fa-calendar-days me-1"></i> To Date</label>
+                    <input type="date" name="date_to" class="form-control form-control-sm" style="border-radius: 8px; min-width: 150px;" value="<?php echo isset($_GET['date_to']) ? htmlspecialchars($_GET['date_to']) : ''; ?>">
+                </div>
+                <div>
+                    <button type="submit" class="btn btn-success btn-sm fw-bold px-4" style="border-radius: 8px; box-shadow: 0 4px 12px rgba(5,150,105,0.2);">
+                        <i class="fa-solid fa-file-excel me-1"></i> Export to Excel
+                    </button>
+                </div>
+                <div class="text-muted" style="font-size: 0.8rem; align-self: center;">Leave dates blank to export all records</div>
+            </form>
+        </div>
+    </div>
+
     <div class="card border-0 shadow-sm mb-4" style="border-radius: 22px; background: white; border: 1px solid #e2e8f0;">
         <div class="card-body p-3 d-flex justify-content-end align-items-center">
             <!-- Search Field -->
@@ -117,6 +139,7 @@
             </div>
         </div>
     </div>
+
 
     <!-- Student Enquiries Data Table Card -->
     <div class="card border-0 shadow-sm" style="border-radius: 24px; background: white; border: 1px solid #e2e8f0; overflow: hidden;">
@@ -291,6 +314,7 @@
                         <div class="col-md-6"><strong>School / College:</strong> <span id="m_school" class="text-secondary ms-1"></span></div>
                         <div class="col-md-6"><strong>Board / University:</strong> <span id="m_board" class="text-secondary ms-1"></span></div>
                         <div class="col-md-6"><strong>Target College:</strong> <span id="m_target_college" class="text-secondary ms-1"></span></div>
+                        <div class="col-md-6"><strong>First Graduate:</strong> <span id="m_first_graduate" class="badge bg-success-subtle text-success border border-success-subtle ms-1"></span></div>
                         <div class="col-md-12"><strong>Academic Year & Performance Marks:</strong> <span id="m_academic_marks" class="text-primary fw-semibold ms-1"></span></div>
                     </div>
                 </div>
@@ -392,6 +416,8 @@ function viewApplicationModal(data) {
     document.getElementById('m_board').innerText = data.board_university || 'N/A';
     document.getElementById('m_course').innerText = data.course_applying || 'N/A';
     document.getElementById('m_target_college').innerText = data.target_college || 'N/A';
+    const fgEl = document.getElementById('m_first_graduate');
+    if (fgEl) fgEl.innerText = data.is_first_graduate || 'N/A';
     document.getElementById('m_academic_marks').innerText = (data.academic_year || '') + ' (' + (data.marks_cgpa || 'N/A') + ')';
 
     document.getElementById('m_father').innerText = data.father_guardian_name || 'N/A';

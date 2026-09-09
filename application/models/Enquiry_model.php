@@ -13,7 +13,7 @@ class Enquiry_model extends CI_Model {
         $query = "CREATE TABLE IF NOT EXISTS `enquiries` (
             `id` INT AUTO_INCREMENT PRIMARY KEY,
             `name` VARCHAR(255) NOT NULL,
-            `email` VARCHAR(255) NOT NULL,
+            `email` VARCHAR(255) NULL,
             `phone` VARCHAR(50) NOT NULL,
             `message` TEXT NOT NULL,
             `status` VARCHAR(50) DEFAULT 'New',
@@ -21,6 +21,7 @@ class Enquiry_model extends CI_Model {
             `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;";
         $this->db->query($query);
+        @$this->db->query("ALTER TABLE `enquiries` MODIFY `email` VARCHAR(255) NULL;");
 
         // Check if status & admin_notes columns exist for backward compatibility
         $cols = array(

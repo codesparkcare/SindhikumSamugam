@@ -35,9 +35,10 @@
     }
 
     .donor-hero-desc {
-        font-size: 1.1rem;
-        color: rgba(255, 255, 255, 0.9);
-        max-width: 680px;
+        font-size: 1.12rem;
+        color: #ffffff;
+        font-weight: 600;
+        line-height: 1.65;
         margin-bottom: 0.75rem;
     }
 
@@ -91,8 +92,51 @@
     @media (max-width: 992px) {
 
         .donor-hero {
-            padding-top: 8.5rem !important;
-            padding-bottom: 3rem !important;
+            padding-top: 75px !important;
+            padding-bottom: 2rem !important;
+            padding-inline: 1rem !important;
+        }
+
+        .donor-hero-badge {
+            font-size: 0.68rem !important;
+            padding: 0.25rem 0.72rem !important;
+            margin-bottom: 0.45rem !important;
+            gap: 0.35rem !important;
+        }
+
+        .donor-hero-title {
+            font-size: 1.55rem !important;
+            line-height: 1.22 !important;
+            margin-top: 0.2rem !important;
+            margin-bottom: 0.5rem !important;
+        }
+
+        .donor-hero-box {
+            padding: 0.85rem 1rem !important;
+            border-radius: 14px !important;
+            margin: 0.65rem auto 0.9rem auto !important;
+            max-width: 100% !important;
+        }
+
+        .donor-hero-desc {
+            font-size: 0.82rem !important;
+            line-height: 1.42 !important;
+            margin-bottom: 0.45rem !important;
+        }
+
+        .donor-hero-highlight {
+            font-size: 0.75rem !important;
+            line-height: 1.4 !important;
+        }
+
+        .donor-razorpay-badge {
+            padding: 0.35rem 0.85rem !important;
+            font-size: 0.74rem !important;
+            gap: 0.4rem !important;
+        }
+
+        .donor-razorpay-badge span {
+            font-size: 0.74rem !important;
         }
 
         .tiers-grid,
@@ -102,6 +146,41 @@
         .donor-form-bank-grid {
             grid-template-columns: 1fr !important;
             gap: 1.5rem !important;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .donor-hero {
+            padding-top: 72px !important;
+            padding-bottom: 1.75rem !important;
+            padding-inline: 0.75rem !important;
+        }
+
+        .donor-hero-badge {
+            font-size: 0.64rem !important;
+            padding: 0.22rem 0.65rem !important;
+        }
+
+        .donor-hero-title {
+            font-size: 1.38rem !important;
+        }
+
+        .donor-hero-box {
+            padding: 0.75rem 0.85rem !important;
+        }
+
+        .donor-hero-desc {
+            font-size: 0.78rem !important;
+            line-height: 1.38 !important;
+        }
+
+        .donor-hero-highlight {
+            font-size: 0.72rem !important;
+        }
+
+        .donor-razorpay-badge {
+            padding: 0.3rem 0.75rem !important;
+            font-size: 0.7rem !important;
         }
     }
 
@@ -347,16 +426,33 @@
         padding: 2rem 1.65rem;
         border: 1px solid #e2e8f0;
         box-shadow: 0 10px 30px rgba(15, 23, 42, 0.03);
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease;
         position: relative;
         overflow: hidden;
+        will-change: transform, opacity;
+    }
+
+    .transparency-card.reveal {
+        opacity: 0;
+        transform: translateY(45px) scale(0.95);
+    }
+
+    .transparency-card.reveal.revealed {
+        opacity: 1;
+        transform: translateY(0) scale(1);
     }
 
     .transparency-card:hover {
-        transform: translateY(-6px);
-        box-shadow: 0 20px 40px rgba(5, 150, 105, 0.12);
-        border-color: #059669;
+        transform: translateY(-6px) scale(1.02) !important;
+        box-shadow: 0 20px 40px rgba(5, 150, 105, 0.15) !important;
+        border-color: #059669 !important;
+        transition-delay: 0s !important;
     }
+
+    .transparency-grid > .transparency-card:nth-child(1) { transition-delay: 0.1s; }
+    .transparency-grid > .transparency-card:nth-child(2) { transition-delay: 0.25s; }
+    .transparency-grid > .transparency-card:nth-child(3) { transition-delay: 0.4s; }
+    .transparency-grid > .transparency-card:nth-child(4) { transition-delay: 0.55s; }
 
     .transparency-grid {
         display: grid;
@@ -396,8 +492,8 @@
 <main class="main-content">
     <!-- Hero Banner -->
     <section class="donor-hero">
-        <div style="max-width: 1280px; margin: 0 auto; text-align: center;">
-            <span class="donor-hero-badge">
+        <div class="reveal" style="max-width: 1280px; margin: 0 auto; text-align: center;">
+            <span class="donor-hero-badge hero-slider-badge badge-donor">
                 <span>🎓</span> SUPPORT HIGHER EDUCATION
             </span>
             <h1 class="donor-hero-title" style="margin-top: 0.5rem;">
@@ -406,31 +502,33 @@
                     style="background: linear-gradient(135deg, #34d399, #fbbf24); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Dream
                     Alive</span>
             </h1>
-            <p class="donor-hero-desc" style="margin: 0.5rem auto 0.5rem auto;">
-                Help students facing genuine financial barriers continue their higher education. Your contribution can
-                help remove the financial obstacles standing between a student and their future.
-            </p>
-            <p
-                style="font-size: 0.92rem; color: rgba(255, 255, 255, 0.85); max-width: 780px; margin: 0 auto 1rem auto;">
-                Your contribution supports approved educational needs, with eligible fees paid directly to the
-                respective educational institution.
-            </p>
+            <div class="donor-hero-box" style="background: rgba(15, 23, 42, 0.55); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.18); padding: 1.35rem 2rem; border-radius: 20px; max-width: 820px; margin: 1.25rem auto 1.5rem; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35);">
+                <p class="donor-hero-desc" style="margin-bottom: 0.75rem; color: #ffffff; font-weight: 600; text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);">
+                    Help students facing genuine financial barriers continue their higher education. Your contribution can
+                    help remove the financial obstacles standing between a student and their future.
+                </p>
+                <p class="donor-hero-highlight"
+                    style="font-size: 0.96rem; color: #34d399; font-weight: 700; max-width: 780px; margin: 0 auto; line-height: 1.6; text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);">
+                    ✨ Your contribution supports approved educational needs, with eligible fees paid directly to the
+                    respective educational institution.
+                </p>
+            </div>
 
             <!-- Razorpay Integration Notice -->
-            <div
-                style="display: inline-flex; align-items: center; gap: 0.6rem; background: rgba(255,255,255,0.12); backdrop-filter: blur(10px); padding: 0.4rem 1.1rem; border-radius: 30px; border: 1px solid rgba(255,255,255,0.25); font-size: 0.85rem; color: #ffffff;">
-                <span style="font-size: 1rem;">💳</span>
-                <span>Secure Online Donations via <strong>Razorpay</strong></span>
+            <div class="donor-razorpay-badge"
+                style="display: inline-flex; align-items: center; gap: 0.65rem; background: rgba(15, 23, 42, 0.65); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); padding: 0.55rem 1.4rem; border-radius: 50px; border: 1.5px solid rgba(56, 189, 248, 0.45); font-size: 0.92rem; color: #ffffff; box-shadow: 0 8px 25px rgba(2, 132, 199, 0.3);">
+                <span style="font-size: 1.1rem;">💳</span>
+                <span><span style="color: #e2e8f0; font-weight: 600;">Secure Online Donations via</span> <strong style="color: #38bdf8; font-weight: 800; text-shadow: 0 0 12px rgba(56, 189, 248, 0.6);">Razorpay</strong></span>
             </div>
         </div>
     </section>
 
     <!-- Combined Pledge Form & Bank Details Section (1 Row, 2 Columns - Equal Width & Height) -->
     <section style="max-width: 1280px; margin: 2rem auto 3.5rem auto; padding: 0 1.5rem;">
-        <div class="donor-form-bank-grid">
+        <div class="donor-form-bank-grid reveal-zoom">
 
             <!-- Column 1: Donation & Pledge Form Box (Matches Height of Column 2) -->
-            <div
+            <div class="reveal-left"
                 style="background: #ffffff; border-radius: 24px; box-shadow: 0 20px 50px rgba(15, 23, 42, 0.08); border: 1px solid #e2e8f0; padding: 2.5rem 2rem; height: 100%; box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between;">
                 <div style="display: flex; flex-direction: column; height: 100%; justify-content: space-between;">
                     <div style="text-align: center; margin-bottom: 1.5rem;">
@@ -467,9 +565,9 @@
                             <div>
                                 <label
                                     style="display: block; font-size: 0.85rem; font-weight: 700; color: #334155; margin-bottom: 0.35rem;">
-                                    Email Address *
+                                    Email Address <span style="font-weight: 400; color: #64748b;">(Optional)</span>
                                 </label>
-                                <input type="email" name="email" required placeholder="Enter your email address"
+                                <input type="email" name="email" placeholder="Enter your email address (optional)"
                                     style="width: 100%; padding: 0.8rem 1rem; border-radius: 10px; border: 1px solid #cbd5e1; font-family: inherit;">
                             </div>
 
@@ -513,7 +611,7 @@
             </div>
 
             <!-- Column 2: Bank Account & UPI Details Box -->
-            <div class="donor-bank-card-box"
+            <div class="donor-bank-card-box reveal-right"
                 style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); border-radius: 24px; color: #ffffff; padding: 2.5rem 2rem; box-shadow: 0 20px 40px rgba(15, 23, 42, 0.2); height: 100%; box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between; width: 100%;">
                 <div>
                     <div style="text-align: center; margin-bottom: 1.75rem;">
@@ -614,8 +712,8 @@
         <div style="max-width: 1280px; margin: 0 auto;">
             
             <!-- Section Header -->
-            <div style="text-align: center; max-width: 760px; margin: 0 auto 3rem auto;">
-                <span style="background: rgba(5, 150, 105, 0.1); color: #059669; font-weight: 700; padding: 0.45rem 1.2rem; border-radius: 50px; font-size: 0.85rem; letter-spacing: 0.05em; text-transform: uppercase; display: inline-flex; align-items: center; gap: 0.5rem; border: 1px solid rgba(5, 150, 105, 0.2);">
+            <div class="reveal" style="text-align: center; max-width: 760px; margin: 0 auto 3rem auto;">
+                <span class="section-badge hero-slider-badge" style="background: rgba(5, 150, 105, 0.15) !important; color: #059669 !important; font-weight: 800 !important; padding: 0.65rem 1.8rem !important; border-radius: 50px !important; font-size: 1.05rem !important; letter-spacing: 0.06em !important; text-transform: uppercase !important; display: inline-flex !important; align-items: center !important; gap: 0.55rem !important; border: 2px solid rgba(5, 150, 105, 0.4) !important; box-shadow: 0 8px 25px rgba(5, 150, 105, 0.25) !important;">
                     <span>🛡️</span> OUR COMMITMENT
                 </span>
                 <h2 style="font-size: 2.3rem; font-weight: 800; color: #0f172a; margin-top: 0.85rem; line-height: 1.2;">
@@ -627,10 +725,10 @@
             </div>
 
             <!-- 4 Pillars Grid (Slider on Mobile) -->
-            <div class="transparency-grid">
+            <div class="transparency-grid stagger-children">
                 
                 <!-- Pillar 01 -->
-                <div class="transparency-card">
+                <div class="transparency-card reveal">
                     <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem;">
                         <span style="font-size: 0.9rem; font-weight: 800; color: #059669; background: rgba(5, 150, 105, 0.12); padding: 0.4rem 0.9rem; border-radius: 12px; font-family: monospace;">
                             01
@@ -648,7 +746,7 @@
                 </div>
 
                 <!-- Pillar 02 -->
-                <div class="transparency-card">
+                <div class="transparency-card reveal">
                     <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem;">
                         <span style="font-size: 0.9rem; font-weight: 800; color: #0284c7; background: rgba(2, 132, 199, 0.12); padding: 0.4rem 0.9rem; border-radius: 12px; font-family: monospace;">
                             02
@@ -666,7 +764,7 @@
                 </div>
 
                 <!-- Pillar 03 -->
-                <div class="transparency-card">
+                <div class="transparency-card reveal">
                     <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem;">
                         <span style="font-size: 0.9rem; font-weight: 800; color: #7c3aed; background: rgba(124, 58, 237, 0.12); padding: 0.4rem 0.9rem; border-radius: 12px; font-family: monospace;">
                             03
@@ -684,7 +782,7 @@
                 </div>
 
                 <!-- Pillar 04 -->
-                <div class="transparency-card">
+                <div class="transparency-card reveal">
                     <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem;">
                         <span style="font-size: 0.9rem; font-weight: 800; color: #d97706; background: rgba(217, 119, 6, 0.12); padding: 0.4rem 0.9rem; border-radius: 12px; font-family: monospace;">
                             04
@@ -753,7 +851,7 @@
                 },
                 "prefill": {
                     "name": name,
-                    "email": email,
+                    "email": email || "",
                     "contact": phone
                 },
                 "theme": {

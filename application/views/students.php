@@ -5,23 +5,23 @@
 @media (max-width: 768px) {
     .student-slider {
         min-height: auto !important;
-        margin-top: 75px !important;
-        padding-top: 1.2rem !important;
-        padding-bottom: 3.5rem !important;
+        margin-top: 70px !important;
+        padding-top: 1.5rem !important;
+        padding-bottom: 2.2rem !important;
     }
     .student-hero-content {
-        padding: 0.5rem 0.75rem 1rem 0.75rem !important;
+        padding: 0.25rem 0.75rem 0.5rem 0.75rem !important;
     }
     .student-hero-content .section-badge {
-        padding: 0.25rem 0.75rem !important;
-        font-size: 0.72rem !important;
-        margin-bottom: 0.4rem !important;
+        padding: 0.22rem 0.68rem !important;
+        font-size: 0.68rem !important;
+        margin-bottom: 0.35rem !important;
     }
     .student-hero-heading {
-        font-size: 1.45rem !important;
+        font-size: 1.35rem !important;
         line-height: 1.22 !important;
-        margin-top: 0.25rem !important;
-        margin-bottom: 0.45rem !important;
+        margin-top: 0.2rem !important;
+        margin-bottom: 0.35rem !important;
     }
     .hero-br {
         display: none !important;
@@ -31,13 +31,13 @@
         margin-top: 0.15rem !important;
     }
     .student-hero-desc {
-        font-size: 0.85rem !important;
-        line-height: 1.42 !important;
-        margin: 0 auto 0.75rem auto !important;
+        font-size: 0.82rem !important;
+        line-height: 1.4 !important;
+        margin: 0 auto 0.65rem auto !important;
         max-width: 100% !important;
     }
     .support-badge-wrapper {
-        margin-bottom: 0.75rem !important;
+        margin-bottom: 0.65rem !important;
     }
     .support-type-badge {
         display: inline-flex !important;
@@ -45,22 +45,23 @@
         flex-wrap: wrap !important;
         justify-content: center !important;
         align-items: center !important;
-        gap: 0.3rem 0.55rem !important;
-        padding: 0.32rem 0.8rem !important;
+        gap: 0.2rem 0.45rem !important;
+        padding: 0.25rem 0.65rem !important;
         border-radius: 20px !important;
-        border: 1.5px solid #059669 !important;
-        font-size: 0.76rem !important;
+        border: 1px solid #059669 !important;
+        font-size: 0.68rem !important;
+        font-weight: 700 !important;
         text-align: center !important;
-        line-height: 1.3 !important;
+        line-height: 1.35 !important;
         width: auto !important;
         max-width: 100% !important;
         box-sizing: border-box !important;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.3) !important;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.25) !important;
     }
     .support-badge-divider {
         display: inline !important;
         color: rgba(255, 255, 255, 0.45) !important;
-        font-size: 0.7rem !important;
+        font-size: 0.65rem !important;
     }
     .hero-action-buttons {
         flex-direction: column !important;
@@ -70,13 +71,13 @@
     }
     .hero-action-buttons .btn {
         width: 100% !important;
-        max-width: 250px !important;
+        max-width: 240px !important;
         text-align: center !important;
         justify-content: center !important;
-        padding: 0.42rem 0.85rem !important;
-        font-size: 0.78rem !important;
+        padding: 0.44rem 0.9rem !important;
+        font-size: 0.76rem !important;
         font-weight: 700 !important;
-        border-radius: 8px !important;
+        border-radius: 25px !important;
         box-sizing: border-box !important;
     }
 
@@ -177,48 +178,73 @@
 
 @media (max-width: 480px) {
     .student-slider {
-        margin-top: 72px !important;
-        padding-top: 0.9rem !important;
-        padding-bottom: 3.2rem !important;
+        margin-top: 68px !important;
+        padding-top: 1.25rem !important;
+        padding-bottom: 2rem !important;
     }
     .student-hero-content {
-        padding: 0.35rem 0.5rem 0.75rem 0.5rem !important;
+        padding: 0.2rem 0.5rem 0.5rem 0.5rem !important;
     }
     .student-hero-content .section-badge {
-        font-size: 0.68rem !important;
+        font-size: 0.64rem !important;
         padding: 0.2rem 0.6rem !important;
-        margin-bottom: 0.35rem !important;
+        margin-bottom: 0.3rem !important;
     }
     .student-hero-heading {
-        font-size: 1.3rem !important;
+        font-size: 1.25rem !important;
         line-height: 1.2 !important;
-        margin-bottom: 0.35rem !important;
+        margin-bottom: 0.3rem !important;
     }
     .student-hero-desc {
-        font-size: 0.80rem !important;
+        font-size: 0.78rem !important;
         line-height: 1.38 !important;
-        margin-bottom: 0.65rem !important;
+        margin-bottom: 0.55rem !important;
     }
     .support-badge-wrapper {
-        margin-bottom: 0.65rem !important;
+        margin-bottom: 0.55rem !important;
     }
     .support-type-badge {
-        font-size: 0.72rem !important;
-        padding: 0.28rem 0.65rem !important;
-        gap: 0.25rem 0.45rem !important;
+        font-size: 0.64rem !important;
+        padding: 0.22rem 0.55rem !important;
+        gap: 0.18rem 0.35rem !important;
     }
     .hero-action-buttons {
         gap: 0.35rem !important;
     }
     .hero-action-buttons .btn {
-        max-width: 235px !important;
-        padding: 0.4rem 0.75rem !important;
-        font-size: 0.76rem !important;
-        border-radius: 8px !important;
+        max-width: 230px !important;
+        padding: 0.42rem 0.8rem !important;
+        font-size: 0.74rem !important;
+        border-radius: 25px !important;
     }
     .story-heading {
         font-size: 1.4rem !important;
     }
+}
+
+/* What Happens Next - 7 Step Cards Hover Animation */
+.sub-step-card {
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease, background 0.35s ease !important;
+    cursor: pointer;
+}
+.sub-step-card:hover {
+    transform: translateY(-8px) scale(1.03) !important;
+    box-shadow: 0 16px 35px rgba(15, 23, 42, 0.12), 0 4px 14px rgba(5, 150, 105, 0.08) !important;
+    border-color: #059669 !important;
+}
+.sub-step-card .sub-step-icon {
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    display: inline-block;
+}
+.sub-step-card:hover .sub-step-icon {
+    transform: scale(1.25) rotate(6deg) !important;
+}
+.sub-step-card .sub-step-num {
+    transition: transform 0.35s ease, box-shadow 0.35s ease !important;
+}
+.sub-step-card:hover .sub-step-num {
+    transform: scale(1.1) !important;
+    box-shadow: 0 4px 10px rgba(5, 150, 105, 0.2) !important;
 }
 </style>
 
@@ -230,10 +256,10 @@
             alt="Student Support Portal Banner"
             style="width: 100%; height: 100%; object-fit: cover; object-position: center 20%;">
     </div>
-    <div class="student-hero-content"
+    <div class="student-slider-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(180deg, rgba(15, 23, 42, 0.55) 0%, rgba(15, 23, 42, 0.40) 50%, rgba(15, 23, 42, 0.75) 100%); z-index: 2;"></div>
+    <div class="student-hero-content reveal"
         style="position: relative; z-index: 3; text-align: center; padding: 6rem 1.5rem 5.5rem; max-width: 950px; margin: 0 auto; width: 100%;">
-        <span class="section-badge"
-            style="background: #0f172a; color: #38bdf8; border: 1px solid #0284c7; padding: 0.55rem 1.4rem; border-radius: 50px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.88rem; margin-bottom: 1.25rem; display: inline-block; box-shadow: 0 8px 20px rgba(0,0,0,0.3);">
+        <span class="section-badge hero-slider-badge badge-student">
             🎓 STUDENT SUPPORT PORTAL
         </span>
         <h1 class="student-hero-heading"
@@ -251,20 +277,18 @@
 
         <!-- Support Types Badge Bar -->
         <div class="support-badge-wrapper" style="margin-bottom: 2rem;">
-            <span class="support-type-badge"
-                style="display: inline-block; background: #0f172a; color: #ffffff; padding: 0.6rem 1.5rem; border-radius: 30px; font-weight: 700; font-size: 0.95rem; border: 2px solid #059669; box-shadow: 0 10px 25px rgba(0,0,0,0.35);">
+            <span class="support-type-badge hero-slider-badge badge-student"
+                style="display: inline-flex; background: rgba(15, 23, 42, 0.85); color: #ffffff; padding: 0.65rem 1.6rem; border-radius: 50px; font-weight: 800; font-size: 0.95rem; border: 2px solid #059669; box-shadow: 0 10px 30px rgba(5, 150, 105, 0.4);">
                 <span style="color: #34d399;">Educational Guidance</span> <span class="support-badge-divider">•</span> <span style="color: #fbbf24;">Fee
                     Assistance</span> <span class="support-badge-divider">•</span> <span style="color: #38bdf8;">Career Direction</span>
             </span>
         </div>
 
         <div class="hero-action-buttons" style="display: flex; gap: 1.25rem; justify-content: center; flex-wrap: wrap; align-items: center;">
-            <a href="javascript:void(0)" onclick="openRegistrationModal()" class="btn btn-primary"
-                style="padding: 1rem 2.25rem; font-size: 1.05rem; font-weight: 800; border-radius: 14px; background: #059669; color: #ffffff; border: 2px solid #34d399; box-shadow: 0 10px 25px rgba(5, 150, 105, 0.5); text-decoration: none;">
+            <a href="javascript:void(0)" onclick="openRegistrationModal()" class="btn btn-primary">
                 Register for Educational Support →
             </a>
-            <a href="#registerSection" class="btn btn-secondary"
-                style="padding: 1rem 2.25rem; font-size: 1.05rem; font-weight: 800; border-radius: 14px; background: #0f172a; color: #ffffff; border: 2px solid #94a3b8; box-shadow: 0 10px 25px rgba(15, 23, 42, 0.5); text-decoration: none; transition: all 0.3s ease;">
+            <a href="#registerSection" class="btn btn-secondary">
                 Check Application Status
             </a>
         </div>
@@ -276,7 +300,7 @@
     <div class="about-container"
         style="max-width: 1250px; margin: 0 auto; display: grid; grid-template-columns: 1.2fr 1fr; gap: 3rem; align-items: center;">
         <!-- Content on the Left -->
-        <div class="about-content">
+        <div class="about-content reveal-left">
             <div class="premium-section-header text-left" style="margin-bottom: 1rem;">
                 <span class="section-badge"
                     style="background: #e0f2fe; color: #0284c7; border: 1px solid rgba(2, 132, 199, 0.25);">About
@@ -341,7 +365,7 @@
         </div>
 
         <!-- Image on the Right -->
-        <div class="about-image-wrapper">
+        <div class="about-image-wrapper reveal-right">
             <div class="image-card"
                 style="overflow: hidden; border-radius: 1.5rem; box-shadow: var(--shadow-lg); aspect-ratio: 4/3;">
                 <img src="<?php echo base_url('assets/images/studentabout.png'); ?>"
@@ -364,7 +388,7 @@
     </div>
 
     <div style="max-width: 1100px; margin: 0 auto; position: relative; z-index: 2;">
-        <div class="story-glass-card"
+        <div class="story-glass-card reveal-zoom"
             style="background: #ffffff; border: 1px solid rgba(5, 150, 105, 0.18); border-radius: 24px; padding: 3.5rem 2.5rem; box-shadow: 0 20px 45px -10px rgba(15, 23, 42, 0.06);">
             <div style="text-align: center; max-width: 850px; margin: 0 auto;">
 
@@ -381,40 +405,18 @@
                 </h2>
 
                 <p class="story-desc-1"
-                    style="color: #334155; font-size: 1.12rem; font-weight: 500; line-height: 1.7; margin-bottom: 1.25rem;">
-                    We do not believe that academic marks alone should determine whether a student deserves an
-                    opportunity.
+                    style="color: #334155; font-size: 1.15rem; font-weight: 600; line-height: 1.7; margin-bottom: 1rem; max-width: 780px; margin-left: auto; margin-right: auto;">
+                    We do not believe that academic marks alone should determine whether a student deserves an opportunity.
                 </p>
 
-                <p class="story-desc-2" style="color: #64748b; font-size: 1.05rem; line-height: 1.7; margin-bottom: 1.75rem;">
-                    We look at the complete picture — your circumstances, educational goals, financial need,
-                    determination and the challenges you are facing.
+                <p class="story-desc-2" style="color: #64748b; font-size: 1.08rem; line-height: 1.8; margin-bottom: 2.25rem; max-width: 800px; margin-left: auto; margin-right: auto;">
+                    We look at the complete picture — your <strong style="color: #0284c7; font-weight: 700;">personal circumstances</strong>, <strong style="color: #059669; font-weight: 700;">educational goals</strong>, <strong style="color: #d97706; font-weight: 700;">genuine financial need</strong>, and the true <strong style="color: #db2777; font-weight: 700;">determination & grit</strong> you possess.
                 </p>
-
-                <!-- 4 Core Pillars Pills -->
-                <div class="story-pills-container"
-                    style="display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; margin-bottom: 2rem;">
-                    <span class="story-pill"
-                        style="background: #e0f2fe; border: 1px solid rgba(2, 132, 199, 0.25); color: #0284c7; padding: 0.55rem 1.2rem; border-radius: 30px; font-size: 0.92rem; font-weight: 600; display: inline-flex; align-items: center; gap: 0.4rem;">
-                        <span>📋</span> Personal Circumstances
-                    </span>
-                    <span class="story-pill"
-                        style="background: #dcfce7; border: 1px solid rgba(5, 150, 105, 0.25); color: #059669; padding: 0.55rem 1.2rem; border-radius: 30px; font-size: 0.92rem; font-weight: 600; display: inline-flex; align-items: center; gap: 0.4rem;">
-                        <span>🎯</span> Educational Goals
-                    </span>
-                    <span class="story-pill"
-                        style="background: #fef3c7; border: 1px solid rgba(217, 119, 6, 0.25); color: #d97706; padding: 0.55rem 1.2rem; border-radius: 30px; font-size: 0.92rem; font-weight: 600; display: inline-flex; align-items: center; gap: 0.4rem;">
-                        <span>🤝</span> Genuine Financial Need
-                    </span>
-                    <span class="story-pill"
-                        style="background: #fce7f3; border: 1px solid rgba(219, 39, 119, 0.25); color: #db2777; padding: 0.55rem 1.2rem; border-radius: 30px; font-size: 0.92rem; font-weight: 600; display: inline-flex; align-items: center; gap: 0.4rem;">
-                        <span>🔥</span> Determination & Grit
-                    </span>
-                </div>
 
                 <div class="story-highlight-box"
-                    style="background: rgba(5, 150, 105, 0.08); border: 1px solid rgba(5, 150, 105, 0.2); border-radius: 16px; padding: 1.25rem 2rem; margin-bottom: 0; display: inline-block;">
-                    <p style="color: #047857; font-size: 1.1rem; font-weight: 700; margin: 0;">
+                    style="background: linear-gradient(135deg, #059669 0%, #047857 100%); border-radius: 18px; padding: 1.35rem 2.25rem; color: #ffffff; box-shadow: 0 12px 28px -6px rgba(5, 150, 105, 0.35); max-width: 780px; margin: 0 auto; display: inline-flex; align-items: center; justify-content: center; gap: 0.85rem; border: 1px solid rgba(255, 255, 255, 0.2);">
+                    <span style="font-size: 1.4rem;">✨</span>
+                    <p style="color: #ffffff; font-size: 1.12rem; font-weight: 700; margin: 0; line-height: 1.5;">
                         If you have the determination to learn and move forward, you can reach out to us.
                     </p>
                 </div>
@@ -506,13 +508,11 @@
         </div>
 
         <!-- Action Buttons -->
-        <div style="display: flex; flex-direction: column; gap: 1.25rem; max-width: 480px; margin: 0 auto;">
-            <button type="button" onclick="openRegistrationModal()" class="btn btn-primary"
-                style="width: 100%; padding: 1.1rem; font-size: 1.1rem; border-radius: 12px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #059669 0%, #047857 100%); color: white; box-shadow: 0 10px 25px rgba(5, 150, 105, 0.3); border: none; cursor: pointer; font-weight: 700;">
+        <div class="hero-action-buttons" style="display: flex; flex-direction: column; gap: 1.25rem; max-width: 480px; margin: 0 auto;">
+            <button type="button" onclick="openRegistrationModal()" class="btn btn-primary" style="width: 100%;">
                 Start Registration <span style="margin-left: 0.5rem; font-size: 1.2rem;">→</span>
             </button>
-            <button type="button" onclick="openStatusModal()" class="btn btn-outline"
-                style="width: 100%; padding: 1rem; font-size: 1.05rem; border-radius: 12px; display: flex; align-items: center; justify-content: center; border: 2px solid rgba(5, 150, 105, 0.2); color: #059669; background: white; cursor: pointer; font-weight: 600;">
+            <button type="button" onclick="openStatusModal()" class="btn btn-outline" style="width: 100%;">
                 Check Application Status
             </button>
         </div>
@@ -597,7 +597,7 @@
 
             <!-- Form Container -->
             <form id="scholarshipApplicationForm" action="<?php echo base_url('welcome/save_application'); ?>"
-                method="POST" enctype="multipart/form-data" onsubmit="handleFormSubmit(event)">
+                method="POST" enctype="multipart/form-data" novalidate onsubmit="handleFormSubmit(event)">
 
                 <!-- STEP 1: Basic Details -->
                 <div class="form-step-panel active" id="stepPanel1">
@@ -748,8 +748,8 @@
                         <div class="form-group">
                             <label
                                 style="display: block; font-weight: 600; color: #334155; margin-bottom: 0.35rem; font-size: 0.9rem;">Marks
-                                / Percentage / CGPA</label>
-                            <input type="text" name="marks_cgpa"
+                                / Percentage / CGPA *</label>
+                            <input type="text" name="marks_cgpa" required
                                 style="width: 100%; padding: 0.75rem 0.9rem; border-radius: 10px; border: 1px solid #cbd5e1; font-size: 0.925rem; outline: none;">
                         </div>
                         <div class="form-group">
@@ -783,6 +783,17 @@
                                 style="display: block; font-weight: 600; color: #334155; margin-bottom: 0.35rem; font-size: 0.9rem;">Hostel
                                 / Accommodation Required? *</label>
                             <select name="hostel_required" required
+                                style="width: 100%; padding: 0.75rem 0.9rem; border-radius: 10px; border: 1px solid #cbd5e1; font-size: 0.925rem; outline: none; background: white;">
+                                <option value="">Select Option</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label
+                                style="display: block; font-weight: 600; color: #334155; margin-bottom: 0.35rem; font-size: 0.9rem;">Are
+                                you a First Graduate? *</label>
+                            <select name="is_first_graduate" required
                                 style="width: 100%; padding: 0.75rem 0.9rem; border-radius: 10px; border: 1px solid #cbd5e1; font-size: 0.925rem; outline: none; background: white;">
                                 <option value="">Select Option</option>
                                 <option value="Yes">Yes</option>
@@ -933,10 +944,10 @@
                     <div
                         style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.15rem;">
 
-                        <!-- Required Documents Section Header -->
+                        <!-- Mandatory Documents Header -->
                         <div
                             style="grid-column: 1 / -1; font-weight: 700; color: #0f172a; font-size: 0.98rem; margin-top: 0.25rem;">
-                            Required Documents:
+                            Mandatory Documents (1 & 2):
                         </div>
 
                         <div class="form-group">
@@ -953,11 +964,14 @@
                             <input type="file" name="doc_gov_id" required accept=".pdf,image/*"
                                 style="width: 100%; padding: 0.6rem; border-radius: 10px; border: 1px dashed #cbd5e1; background: #f8fafc;">
                         </div>
+
+                        
+
                         <div class="form-group">
                             <label
                                 style="display: block; font-weight: 600; color: #334155; margin-bottom: 0.35rem; font-size: 0.9rem;">3.
-                                Income Certificate *</label>
-                            <input type="file" name="doc_income_certificate" required accept=".pdf,image/*"
+                                Income Certificate</label>
+                            <input type="file" name="doc_income_certificate" accept=".pdf,image/*"
                                 style="width: 100%; padding: 0.6rem; border-radius: 10px; border: 1px dashed #cbd5e1; background: #f8fafc;">
                         </div>
                         <div class="form-group">
@@ -970,22 +984,16 @@
                         <div class="form-group">
                             <label
                                 style="display: block; font-weight: 600; color: #334155; margin-bottom: 0.35rem; font-size: 0.9rem;">5.
-                                College Admission / Offer Letter *</label>
-                            <input type="file" name="doc_admission_letter" required accept=".pdf,image/*"
+                                College Admission / Offer Letter</label>
+                            <input type="file" name="doc_admission_letter" accept=".pdf,image/*"
                                 style="width: 100%; padding: 0.6rem; border-radius: 10px; border: 1px dashed #cbd5e1; background: #f8fafc;">
                         </div>
                         <div class="form-group">
                             <label
                                 style="display: block; font-weight: 600; color: #334155; margin-bottom: 0.35rem; font-size: 0.9rem;">6.
-                                College Fee Structure *</label>
-                            <input type="file" name="doc_fee_structure" required accept=".pdf,image/*"
+                                College Fee Structure</label>
+                            <input type="file" name="doc_fee_structure" accept=".pdf,image/*"
                                 style="width: 100%; padding: 0.6rem; border-radius: 10px; border: 1px dashed #cbd5e1; background: #f8fafc;">
-                        </div>
-
-                        <!-- Optional Documents Section Header -->
-                        <div
-                            style="grid-column: 1 / -1; font-weight: 700; color: #0f172a; font-size: 0.98rem; margin-top: 0.75rem; border-top: 1px dashed #e2e8f0; padding-top: 0.85rem;">
-                            Optional Documents:
                         </div>
 
                         <div class="form-group">
@@ -1064,7 +1072,7 @@
                             style="padding: 0.85rem 2.2rem; border-radius: 10px; font-weight: 600; font-size: 0.95rem; border: none; background: linear-gradient(135deg, #059669, #047857); color: #ffffff; cursor: pointer; box-shadow: 0 4px 14px rgba(5, 150, 105, 0.3); transition: all 0.2s ease;">
                             Save & Next →
                         </button>
-                        <button type="submit" id="submitFormBtn"
+                        <button type="submit" id="submitFormBtn" onclick="handleFormSubmit(event)"
                             style="display: none; padding: 0.85rem 2.2rem; border-radius: 10px; font-weight: 600; font-size: 0.95rem; border: none; background: linear-gradient(135deg, #059669, #D97706); color: #ffffff; cursor: pointer; box-shadow: 0 4px 14px rgba(5, 150, 105, 0.3); transition: all 0.2s ease;">
                             Submit Application →
                         </button>
@@ -1216,24 +1224,29 @@
         if (submitBtn) submitBtn.style.display = currentStep === totalSteps ? 'block' : 'none';
     }
 
+    function validateStepPanel(stepNum) {
+        const panel = document.getElementById('stepPanel' + stepNum);
+        if (!panel) return true;
+        const inputs = panel.querySelectorAll('input[required], select[required], textarea[required]');
+        let valid = true;
+        inputs.forEach(input => {
+            if (input.type === 'checkbox') {
+                if (!input.checked) valid = false;
+            } else if (!input.value.trim()) {
+                input.style.borderColor = '#ef4444';
+                valid = false;
+            } else {
+                input.style.borderColor = '#cbd5e1';
+            }
+        });
+        return valid;
+    }
+
     function navigateStep(direction) {
         if (direction === 1) {
-            const activePanel = document.getElementById('stepPanel' + currentStep);
-            if (activePanel) {
-                const inputs = activePanel.querySelectorAll('input[required], select[required], textarea[required]');
-                let valid = true;
-                inputs.forEach(input => {
-                    if (!input.value.trim()) {
-                        input.style.borderColor = '#ef4444';
-                        valid = false;
-                    } else {
-                        input.style.borderColor = '#cbd5e1';
-                    }
-                });
-                if (!valid) {
-                    alert('Please fill out all required fields before proceeding.');
-                    return;
-                }
+            if (!validateStepPanel(currentStep)) {
+                showAppNotification('Please fill out all required fields before proceeding.', 'Required Fields Missing', 'error');
+                return;
             }
         }
 
@@ -1244,7 +1257,7 @@
     }
 
     function jumpToStep(step) {
-        if (step <= currentStep || step === currentStep + 1) {
+        if (step >= 1 && step <= totalSteps) {
             currentStep = step;
             updateStepUI();
         }
@@ -1316,12 +1329,23 @@
                     if (resultBox) resultBox.style.display = 'block';
                 });
         } else {
-            alert('Please enter your Application Reference Number.');
+            showAppNotification('Please enter your Application Reference Number.', 'Reference ID Required', 'error');
         }
     }
 
     function handleFormSubmit(e) {
         e.preventDefault();
+        
+        // Comprehensive multi-step validation check before submitting
+        for (let i = 1; i <= totalSteps; i++) {
+            if (!validateStepPanel(i)) {
+                currentStep = i;
+                updateStepUI();
+                showAppNotification('Please fill out all required fields in Step ' + i + ' before submitting your application.', 'Required Fields Missing', 'error');
+                return false;
+            }
+        }
+
         const form = document.getElementById('scholarshipApplicationForm');
         const successBox = document.getElementById('formSuccessMessage');
         const submitBtn = document.getElementById('submitFormBtn');
@@ -1344,7 +1368,7 @@
                     if (form) form.style.display = 'none';
                     if (successBox) successBox.style.display = 'block';
                 } else {
-                    alert('Error submitting application. Please try again.');
+                    showAppNotification('Error submitting application: ' + (data.message || 'Please try again.'), 'Submission Error', 'error');
                     if (submitBtn) {
                         submitBtn.disabled = false;
                         submitBtn.innerHTML = 'Submit Application 🤲';
@@ -1353,10 +1377,11 @@
             })
             .catch(err => {
                 console.error(err);
-                const refNo = 'SS-2026-' + Math.floor(1000 + Math.random() * 9000);
-                document.getElementById('appRefNo').innerText = refNo;
-                if (form) form.style.display = 'none';
-                if (successBox) successBox.style.display = 'block';
+                showAppNotification('Network error processing application submission. Please try again.', 'Submission Error', 'error');
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = 'Submit Application 🤲';
+                }
             });
     }
 
@@ -1399,8 +1424,8 @@
                 <!-- Step 01 -->
                 <div class="sub-step-card"
                     style="background: #ffffff; border-radius: 16px; padding: 1.5rem 1rem; border: 1px solid #e2e8f0; box-shadow: 0 8px 20px rgba(15, 23, 42, 0.04); text-align: center; flex: 1; min-width: 125px;">
-                    <div style="font-size: 1.8rem; margin-bottom: 0.4rem;">📄</div>
-                    <div
+                    <div class="sub-step-icon" style="font-size: 1.8rem; margin-bottom: 0.4rem;">📄</div>
+                    <div class="sub-step-num"
                         style="font-size: 0.8rem; font-weight: 800; color: #059669; background: rgba(5, 150, 105, 0.1); padding: 0.2rem 0.6rem; border-radius: 8px; display: inline-block; margin-bottom: 0.5rem; font-family: monospace;">
                         01</div>
                     <div style="font-size: 0.88rem; font-weight: 700; color: #0f172a; line-height: 1.3;">
@@ -1411,8 +1436,8 @@
                 <!-- Step 02 -->
                 <div class="sub-step-card"
                     style="background: #ffffff; border-radius: 16px; padding: 1.5rem 1rem; border: 1px solid #e2e8f0; box-shadow: 0 8px 20px rgba(15, 23, 42, 0.04); text-align: center; flex: 1; min-width: 125px;">
-                    <div style="font-size: 1.8rem; margin-bottom: 0.4rem;">🔍</div>
-                    <div
+                    <div class="sub-step-icon" style="font-size: 1.8rem; margin-bottom: 0.4rem;">🔍</div>
+                    <div class="sub-step-num"
                         style="font-size: 0.8rem; font-weight: 800; color: #0284c7; background: rgba(2, 132, 199, 0.1); padding: 0.2rem 0.6rem; border-radius: 8px; display: inline-block; margin-bottom: 0.5rem; font-family: monospace;">
                         02</div>
                     <div style="font-size: 0.88rem; font-weight: 700; color: #0f172a; line-height: 1.3;">
@@ -1423,8 +1448,8 @@
                 <!-- Step 03 -->
                 <div class="sub-step-card"
                     style="background: #ffffff; border-radius: 16px; padding: 1.5rem 1rem; border: 1px solid #e2e8f0; box-shadow: 0 8px 20px rgba(15, 23, 42, 0.04); text-align: center; flex: 1; min-width: 125px;">
-                    <div style="font-size: 1.8rem; margin-bottom: 0.4rem;">💬</div>
-                    <div
+                    <div class="sub-step-icon" style="font-size: 1.8rem; margin-bottom: 0.4rem;">💬</div>
+                    <div class="sub-step-num"
                         style="font-size: 0.8rem; font-weight: 800; color: #7c3aed; background: rgba(124, 58, 237, 0.1); padding: 0.2rem 0.6rem; border-radius: 8px; display: inline-block; margin-bottom: 0.5rem; font-family: monospace;">
                         03</div>
                     <div style="font-size: 0.88rem; font-weight: 700; color: #0f172a; line-height: 1.3;">Counselling
@@ -1435,8 +1460,8 @@
                 <!-- Step 04 -->
                 <div class="sub-step-card"
                     style="background: #ffffff; border-radius: 16px; padding: 1.5rem 1rem; border: 1px solid #e2e8f0; box-shadow: 0 8px 20px rgba(15, 23, 42, 0.04); text-align: center; flex: 1; min-width: 125px;">
-                    <div style="font-size: 1.8rem; margin-bottom: 0.4rem;">⚖️</div>
-                    <div
+                    <div class="sub-step-icon" style="font-size: 1.8rem; margin-bottom: 0.4rem;">⚖️</div>
+                    <div class="sub-step-num"
                         style="font-size: 0.8rem; font-weight: 800; color: #d97706; background: rgba(217, 119, 6, 0.1); padding: 0.2rem 0.6rem; border-radius: 8px; display: inline-block; margin-bottom: 0.5rem; font-family: monospace;">
                         04</div>
                     <div style="font-size: 0.88rem; font-weight: 700; color: #0f172a; line-height: 1.3;">
@@ -1447,8 +1472,8 @@
                 <!-- Step 05 -->
                 <div class="sub-step-card"
                     style="background: #ffffff; border-radius: 16px; padding: 1.5rem 1rem; border: 1px solid #e2e8f0; box-shadow: 0 8px 20px rgba(15, 23, 42, 0.04); text-align: center; flex: 1; min-width: 125px;">
-                    <div style="font-size: 1.8rem; margin-bottom: 0.4rem;">🎯</div>
-                    <div
+                    <div class="sub-step-icon" style="font-size: 1.8rem; margin-bottom: 0.4rem;">🎯</div>
+                    <div class="sub-step-num"
                         style="font-size: 0.8rem; font-weight: 800; color: #059669; background: rgba(5, 150, 105, 0.1); padding: 0.2rem 0.6rem; border-radius: 8px; display: inline-block; margin-bottom: 0.5rem; font-family: monospace;">
                         05</div>
                     <div style="font-size: 0.88rem; font-weight: 700; color: #0f172a; line-height: 1.3;">
@@ -1459,8 +1484,8 @@
                 <!-- Step 06 -->
                 <div class="sub-step-card"
                     style="background: #ffffff; border-radius: 16px; padding: 1.5rem 1rem; border: 1px solid #e2e8f0; box-shadow: 0 8px 20px rgba(15, 23, 42, 0.04); text-align: center; flex: 1; min-width: 125px;">
-                    <div style="font-size: 1.8rem; margin-bottom: 0.4rem;">🏛️</div>
-                    <div
+                    <div class="sub-step-icon" style="font-size: 1.8rem; margin-bottom: 0.4rem;">🏛️</div>
+                    <div class="sub-step-num"
                         style="font-size: 0.8rem; font-weight: 800; color: #0284c7; background: rgba(2, 132, 199, 0.1); padding: 0.2rem 0.6rem; border-radius: 8px; display: inline-block; margin-bottom: 0.5rem; font-family: monospace;">
                         06</div>
                     <div style="font-size: 0.88rem; font-weight: 700; color: #0f172a; line-height: 1.3;">Direct
@@ -1471,8 +1496,8 @@
                 <!-- Step 07 -->
                 <div class="sub-step-card"
                     style="background: #ffffff; border-radius: 16px; padding: 1.5rem 1rem; border: 1px solid #e2e8f0; box-shadow: 0 8px 20px rgba(15, 23, 42, 0.04); text-align: center; flex: 1; min-width: 125px;">
-                    <div style="font-size: 1.8rem; margin-bottom: 0.4rem;">🌱</div>
-                    <div
+                    <div class="sub-step-icon" style="font-size: 1.8rem; margin-bottom: 0.4rem;">🌱</div>
+                    <div class="sub-step-num"
                         style="font-size: 0.8rem; font-weight: 800; color: #7c3aed; background: rgba(124, 58, 237, 0.1); padding: 0.2rem 0.6rem; border-radius: 8px; display: inline-block; margin-bottom: 0.5rem; font-family: monospace;">
                         07</div>
                     <div style="font-size: 0.88rem; font-weight: 700; color: #0f172a; line-height: 1.3;">Follow-up

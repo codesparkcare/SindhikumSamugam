@@ -85,6 +85,28 @@
         </div>
     </div>
 
+    <!-- Excel Export with Date Filter -->
+    <div class="card border-0 shadow-sm mb-4" style="border-radius: 16px; border: 1px solid #e2e8f0;">
+        <div class="card-body p-3">
+            <form method="GET" action="<?php echo site_url('admin/export_contacts_excel'); ?>" class="d-flex flex-wrap gap-3 align-items-end">
+                <div>
+                    <label class="form-label fw-bold text-secondary mb-1" style="font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.05em;"><i class="fa-solid fa-calendar-days me-1"></i> From Date</label>
+                    <input type="date" name="date_from" class="form-control form-control-sm" style="border-radius: 8px; min-width: 150px;" value="<?php echo isset($_GET['date_from']) ? htmlspecialchars($_GET['date_from']) : ''; ?>">
+                </div>
+                <div>
+                    <label class="form-label fw-bold text-secondary mb-1" style="font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.05em;"><i class="fa-solid fa-calendar-days me-1"></i> To Date</label>
+                    <input type="date" name="date_to" class="form-control form-control-sm" style="border-radius: 8px; min-width: 150px;" value="<?php echo isset($_GET['date_to']) ? htmlspecialchars($_GET['date_to']) : ''; ?>">
+                </div>
+                <div>
+                    <button type="submit" class="btn btn-success btn-sm fw-bold px-4" style="border-radius: 8px; box-shadow: 0 4px 12px rgba(5,150,105,0.2);">
+                        <i class="fa-solid fa-file-excel me-1"></i> Export to Excel
+                    </button>
+                </div>
+                <div class="text-muted" style="font-size: 0.8rem; align-self: center;">Leave dates blank to export all records</div>
+            </form>
+        </div>
+    </div>
+
     <!-- Enquiries Table -->
     <div class="card border-0 shadow-sm" style="border-radius: 20px; overflow: hidden; border: 1px solid #e2e8f0;">
         <div class="table-responsive">
@@ -112,7 +134,7 @@
                                     <?php endif; ?>
                                 </td>
                                 <td>
-                                    <div><a href="mailto:<?php echo htmlspecialchars($eq['email']); ?>" class="text-decoration-none text-primary fw-semibold"><i class="fa-solid fa-envelope me-1.5 text-muted"></i><?php echo htmlspecialchars($eq['email']); ?></a></div>
+                                     <div><?php if (!empty($eq['email'])): ?><a href="mailto:<?php echo htmlspecialchars($eq['email']); ?>" class="text-decoration-none text-primary fw-semibold"><i class="fa-solid fa-envelope me-1.5 text-muted"></i><?php echo htmlspecialchars($eq['email']); ?></a><?php else: ?><span class="text-muted fst-italic"><i class="fa-solid fa-envelope me-1.5 text-muted"></i>N/A</span><?php endif; ?></div>
                                     <?php if (!empty($eq['phone'])): ?>
                                         <div class="text-secondary mt-0.5"><a href="tel:<?php echo htmlspecialchars($eq['phone']); ?>" class="text-decoration-none text-secondary"><i class="fa-solid fa-phone me-1.5 text-muted"></i><?php echo htmlspecialchars($eq['phone']); ?></a></div>
                                     <?php endif; ?>

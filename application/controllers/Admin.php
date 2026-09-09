@@ -56,6 +56,7 @@ class Admin extends CI_Controller {
 		$data['applications'] = $this->Student_model->get_all_applications();
 		$data['enquiry_stats'] = $this->Enquiry_model->get_stats();
 		$data['recent_enquiries'] = $this->Enquiry_model->get_all_enquiries('All', 5);
+		$data['monthly_analytics'] = $this->Student_model->get_monthly_analytics();
 
 		$this->load->view('admin/layout/header');
 		$this->load->view('admin/layout/sidebar');
@@ -436,5 +437,162 @@ class Admin extends CI_Controller {
 			$this->session->set_flashdata('error', 'Invalid enquiry ID.');
 		}
 		redirect('admin/contact_enquiries');
+	}
+
+	// ---------------------------------------------------------
+	// EXCEL EXPORT METHODS (CSV for Excel Compatibility)
+	// ---------------------------------------------------------
+
+	public function export_students_excel()
+	{
+		$this->_check_auth();
+		$date_from = $this->input->get('date_from');
+		$date_to   = $this->input->get('date_to');
+
+		if ($date_from && $date_from !== '') {
+			$this->db->where('DATE(created_at) >=', $date_from);
+		}
+		if ($date_to && $date_to !== '') {
+			$this->db->where('DATE(created_at) <=', $date_to);
+		}
+		$this->db->order_by('id', 'DESC');
+		$query = $this->db->get('student_applications');
+		$data  = $query->result_array();
+
+		$filename = 'Students_Export_' . date('Y-m-d') . '.csv';
+		header('Content-Type: text/csv; charset=utf-8');
+		header('Content-Disposition: attachment; filename="' . $filename . '"');
+		header('Pragma: no-cache');
+		header('Expires: 0');
+
+		$output = fopen('php://output', 'w');
+		// BOM for Excel UTF-8 recognition
+		fprintf($output, chr(0xEF).chr(0xBB).chr(0xBF));
+
+		fputcsv($output, array(
+			'Ref No', 'Full Name', 'Date of Birth', 'Gender', 'Mobile',
+			'Email', 'City/District/State', 'Course Applying',
+			'Target College', 'Academic Year', 'Marks/CGPA',
+			'Father/Guardian Name', 'Annual Income (₹)', 'Status', 'Submitted Date'
+		));
+
+		foreach ($data as $row) {
+			fputcsv($output, array(
+				isset($row['ref_no']) ? $row['ref_no'] : '',
+				isset($row['full_name']) ? $row['full_name'] : '',
+				isset($row['dob']) ? $row['dob'] : '',
+				isset($row['gender']) ? $row['gender'] : '',
+				isset($row['mobile']) ? $row['mobile'] : '',
+				isset($row['email']) ? $row['email'] : '',
+				isset($row['city_district_state']) ? $row['city_district_state'] : '',
+				isset($row['course_applying']) ? $row['course_applying'] : '',
+				isset($row['target_college']) ? $row['target_college'] : '',
+				isset($row['academic_year']) ? $row['academic_year'] : '',
+				isset($row['marks_cgpa']) ? $row['marks_cgpa'] : '',
+				isset($row['father_guardian_name']) ? $row['father_guardian_name'] : '',
+				isset($row['annual_income']) ? $row['annual_income'] : '',
+				isset($row['status']) ? $row['status'] : '',
+				isset($row['created_at']) ? date('d-m-Y H:i', strtotime($row['created_at'])) : ''
+			));
+		}
+		fclose($output);
+		exit;
+	}
+
+	public function export_donors_excel()
+	{
+		$this->_check_auth();
+		$this->load->model('Donor_model');
+		$date_from = $this->input->get('date_from');
+		$date_to   = $this->input->get('date_to');
+
+		if ($date_from && $date_from !== '') {
+			$this->db->where('DATE(created_at) >=', $date_from);
+		}
+		if ($date_to && $date_to !== '') {
+			$this->db->where('DATE(created_at) <=', $date_to);
+		}
+		$this->db->order_by('id', 'DESC');
+		$query = $this->db->get('donor_pledges');
+		$data  = $query->result_array();
+
+		$filename = 'Donors_Export_' . date('Y-m-d') . '.csv';
+		header('Content-Type: text/csv; charset=utf-8');
+		header('Content-Disposition: attachment; filename="' . $filename . '"');
+		header('Pragma: no-cache');
+		header('Expires: 0');
+
+		$output = fopen('php://output', 'w');
+		fprintf($output, chr(0xEF).chr(0xBB).chr(0xBF));
+
+		fputcsv($output, array(
+			'ID', 'Donor Name', 'Donor Type', 'Email', 'Phone',
+			'Amount (₹)', 'Frequency', 'Student / Fund Target',
+			'PAN Number', 'Payment Status', 'Transaction Ref', 'Date'
+		));
+
+		foreach ($data as $row) {
+			fputcsv($output, array(
+				$row['id'],
+				isset($row['donor_name']) ? $row['donor_name'] : '',
+				isset($row['donor_type']) ? $row['donor_type'] : '',
+				isset($row['email']) ? $row['email'] : '',
+				isset($row['phone']) ? $row['phone'] : '',
+				isset($row['amount']) ? $row['amount'] : '',
+				isset($row['frequency']) ? $row['frequency'] : '',
+				isset($row['student_name']) ? $row['student_name'] : 'General Fund',
+				isset($row['pan_number']) ? $row['pan_number'] : '',
+				isset($row['payment_status']) ? $row['payment_status'] : '',
+				isset($row['transaction_ref']) ? $row['transaction_ref'] : '',
+				isset($row['created_at']) ? date('d-m-Y H:i', strtotime($row['created_at'])) : ''
+			));
+		}
+		fclose($output);
+		exit;
+	}
+
+	public function export_contacts_excel()
+	{
+		$this->_check_auth();
+		$date_from = $this->input->get('date_from');
+		$date_to   = $this->input->get('date_to');
+
+		if ($date_from && $date_from !== '') {
+			$this->db->where('DATE(created_at) >=', $date_from);
+		}
+		if ($date_to && $date_to !== '') {
+			$this->db->where('DATE(created_at) <=', $date_to);
+		}
+		$this->db->order_by('id', 'DESC');
+		$query = $this->db->get('enquiries');
+		$data  = $query->result_array();
+
+		$filename = 'Contact_Enquiries_Export_' . date('Y-m-d') . '.csv';
+		header('Content-Type: text/csv; charset=utf-8');
+		header('Content-Disposition: attachment; filename="' . $filename . '"');
+		header('Pragma: no-cache');
+		header('Expires: 0');
+
+		$output = fopen('php://output', 'w');
+		fprintf($output, chr(0xEF).chr(0xBB).chr(0xBF));
+
+		fputcsv($output, array(
+			'ID', 'Name', 'Email', 'Phone', 'Message', 'Status', 'Admin Notes', 'Date Received'
+		));
+
+		foreach ($data as $row) {
+			fputcsv($output, array(
+				$row['id'],
+				isset($row['name']) ? $row['name'] : '',
+				isset($row['email']) ? $row['email'] : '',
+				isset($row['phone']) ? $row['phone'] : '',
+				isset($row['message']) ? $row['message'] : '',
+				isset($row['status']) ? $row['status'] : '',
+				isset($row['admin_notes']) ? $row['admin_notes'] : '',
+				isset($row['created_at']) ? date('d-m-Y H:i', strtotime($row['created_at'])) : ''
+			));
+		}
+		fclose($output);
+		exit;
 	}
 }
