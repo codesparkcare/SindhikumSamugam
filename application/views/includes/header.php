@@ -5,6 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sindhikum Samugam - Premium Student Donation Platform</title>
+    <meta name="author" content="CODESPARK SOFTWARE DEVELOPMENT TIRUNELVELI">
+    <meta name="developer" content="CODESPARK SOFTWARE DEVELOPMENT TIRUNELVELI">
+    <meta name="designer" content="CODESPARK SOFTWARE DEVELOPMENT TIRUNELVELI">
+    <link rel="author" href="https://codespark.online/" title="CODESPARK SOFTWARE DEVELOPMENT TIRUNELVELI">
+    <link rel="publisher" href="https://codespark.online/" title="CODESPARK SOFTWARE DEVELOPMENT TIRUNELVELI">
+    <meta property="og:developer" content="CODESPARK SOFTWARE DEVELOPMENT TIRUNELVELI">
+
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="<?php echo base_url('assets/images/faviicon.png?v=' . time()); ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/style.css?v=' . time()); ?>">

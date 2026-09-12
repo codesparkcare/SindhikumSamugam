@@ -108,25 +108,67 @@
             </form>
         </div>
     </div>
-    <!-- Excel Export with Date Filter -->
-    <div class="card border-0 shadow-sm mb-3" style="border-radius: 16px; border: 1px solid #e2e8f0;">
-        <div class="card-body p-3">
-            <form method="GET" action="<?php echo site_url('admin/export_students_excel'); ?>" class="d-flex flex-wrap gap-3 align-items-end">
-                <div>
-                    <label class="form-label fw-bold text-secondary mb-1" style="font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.05em;"><i class="fa-solid fa-calendar-days me-1"></i> From Date</label>
-                    <input type="date" name="date_from" class="form-control form-control-sm" style="border-radius: 8px; min-width: 150px;" value="<?php echo isset($_GET['date_from']) ? htmlspecialchars($_GET['date_from']) : ''; ?>">
+    <!-- Date Filter & Excel Export Card -->
+    <div class="card border-0 shadow-sm mb-3" style="border-radius: 18px; border: 1px solid #e2e8f0; background: #ffffff;">
+        <div class="card-body p-3.5">
+            <form id="studentFilterForm" method="GET" action="<?php echo site_url('admin/student_enquiries'); ?>" class="d-flex flex-wrap gap-3 align-items-end justify-content-between">
+                <?php if(!empty($current_filter) && $current_filter !== 'All'): ?>
+                    <input type="hidden" name="status" value="<?php echo htmlspecialchars($current_filter); ?>">
+                <?php endif; ?>
+
+                <div class="d-flex flex-wrap gap-3 align-items-end">
+                    <div>
+                        <label class="form-label fw-bold text-secondary mb-1" style="font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.05em;">
+                            <i class="fa-solid fa-calendar-days text-primary me-1"></i> From Date
+                        </label>
+                        <input type="date" id="filter_date_from" name="date_from" class="form-control form-control-sm" style="border-radius: 8px; min-width: 155px; height: 36px; border: 1px solid #cbd5e1;" value="<?php echo isset($date_from) ? htmlspecialchars($date_from) : (isset($_GET['date_from']) ? htmlspecialchars($_GET['date_from']) : ''); ?>">
+                    </div>
+
+                    <div>
+                        <label class="form-label fw-bold text-secondary mb-1" style="font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.05em;">
+                            <i class="fa-solid fa-calendar-days text-primary me-1"></i> To Date
+                        </label>
+                        <input type="date" id="filter_date_to" name="date_to" class="form-control form-control-sm" style="border-radius: 8px; min-width: 155px; height: 36px; border: 1px solid #cbd5e1;" value="<?php echo isset($date_to) ? htmlspecialchars($date_to) : (isset($_GET['date_to']) ? htmlspecialchars($_GET['date_to']) : ''); ?>">
+                    </div>
+
+                    <div>
+                        <button type="submit" class="btn btn-primary btn-sm fw-bold px-3.5 d-flex align-items-center gap-1.5" style="border-radius: 8px; height: 36px; background: #4f46e5; border: none; box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25);">
+                            <i class="fa-solid fa-filter"></i> Apply Filter
+                        </button>
+                    </div>
+
+                    <?php if((isset($date_from) && $date_from !== '') || (isset($date_to) && $date_to !== '')): ?>
+                        <div>
+                            <a href="<?php echo site_url('admin/student_enquiries' . (!empty($current_filter) && $current_filter !== 'All' ? '?status=' . urlencode($current_filter) : '')); ?>" class="btn btn-outline-secondary btn-sm fw-bold px-3 d-flex align-items-center gap-1.5" style="border-radius: 8px; height: 36px;">
+                                <i class="fa-solid fa-rotate-left"></i> Reset
+                            </a>
+                        </div>
+                    <?php endif; ?>
                 </div>
-                <div>
-                    <label class="form-label fw-bold text-secondary mb-1" style="font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.05em;"><i class="fa-solid fa-calendar-days me-1"></i> To Date</label>
-                    <input type="date" name="date_to" class="form-control form-control-sm" style="border-radius: 8px; min-width: 150px;" value="<?php echo isset($_GET['date_to']) ? htmlspecialchars($_GET['date_to']) : ''; ?>">
-                </div>
-                <div>
-                    <button type="submit" class="btn btn-success btn-sm fw-bold px-4" style="border-radius: 8px; box-shadow: 0 4px 12px rgba(5,150,105,0.2);">
-                        <i class="fa-solid fa-file-excel me-1"></i> Export to Excel
+
+                <div class="d-flex align-items-center gap-2">
+                    <button type="button" onclick="exportStudentsExcel()" class="btn btn-success btn-sm fw-bold px-4 d-flex align-items-center gap-2" style="border-radius: 8px; height: 36px; background: #059669; border: none; box-shadow: 0 4px 12px rgba(5, 150, 105, 0.25);">
+                        <i class="fa-solid fa-file-excel"></i> Export to Excel
                     </button>
                 </div>
-                <div class="text-muted" style="font-size: 0.8rem; align-self: center;">Leave dates blank to export all records</div>
             </form>
+
+            <?php if((isset($date_from) && $date_from !== '') || (isset($date_to) && $date_to !== '')): ?>
+                <div class="mt-2.5 pt-2 border-top d-flex align-items-center gap-2" style="font-size: 0.82rem; color: #4338ca;">
+                    <i class="fa-solid fa-circle-info"></i>
+                    <span>
+                        Active Filter: Showing applications 
+                        <?php if(!empty($date_from) && !empty($date_to)): ?>
+                            from <strong><?php echo date('d M Y', strtotime($date_from)); ?></strong> to <strong><?php echo date('d M Y', strtotime($date_to)); ?></strong>
+                        <?php elseif(!empty($date_from)): ?>
+                            from <strong><?php echo date('d M Y', strtotime($date_from)); ?></strong> onwards
+                        <?php elseif(!empty($date_to)): ?>
+                            up to <strong><?php echo date('d M Y', strtotime($date_to)); ?></strong>
+                        <?php endif; ?>
+                        (Found <strong><?php echo count($applications); ?></strong> record<?php echo count($applications) === 1 ? '' : 's'; ?>)
+                    </span>
+                </div>
+            <?php endif; ?>
         </div>
     </div>
 
@@ -151,6 +193,7 @@
                             <th class="ps-4 py-3">Status ID</th>
                             <th class="py-3">Name</th>
                             <th class="py-3">Phone No</th>
+                            <th class="py-3">Applied Date</th>
                             <th class="py-3">Status</th>
                             <th class="text-end pe-4 py-3">Actions</th>
                         </tr>
@@ -172,6 +215,16 @@
                                     </td>
                                     <td class="fw-semibold text-dark">
                                         <i class="fa-solid fa-phone me-1 text-muted" style="font-size: 0.8rem;"></i> <?php echo htmlspecialchars($app['mobile']); ?>
+                                    </td>
+                                    <td class="fw-semibold text-secondary" style="font-size: 0.88rem; white-space: nowrap;">
+                                        <div style="color: #0f172a; font-weight: 600;">
+                                            <i class="fa-regular fa-calendar text-primary me-1.5" style="font-size: 0.82rem;"></i><?php echo !empty($app['created_at']) ? date('d-m-Y', strtotime($app['created_at'])) : 'N/A'; ?>
+                                        </div>
+                                        <?php if(!empty($app['created_at'])): ?>
+                                            <div class="text-muted" style="font-size: 0.75rem; padding-left: 1.25rem;">
+                                                <i class="fa-regular fa-clock me-1"></i><?php echo date('h:i A', strtotime($app['created_at'])); ?>
+                                            </div>
+                                        <?php endif; ?>
                                     </td>
                                     <td>
                                          <?php if($app['status'] == 'Approved'): ?>
@@ -209,6 +262,14 @@
                                 <td class="fw-semibold text-dark">
                                     <i class="fa-solid fa-phone me-1 text-muted" style="font-size: 0.8rem;"></i> +91 98765 43210
                                 </td>
+                                <td class="fw-semibold text-secondary" style="font-size: 0.88rem; white-space: nowrap;">
+                                    <div style="color: #0f172a; font-weight: 600;">
+                                        <i class="fa-regular fa-calendar text-primary me-1.5" style="font-size: 0.82rem;"></i>12-08-2026
+                                    </div>
+                                    <div class="text-muted" style="font-size: 0.76rem; padding-left: 1.25rem;">
+                                        <i class="fa-regular fa-clock me-1"></i>10:30 AM
+                                    </div>
+                                </td>
                                 <td>
                                     <span class="badge px-3 py-2" style="background: #d1fae5; color: #047857; border: 1px solid #a7f3d0; border-radius: 50px; font-weight: 700;"><i class="fa-solid fa-circle-check me-1"></i> Approved</span>
                                 </td>
@@ -235,6 +296,14 @@
                                 <td class="fw-semibold text-dark">
                                     <i class="fa-solid fa-phone me-1 text-muted" style="font-size: 0.8rem;"></i> +91 91234 56789
                                 </td>
+                                <td class="fw-semibold text-secondary" style="font-size: 0.88rem; white-space: nowrap;">
+                                    <div style="color: #0f172a; font-weight: 600;">
+                                        <i class="fa-regular fa-calendar text-primary me-1.5" style="font-size: 0.82rem;"></i>13-08-2026
+                                    </div>
+                                    <div class="text-muted" style="font-size: 0.76rem; padding-left: 1.25rem;">
+                                        <i class="fa-regular fa-clock me-1"></i>02:15 PM
+                                    </div>
+                                </td>
                                 <td>
                                     <span class="badge px-3 py-2" style="background: #fef3c7; color: #d97706; border: 1px solid #fde68a; border-radius: 50px; font-weight: 700;"><i class="fa-solid fa-clock me-1"></i> Pending</span>
                                 </td>
@@ -252,6 +321,31 @@
                         <?php endif; ?>
                     </tbody>
                 </table>
+            </div>
+
+            <!-- Pagination & Entries Summary Footer -->
+            <div class="p-3.5 px-4 d-flex flex-wrap align-items-center justify-content-between gap-3" style="background: #f8fafc; border-top: 1px solid #e2e8f0; font-size: 0.88rem; color: #64748b;">
+                <div class="d-flex align-items-center gap-2" id="paginationSummary">
+                    <span>Showing <strong id="pageStart" class="text-dark">1</strong> to <strong id="pageEnd" class="text-dark">10</strong> of <strong id="totalEntries" class="text-dark"><?php echo count($applications); ?></strong> applications</span>
+                </div>
+
+                <div class="d-flex align-items-center gap-3">
+                    <div class="d-flex align-items-center gap-1.5">
+                        <label class="text-muted mb-0" style="font-size: 0.82rem; white-space: nowrap;">Rows:</label>
+                        <select id="rowsPerPageSelect" onchange="changeRowsPerPage(this.value)" class="form-select form-select-sm" style="width: 72px; border-radius: 8px; font-size: 0.85rem; padding: 0.25rem 0.5rem;">
+                            <option value="10" selected>10</option>
+                            <option value="25">25</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                        </select>
+                    </div>
+
+                    <nav aria-label="Student applications pagination">
+                        <ul class="pagination pagination-sm mb-0 gap-1" id="paginationControls">
+                            <!-- Dynamic pagination buttons will be rendered here -->
+                        </ul>
+                    </nav>
+                </div>
             </div>
         </div>
     </div>
@@ -384,21 +478,169 @@
 </div>
 
 <script>
-function filterEnquiriesTable() {
-    const input = document.getElementById("searchInput").value.toLowerCase();
-    const table = document.getElementById("enquiriesTable");
-    const trs = table.getElementsByTagName("tr");
+let currentPage = 1;
+let rowsPerPage = 10;
 
-    for (let i = 1; i < trs.length; i++) {
-        const tr = trs[i];
-        const text = tr.innerText.toLowerCase();
-        if (text.indexOf(input) > -1) {
-            tr.style.display = "";
+function getTableRows() {
+    const table = document.getElementById("enquiriesTable");
+    if (!table) return [];
+    const tbody = table.querySelector("tbody");
+    if (!tbody) return [];
+    return Array.from(tbody.querySelectorAll("tr:not(.no-records-row)"));
+}
+
+function renderPagination() {
+    const searchInput = document.getElementById("searchInput");
+    const filterText = searchInput ? searchInput.value.toLowerCase().trim() : "";
+    const allRows = getTableRows();
+    const table = document.getElementById("enquiriesTable");
+    const tbody = table ? table.querySelector("tbody") : null;
+    if (!tbody) return;
+
+    // Filter matching rows
+    const matchedRows = [];
+    allRows.forEach(row => {
+        const text = row.innerText.toLowerCase();
+        if (filterText === "" || text.indexOf(filterText) > -1) {
+            matchedRows.push(row);
         } else {
-            tr.style.display = "none";
+            row.style.display = "none";
+        }
+    });
+
+    // Remove existing empty state if present
+    const existingEmpty = tbody.querySelector(".no-records-row");
+    if (existingEmpty) existingEmpty.remove();
+
+    const total = matchedRows.length;
+    const totalPages = Math.max(1, Math.ceil(total / rowsPerPage));
+
+    if (currentPage > totalPages) currentPage = totalPages;
+    if (currentPage < 1) currentPage = 1;
+
+    const startIdx = (currentPage - 1) * rowsPerPage;
+    const endIdx = Math.min(startIdx + rowsPerPage, total);
+
+    matchedRows.forEach((row, index) => {
+        if (index >= startIdx && index < endIdx) {
+            row.style.display = "";
+        } else {
+            row.style.display = "none";
+        }
+    });
+
+    if (total === 0) {
+        const emptyTr = document.createElement("tr");
+        emptyTr.className = "no-records-row";
+        emptyTr.innerHTML = `
+            <td colspan="6" class="text-center py-5 text-muted">
+                <i class="fa-solid fa-folder-open mb-2 text-secondary" style="font-size: 2.2rem; opacity: 0.6;"></i>
+                <div class="fw-bold" style="font-size: 1rem; color: #475569;">No student applications found</div>
+                <div style="font-size: 0.85rem;">Try adjusting your date filter or search query.</div>
+            </td>
+        `;
+        tbody.appendChild(emptyTr);
+    }
+
+    // Update Summary
+    const pageStartEl = document.getElementById("pageStart");
+    const pageEndEl = document.getElementById("pageEnd");
+    const totalEntriesEl = document.getElementById("totalEntries");
+    if (pageStartEl) pageStartEl.innerText = total === 0 ? 0 : (startIdx + 1);
+    if (pageEndEl) pageEndEl.innerText = endIdx;
+    if (totalEntriesEl) totalEntriesEl.innerText = total;
+
+    // Build Pagination Navigation
+    const controls = document.getElementById("paginationControls");
+    if (!controls) return;
+    controls.innerHTML = "";
+
+    if (total === 0) return;
+
+    // Previous Button
+    const prevLi = document.createElement("li");
+    prevLi.className = `page-item ${currentPage === 1 ? 'disabled' : ''}`;
+    prevLi.innerHTML = `<a class="page-link" href="javascript:void(0)" onclick="goToPage(${currentPage - 1})" aria-label="Previous" style="border-radius: 8px; border: 1px solid #cbd5e1; font-weight: 600; padding: 0.28rem 0.65rem;"><i class="fa-solid fa-chevron-left" style="font-size: 0.72rem;"></i></a>`;
+    controls.appendChild(prevLi);
+
+    // Numbered Buttons
+    let startPage = Math.max(1, currentPage - 2);
+    let endPage = Math.min(totalPages, currentPage + 2);
+
+    if (startPage > 1) {
+        const p1 = document.createElement("li");
+        p1.className = "page-item";
+        p1.innerHTML = `<a class="page-link" href="javascript:void(0)" onclick="goToPage(1)" style="border-radius: 8px; border: 1px solid #cbd5e1; font-weight: 600; padding: 0.28rem 0.65rem;">1</a>`;
+        controls.appendChild(p1);
+        if (startPage > 2) {
+            const dots = document.createElement("li");
+            dots.className = "page-item disabled";
+            dots.innerHTML = `<span class="page-link" style="border: none; background: transparent; padding: 0.28rem 0.4rem;">...</span>`;
+            controls.appendChild(dots);
         }
     }
+
+    for (let p = startPage; p <= endPage; p++) {
+        const pageLi = document.createElement("li");
+        const isActive = p === currentPage;
+        pageLi.className = `page-item ${isActive ? 'active' : ''}`;
+        pageLi.innerHTML = `<a class="page-link" href="javascript:void(0)" onclick="goToPage(${p})" style="border-radius: 8px; font-weight: 700; padding: 0.28rem 0.65rem; ${isActive ? 'background: #4f46e5; border-color: #4f46e5; color: white;' : 'border: 1px solid #cbd5e1; color: #334155;'}">${p}</a>`;
+        controls.appendChild(pageLi);
+    }
+
+    if (endPage < totalPages) {
+        if (endPage < totalPages - 1) {
+            const dots = document.createElement("li");
+            dots.className = "page-item disabled";
+            dots.innerHTML = `<span class="page-link" style="border: none; background: transparent; padding: 0.28rem 0.4rem;">...</span>`;
+            controls.appendChild(dots);
+        }
+        const lastLi = document.createElement("li");
+        lastLi.className = "page-item";
+        lastLi.innerHTML = `<a class="page-link" href="javascript:void(0)" onclick="goToPage(${totalPages})" style="border-radius: 8px; border: 1px solid #cbd5e1; font-weight: 600; padding: 0.28rem 0.65rem;">${totalPages}</a>`;
+        controls.appendChild(lastLi);
+    }
+
+    // Next Button
+    const nextLi = document.createElement("li");
+    nextLi.className = `page-item ${currentPage === totalPages ? 'disabled' : ''}`;
+    nextLi.innerHTML = `<a class="page-link" href="javascript:void(0)" onclick="goToPage(${currentPage + 1})" aria-label="Next" style="border-radius: 8px; border: 1px solid #cbd5e1; font-weight: 600; padding: 0.28rem 0.65rem;"><i class="fa-solid fa-chevron-right" style="font-size: 0.72rem;"></i></a>`;
+    controls.appendChild(nextLi);
 }
+
+function goToPage(page) {
+    currentPage = page;
+    renderPagination();
+}
+
+function changeRowsPerPage(val) {
+    rowsPerPage = parseInt(val) || 10;
+    currentPage = 1;
+    renderPagination();
+}
+
+function filterEnquiriesTable() {
+    currentPage = 1;
+    renderPagination();
+}
+
+function exportStudentsExcel() {
+    const fromVal = document.getElementById('filter_date_from') ? document.getElementById('filter_date_from').value : '';
+    const toVal = document.getElementById('filter_date_to') ? document.getElementById('filter_date_to').value : '';
+    const statusVal = "<?php echo (!empty($current_filter) && $current_filter !== 'All') ? htmlspecialchars($current_filter) : ''; ?>";
+
+    const params = new URLSearchParams();
+    if (fromVal) params.append('date_from', fromVal);
+    if (toVal) params.append('date_to', toVal);
+    if (statusVal) params.append('status', statusVal);
+
+    const exportUrl = "<?php echo site_url('admin/export_students_excel'); ?>" + (params.toString() ? '?' + params.toString() : '');
+    window.location.href = exportUrl;
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    renderPagination();
+});
 
 function viewApplicationModal(data) {
     document.getElementById('m_app_id').value = data.id || '';

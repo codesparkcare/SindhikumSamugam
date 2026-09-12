@@ -1,15 +1,18 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Donor_model extends CI_Model {
+class Donor_model extends CI_Model
+{
 
-    public function __construct() {
+    public function __construct()
+    {
         parent::__construct();
         $this->load->database();
         $this->create_table_if_not_exists();
     }
 
-    private function create_table_if_not_exists() {
+    private function create_table_if_not_exists()
+    {
         $query = "CREATE TABLE IF NOT EXISTS `donor_pledges` (
             `id` INT AUTO_INCREMENT PRIMARY KEY,
             `donor_name` VARCHAR(255) NOT NULL,
@@ -31,9 +34,16 @@ class Donor_model extends CI_Model {
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;";
         $this->db->query($query);
         @$this->db->query("ALTER TABLE `donor_pledges` MODIFY `email` VARCHAR(255) NULL;");
+
+        // Seed default donors if table is empty
+        $count = $this->db->count_all_results('donor_pledges');
+        if ($count == 0) {
+            $this->seed_default_donors();
+        }
     }
 
-    private function seed_default_donors() {
+    private function seed_default_donors()
+    {
         $sample_donors = array(
             array(
                 'donor_name' => 'K. Ramanathan',
@@ -96,12 +106,14 @@ class Donor_model extends CI_Model {
         $this->db->insert_batch('donor_pledges', $sample_donors);
     }
 
-    public function save_pledge($data) {
+    public function save_pledge($data)
+    {
         $this->db->insert('donor_pledges', $data);
         return $this->db->insert_id();
     }
 
-    public function get_recent_donors($limit = 10) {
+    public function get_recent_donors($limit = 10)
+    {
         $this->db->where('is_anonymous', 0);
         $this->db->order_by('id', 'DESC');
         $this->db->limit($limit);
@@ -109,7 +121,8 @@ class Donor_model extends CI_Model {
         return $query->result_array();
     }
 
-    public function get_all_donors($status = null) {
+    public function get_all_donors($status = null)
+    {
         if ($status && $status !== 'All') {
             $this->db->where('payment_status', $status);
         }
@@ -118,13 +131,15 @@ class Donor_model extends CI_Model {
         return $query->result_array();
     }
 
-    public function get_donor_by_id($id) {
+    public function get_donor_by_id($id)
+    {
         $this->db->where('id', $id);
         $query = $this->db->get('donor_pledges');
         return $query->row_array();
     }
 
-    public function update_status($id, $status, $transaction_ref = null) {
+    public function update_status($id, $status, $transaction_ref = null)
+    {
         $data = array('payment_status' => $status);
         if ($transaction_ref !== null) {
             $data['transaction_ref'] = $transaction_ref;
@@ -133,24 +148,26 @@ class Donor_model extends CI_Model {
         return $this->db->update('donor_pledges', $data);
     }
 
-    public function delete_donor($id) {
+    public function delete_donor($id)
+    {
         $this->db->where('id', $id);
         return $this->db->delete('donor_pledges');
     }
 
-    public function get_donor_stats() {
+    public function get_donor_stats()
+    {
         $total_pledges = $this->db->count_all_results('donor_pledges');
 
         $this->db->select_sum('amount');
         $query1 = $this->db->get('donor_pledges');
         $row1 = $query1->row();
-        $total_amount = ($row1 && $row1->amount > 0) ? (float)$row1->amount : 185000.00;
+        $total_amount = ($row1 && $row1->amount > 0) ? (float) $row1->amount : 185000.00;
 
         $this->db->select_sum('amount');
         $this->db->where('payment_status', 'Completed');
         $query2 = $this->db->get('donor_pledges');
         $row2 = $query2->row();
-        $completed_amount = ($row2 && $row2->amount > 0) ? (float)$row2->amount : 185000.00;
+        $completed_amount = ($row2 && $row2->amount > 0) ? (float) $row2->amount : 185000.00;
 
         return array(
             'total_pledges' => $total_pledges,

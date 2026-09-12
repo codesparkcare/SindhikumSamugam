@@ -82,6 +82,12 @@
 
         <div class="footer-bottom" style="justify-content: center; text-align: center;">
             <p class="copyright-text" style="text-align: center; width: 100%; margin: 0;">&copy; <?php echo date('Y'); ?> Sindhikum Samugam Foundation. All Rights Reserved.</p>
+            <!-- Developer Attribution & Schema Metadata (Hidden from Users) -->
+            <meta itemprop="creator" content="CODESPARK SOFTWARE DEVELOPMENT TIRUNELVELI">
+            <link itemprop="url" href="https://codespark.online/" title="CODESPARK SOFTWARE DEVELOPMENT TIRUNELVELI">
+            <div style="display: none !important; visibility: hidden !important; opacity: 0; position: absolute; left: -9999px;" aria-hidden="true">
+                <a href="https://codespark.online/" title="CODESPARK SOFTWARE DEVELOPMENT TIRUNELVELI" rel="noopener">CODESPARK SOFTWARE DEVELOPMENT TIRUNELVELI</a>
+            </div>
         </div>
     </div>
 </footer>

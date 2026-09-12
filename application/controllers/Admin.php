@@ -86,10 +86,15 @@ class Admin extends CI_Controller {
 	public function student_enquiries()
 	{
 		$this->_check_auth();
-		$status = $this->input->get('status') ? $this->input->get('status') : null;
-		$data['stats'] = $this->Student_model->get_stats();
-		$data['applications'] = $this->Student_model->get_all_applications($status);
+		$status    = $this->input->get('status') ? $this->input->get('status') : null;
+		$date_from = $this->input->get('date_from') ? $this->input->get('date_from') : null;
+		$date_to   = $this->input->get('date_to') ? $this->input->get('date_to') : null;
+
+		$data['stats']          = $this->Student_model->get_stats();
+		$data['applications']   = $this->Student_model->get_all_applications($status, $date_from, $date_to);
 		$data['current_filter'] = $status ? $status : 'All';
+		$data['date_from']      = $date_from;
+		$data['date_to']        = $date_to;
 
 		$this->load->view('admin/layout/header');
 		$this->load->view('admin/layout/sidebar');
@@ -446,9 +451,13 @@ class Admin extends CI_Controller {
 	public function export_students_excel()
 	{
 		$this->_check_auth();
+		$status    = $this->input->get('status');
 		$date_from = $this->input->get('date_from');
 		$date_to   = $this->input->get('date_to');
 
+		if ($status && $status !== 'All') {
+			$this->db->where('status', $status);
+		}
 		if ($date_from && $date_from !== '') {
 			$this->db->where('DATE(created_at) >=', $date_from);
 		}
@@ -469,30 +478,123 @@ class Admin extends CI_Controller {
 		// BOM for Excel UTF-8 recognition
 		fprintf($output, chr(0xEF).chr(0xBB).chr(0xBF));
 
+		// Row 1: Grouping by 3 Main Sections: Basic Details, Education, Family & Circumstances
 		fputcsv($output, array(
-			'Ref No', 'Full Name', 'Date of Birth', 'Gender', 'Mobile',
-			'Email', 'City/District/State', 'Course Applying',
-			'Target College', 'Academic Year', 'Marks/CGPA',
-			'Father/Guardian Name', 'Annual Income (₹)', 'Status', 'Submitted Date'
+			// Application Info (3 columns)
+			'APPLICATION INFO', '', '',
+			// Section 1: Basic Details (9 columns)
+			'BASIC DETAILS', '', '', '', '', '', '', '', '',
+			// Section 2: Education (12 columns)
+			'EDUCATION', '', '', '', '', '', '', '', '', '', '', '',
+			// Section 3: Family & Circumstances (13 columns)
+			'FAMILY & CIRCUMSTANCES', '', '', '', '', '', '', '', '', '', '', '', '',
+			// Admin Audit Note (1 column)
+			'ADMIN AUDIT'
+		));
+
+		// Row 2: Detailed Column Headers under each section
+		fputcsv($output, array(
+			// Application Info
+			'Ref No',
+			'Application Status',
+			'Submitted Date',
+
+			// Section 1: Basic Details
+			'[Basic Details] Full Name',
+			'[Basic Details] Date of Birth',
+			'[Basic Details] Gender',
+			'[Basic Details] Mobile Number',
+			'[Basic Details] Email Address',
+			'[Basic Details] City / District / State',
+			'[Basic Details] Residential Address',
+			'[Basic Details] Parent Contact Number',
+			'[Basic Details] Preferred Language',
+
+			// Section 2: Education
+			'[Education] Current / Last Qualification',
+			'[Education] School / College Name',
+			'[Education] Board / University',
+			'[Education] Course Applying For',
+			'[Education] Target College / University',
+			'[Education] Academic Year',
+			'[Education] Marks / Percentage / CGPA',
+			'[Education] Admission Status',
+			'[Education] Annual Tuition Fee (INR)',
+			'[Education] Hostel Required',
+			'[Education] First Graduate',
+			'[Education] Career Goal',
+
+			// Section 3: Family & Circumstances
+			'[Family & Circumstances] Father / Guardian Name',
+			'[Family & Circumstances] Mother Name',
+			'[Family & Circumstances] Father / Guardian Occupation',
+			'[Family & Circumstances] Mother Occupation',
+			'[Family & Circumstances] Family Members Count',
+			'[Family & Circumstances] Earning Members Count',
+			'[Family & Circumstances] Annual Family Income (INR)',
+			'[Family & Circumstances] Father Monthly Income (INR)',
+			'[Family & Circumstances] Required Support Amount (INR)',
+			'[Family & Circumstances] Family Financial Commitments',
+			'[Family & Circumstances] Why Seeking Support',
+			'[Family & Circumstances] Other Scholarships Received',
+			'[Family & Circumstances] Circumstances & Financial Need Info',
+
+			// Admin Audit
+			'Admin Remarks / Audit Note'
 		));
 
 		foreach ($data as $row) {
+			$father_occ = !empty($row['father_occupation']) ? $row['father_occupation'] : (isset($row['occupation']) ? $row['occupation'] : '');
+			$circ_info  = !empty($row['additional_financial_info']) ? $row['additional_financial_info'] : (isset($row['financial_description']) ? $row['financial_description'] : '');
+
 			fputcsv($output, array(
+				// Application Info
 				isset($row['ref_no']) ? $row['ref_no'] : '',
+				isset($row['status']) ? $row['status'] : '',
+				isset($row['created_at']) && !empty($row['created_at']) ? date('d-m-Y H:i', strtotime($row['created_at'])) : '',
+
+				// Section 1: Basic Details
 				isset($row['full_name']) ? $row['full_name'] : '',
 				isset($row['dob']) ? $row['dob'] : '',
 				isset($row['gender']) ? $row['gender'] : '',
 				isset($row['mobile']) ? $row['mobile'] : '',
 				isset($row['email']) ? $row['email'] : '',
 				isset($row['city_district_state']) ? $row['city_district_state'] : '',
+				isset($row['address']) ? $row['address'] : '',
+				isset($row['parent_contact']) ? $row['parent_contact'] : '',
+				isset($row['preferred_language']) ? $row['preferred_language'] : '',
+
+				// Section 2: Education
+				isset($row['qualification']) ? $row['qualification'] : '',
+				isset($row['school_college_name']) ? $row['school_college_name'] : '',
+				isset($row['board_university']) ? $row['board_university'] : '',
 				isset($row['course_applying']) ? $row['course_applying'] : '',
 				isset($row['target_college']) ? $row['target_college'] : '',
 				isset($row['academic_year']) ? $row['academic_year'] : '',
 				isset($row['marks_cgpa']) ? $row['marks_cgpa'] : '',
+				isset($row['admission_status']) ? $row['admission_status'] : '',
+				isset($row['annual_tuition_fee']) ? $row['annual_tuition_fee'] : '0.00',
+				isset($row['hostel_required']) ? $row['hostel_required'] : '',
+				isset($row['is_first_graduate']) ? $row['is_first_graduate'] : '',
+				isset($row['career_goal']) ? $row['career_goal'] : '',
+
+				// Section 3: Family & Circumstances
 				isset($row['father_guardian_name']) ? $row['father_guardian_name'] : '',
-				isset($row['annual_income']) ? $row['annual_income'] : '',
-				isset($row['status']) ? $row['status'] : '',
-				isset($row['created_at']) ? date('d-m-Y H:i', strtotime($row['created_at'])) : ''
+				isset($row['mother_name']) ? $row['mother_name'] : '',
+				$father_occ,
+				isset($row['mother_occupation']) ? $row['mother_occupation'] : '',
+				isset($row['family_members_count']) ? $row['family_members_count'] : '1',
+				isset($row['earning_members_count']) ? $row['earning_members_count'] : '1',
+				isset($row['annual_income']) ? $row['annual_income'] : '0.00',
+				isset($row['father_monthly_income']) ? $row['father_monthly_income'] : '0.00',
+				isset($row['required_support_amount']) ? $row['required_support_amount'] : '0.00',
+				isset($row['financial_commitments']) ? $row['financial_commitments'] : '',
+				isset($row['why_seeking_support']) ? $row['why_seeking_support'] : '',
+				isset($row['other_scholarships']) ? $row['other_scholarships'] : '',
+				$circ_info,
+
+				// Admin Audit
+				isset($row['admin_remarks']) ? $row['admin_remarks'] : ''
 			));
 		}
 		fclose($output);

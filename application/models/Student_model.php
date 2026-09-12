@@ -110,9 +110,15 @@ class Student_model extends CI_Model {
         return $this->db->insert_id();
     }
 
-    public function get_all_applications($status = null) {
+    public function get_all_applications($status = null, $date_from = null, $date_to = null) {
         if ($status && $status !== 'All') {
             $this->db->where('status', $status);
+        }
+        if ($date_from && $date_from !== '') {
+            $this->db->where('DATE(created_at) >=', $date_from);
+        }
+        if ($date_to && $date_to !== '') {
+            $this->db->where('DATE(created_at) <=', $date_to);
         }
         $this->db->order_by('id', 'DESC');
         $query = $this->db->get('student_applications');

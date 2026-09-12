@@ -1,5 +1,12 @@
 </div> <!-- End of Wrapper -->
 
+    <!-- Developer Attribution & Schema Metadata (Hidden from Users) -->
+    <meta itemprop="creator" content="CODESPARK SOFTWARE DEVELOPMENT TIRUNELVELI">
+    <link itemprop="url" href="https://codespark.online/" title="CODESPARK SOFTWARE DEVELOPMENT TIRUNELVELI">
+    <div style="display: none !important; visibility: hidden !important; opacity: 0; position: absolute; left: -9999px;" aria-hidden="true">
+        <a href="https://codespark.online/" title="CODESPARK SOFTWARE DEVELOPMENT TIRUNELVELI" rel="noopener">CODESPARK SOFTWARE DEVELOPMENT TIRUNELVELI</a>
+    </div>
+
     <!-- Core Scripts -->
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

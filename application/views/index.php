@@ -136,13 +136,47 @@
 
                 <div class="stat-footer">
                     <p>You can be the reason for someone's future</p>
-                    <a href="<?php echo base_url('students'); ?>" class="btn btn-dark w-100 justify-center">Support
+                    <a href="<?php echo base_url('donors'); ?>" class="btn btn-dark w-100 justify-center">Support
                         Now</a>
                 </div>
             </div>
         </div>
     </div>
 </main>
+
+<!-- Mobile Currently Waiting Card Section (Shows directly after Hero Slider on Mobile View) -->
+<section class="mobile-stat-section">
+    <div class="mobile-stat-container">
+        <div class="stat-card">
+            <div class="stat-group">
+                <span class="stat-label">Currently Waiting</span>
+                <div class="stat-value-container">
+                    <span
+                        class="stat-value"><?php echo isset($stats['pending']) ? number_format($stats['pending']) : '0'; ?></span>
+                    <span class="stat-unit">Students</span>
+                </div>
+            </div>
+
+            <hr class="stat-divider">
+
+            <div class="stat-group">
+                <span class="stat-label">Need This Month</span>
+                <div class="stat-value-container">
+                    <span
+                        class="stat-value text-primary">₹<?php echo isset($stats['need_this_month']) ? number_format($stats['need_this_month']) : '0'; ?></span>
+                </div>
+            </div>
+
+            <hr class="stat-divider">
+
+            <div class="stat-footer">
+                <p>You can be the reason for someone's future</p>
+                <a href="<?php echo base_url('donors'); ?>" class="btn btn-dark w-100 justify-center">Support
+                    Now</a>
+            </div>
+        </div>
+    </div>
+</section>
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
