@@ -25,7 +25,23 @@ date_default_timezone_set('Asia/Kolkata');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://localhost/sindhikumsamugam/';
+// Auto-detect environment (Live domain vs Localhost)
+$is_live = false;
+if (isset($_SERVER['HTTP_HOST']) && strpos(strtolower($_SERVER['HTTP_HOST']), 'sindhikumsamugam.com') !== false) {
+    $is_live = true;
+} elseif (isset($_SERVER['SERVER_NAME']) && strpos(strtolower($_SERVER['SERVER_NAME']), 'sindhikumsamugam.com') !== false) {
+    $is_live = true;
+} elseif (strpos(__DIR__, 'vhosts') !== false || strpos(__DIR__, 'sindhikumsamugam.com') !== false) {
+    $is_live = true;
+}
+
+if ($is_live) {
+    $protocol = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') || (isset($_SERVER['SERVER_PORT']) && $_SERVER['SERVER_PORT'] == 443) || (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https') ? 'https://' : 'http://';
+    $host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'sindhikumsamugam.com';
+    $config['base_url'] = $protocol . $host . '/';
+} else {
+    $config['base_url'] = 'http://localhost/sindhikumsamugam/';
+}
 
 /*
 |--------------------------------------------------------------------------

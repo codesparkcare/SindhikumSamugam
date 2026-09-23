@@ -73,12 +73,38 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $active_group = 'default';
 $query_builder = TRUE;
 
+// Auto-detect environment: Live Plesk Server vs Localhost XAMPP
+$is_live = false;
+if (isset($_SERVER['HTTP_HOST']) && strpos(strtolower($_SERVER['HTTP_HOST']), 'sindhikumsamugam.com') !== false) {
+    $is_live = true;
+} elseif (isset($_SERVER['SERVER_NAME']) && strpos(strtolower($_SERVER['SERVER_NAME']), 'sindhikumsamugam.com') !== false) {
+    $is_live = true;
+} elseif (strpos(__DIR__, 'vhosts') !== false || strpos(__DIR__, 'sindhikumsamugam.com') !== false) {
+    $is_live = true;
+}
+
+if ($is_live) {
+    // Live Server (Plesk MariaDB) Credentials
+    $db_hostname = 'localhost';
+    $db_username = 'samugamAK';
+    $db_password = 'Abdul@123*#';
+    $db_database = 'samugamAK';
+    $db_port     = 3306;
+} else {
+    // Localhost XAMPP Credentials
+    $db_hostname = 'localhost';
+    $db_username = 'u520885762_sswebsite';
+    $db_password = 'Rathi@123*#';
+    $db_database = 'u520885762_sswebsite';
+    $db_port     = 3306;
+}
+
 $db['default'] = array(
-	'dsn' => '',
-	'hostname' => 'localhost',
-	'username' => 'u520885762_sswebsite',
-	'password' => 'Rathi@123*#',
-	'database' => 'u520885762_sswebsite',
+	'dsn'	=> '',
+	'hostname' => $db_hostname,
+	'username' => $db_username,
+	'password' => $db_password,
+	'database' => $db_database,
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
@@ -93,5 +119,5 @@ $db['default'] = array(
 	'stricton' => FALSE,
 	'failover' => array(),
 	'save_queries' => TRUE,
-	'port' => 3306
+	'port' => $db_port
 );
