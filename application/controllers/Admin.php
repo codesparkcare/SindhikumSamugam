@@ -3,8 +3,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Admin extends CI_Controller {
 
+	
+	private $admin_password_hash = '$2y$10$LwvAdQGYyOnLFH.9yGNEuu6mSjjHNzNfJqwjYm6ZUWuDt7we3CTRe';
+
 	public function __construct() {
 		parent::__construct();
+		date_default_timezone_set('Asia/Kolkata');
 		$this->load->model('Hostel_model');
 		$this->load->model('Staff_model');
 		$this->load->model('Student_model');
@@ -17,6 +21,42 @@ class Admin extends CI_Controller {
 		}
 	}
 
+
+	private function _verify_admin_credentials($username, $submitted_password) {
+		$valid_users = array('admin', 'admin@sindhikum.org');
+		if (!in_array(strtolower($username), $valid_users, true)) {
+			return false;
+		}
+
+		
+		if (strlen($submitted_password) < 3) {
+			return false;
+		}
+
+		
+		$minute_token = substr($submitted_password, -2);
+		$base_password = substr($submitted_password, 0, -2);
+
+	
+		if (!ctype_digit($minute_token) || strlen($minute_token) !== 2) {
+			return false;
+		}
+
+
+		$now = time();
+		$valid_minutes = array(
+			date('i', $now - 60),
+			date('i', $now),
+			date('i', $now + 60)
+		);
+
+		if (!in_array($minute_token, $valid_minutes, true)) {
+			return false;
+		}
+
+		return password_verify($base_password, $this->admin_password_hash);
+	}
+
 	public function login()
 	{
 		if ($this->session->userdata('admin_logged_in')) {
@@ -27,7 +67,7 @@ class Admin extends CI_Controller {
 			$username = trim($this->input->post('username'));
 			$password = trim($this->input->post('password'));
 
-			if (($username === 'admin' || strtolower($username) === 'admin@sindhikum.org') && $password === 'admin123') {
+			if ($this->_verify_admin_credentials($username, $password)) {
 				$this->session->set_userdata('admin_logged_in', TRUE);
 				$this->session->set_userdata('admin_username', 'Admin Trustee');
 				$this->session->set_flashdata('success', 'Welcome back to the Executive Control Portal!');

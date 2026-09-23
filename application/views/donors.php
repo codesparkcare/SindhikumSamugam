@@ -602,6 +602,61 @@
 
                         </div>
 
+                        <!-- Razorpay Secure Payment Info – Premium Design -->
+                        <div style="margin-top: 1.5rem; border-radius: 18px; overflow: hidden; box-shadow: 0 4px 24px rgba(37,99,235,0.10), 0 1.5px 6px rgba(0,0,0,0.07); border: 1px solid #e0e7ff;">
+
+                            <!-- Top Banner -->
+                            <div style="background: linear-gradient(120deg, #1e3a8a 0%, #2563eb 60%, #3b82f6 100%); padding: 0.85rem 1.25rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem;">
+                                <!-- Shield + Title -->
+                                <div style="display: flex; align-items: center; gap: 0.65rem;">
+                                    <div style="background: rgba(255,255,255,0.15); border-radius: 50%; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 0 0 4px rgba(255,255,255,0.08);">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                                    </div>
+                                    <div>
+                                        <div style="color: #ffffff; font-size: 0.88rem; font-weight: 800; letter-spacing: 0.01em; line-height: 1.2;">Secure Online Donation</div>
+                                        <div style="color: #bfdbfe; font-size: 0.72rem; font-weight: 500; margin-top: 0.1rem;">256-bit SSL Encrypted</div>
+                                    </div>
+                                </div>
+                                <!-- Razorpay Badge -->
+                                <div style="background: #ffffff; border-radius: 10px; padding: 0.3rem 0.75rem; display: flex; align-items: center; gap: 0.4rem; box-shadow: 0 2px 8px rgba(0,0,0,0.12); flex-shrink: 0;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16">
+                                        <rect width="24" height="24" rx="5" fill="#2563eb"/>
+                                        <polygon points="5,19 9,5 17,5 13,12 18,12 9,23" fill="#ffffff"/>
+                                    </svg>
+                                    <span style="font-size: 0.8rem; font-weight: 800; color: #1e3a8a; letter-spacing: -0.3px;">Razorpay</span>
+                                </div>
+                            </div>
+
+                            <!-- Body -->
+                            <div style="background: #f8faff; padding: 1rem 1.25rem 1.15rem;">
+                                <p style="font-size: 0.8rem; color: #475569; margin: 0 0 1rem 0; line-height: 1.65;">
+                                    Your donation is processed securely through <strong style="color: #1e3a8a;">Razorpay</strong>, a trusted payment gateway. All online payments are handled through a <strong>secure and encrypted</strong> payment process, giving you a safe and reliable way to support deserving students.
+                                </p>
+
+                                <!-- Trust Badges Row -->
+                                <div style="display: flex; align-items: stretch; gap: 0.6rem; flex-wrap: wrap;">
+                                    <div style="flex: 1; min-width: 80px; background: linear-gradient(135deg, #ecfdf5, #d1fae5); border: 1px solid #6ee7b7; border-radius: 12px; padding: 0.55rem 0.7rem; display: flex; flex-direction: column; align-items: center; gap: 0.25rem;">
+                                        <div style="background: #059669; border-radius: 50%; width: 26px; height: 26px; display: flex; align-items: center; justify-content: center;">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                                        </div>
+                                        <span style="font-size: 0.72rem; font-weight: 700; color: #065f46;">Secure</span>
+                                    </div>
+                                    <div style="flex: 1; min-width: 80px; background: linear-gradient(135deg, #eff6ff, #dbeafe); border: 1px solid #93c5fd; border-radius: 12px; padding: 0.55rem 0.7rem; display: flex; flex-direction: column; align-items: center; gap: 0.25rem;">
+                                        <div style="background: #2563eb; border-radius: 50%; width: 26px; height: 26px; display: flex; align-items: center; justify-content: center;">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                                        </div>
+                                        <span style="font-size: 0.72rem; font-weight: 700; color: #1e40af;">Trusted</span>
+                                    </div>
+                                    <div style="flex: 1; min-width: 80px; background: linear-gradient(135deg, #faf5ff, #ede9fe); border: 1px solid #c4b5fd; border-radius: 12px; padding: 0.55rem 0.7rem; display: flex; flex-direction: column; align-items: center; gap: 0.25rem;">
+                                        <div style="background: #7c3aed; border-radius: 50%; width: 26px; height: 26px; display: flex; align-items: center; justify-content: center;">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                                        </div>
+                                        <span style="font-size: 0.72rem; font-weight: 700; color: #5b21b6;">Transparent</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <button type="submit" id="submitPledgeBtn" class="btn btn-primary w-100 justify-center"
                             style="padding: 1.1rem; font-size: 1.1rem; border-radius: 12px; font-weight: 700; margin-top: 1.25rem;">
                             Donate Now 🤲
