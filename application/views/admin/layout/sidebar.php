@@ -34,6 +34,37 @@
                 <span>Contact Enquiries</span>
             </a>
         </li>
+        <li class="menu-title mt-2">Item Donation Portal</li>
+        <li>
+            <a href="<?php echo base_url('admin/manage_products'); ?>" class="<?php echo ($this->uri->segment(2) == 'manage_products' || $this->uri->segment(2) == 'products') ? 'active' : ''; ?>">
+                <i class="fa-solid fa-box-open" style="font-size: 1.05rem;"></i>
+                <div class="d-flex justify-content-between align-items-center w-100">
+                    <span>Educational Items</span>
+                    <?php 
+                        $ci =& get_instance();
+                        $p_pending = $ci->db->where('status', 'pending')->count_all_results('products');
+                        if ($p_pending > 0): 
+                    ?>
+                        <span class="badge bg-warning text-dark px-1.5 py-0.5 ms-2" style="font-size: 0.68rem; font-weight: 700;"><?php echo $p_pending; ?></span>
+                    <?php endif; ?>
+                </div>
+            </a>
+        </li>
+        <li>
+            <a href="<?php echo base_url('admin/product_applications'); ?>" class="<?php echo ($this->uri->segment(2) == 'product_applications') ? 'active' : ''; ?>">
+                <i class="fa-solid fa-clipboard-list" style="font-size: 1.05rem;"></i>
+                <div class="d-flex justify-content-between align-items-center w-100">
+                    <span>Product Applications</span>
+                    <?php 
+                        $a_pending = $ci->db->where('status', 'Pending')->count_all_results('product_applications');
+                        if ($a_pending > 0): 
+                    ?>
+                        <span class="badge bg-info text-white px-1.5 py-0.5 ms-2" style="font-size: 0.68rem; font-weight: 700;"><?php echo $a_pending; ?></span>
+                    <?php endif; ?>
+                </div>
+            </a>
+        </li>
+        <li class="menu-title mt-2">Platform Administration</li>
         <li>
             <a href="<?php echo base_url('admin/settings'); ?>" class="<?php echo ($this->uri->segment(2) == 'settings') ? 'active' : ''; ?>">
                 <i class="fa-solid fa-sliders" style="font-size: 1.05rem;"></i>

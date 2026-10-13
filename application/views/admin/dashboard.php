@@ -196,6 +196,94 @@
 
                 </div>
             </div>
+        </div>
+    </div>
+
+    <!-- Educational Items & Product Applications Quick Cards Row -->
+    <div class="row g-4 mb-4">
+        <div class="col-lg-6">
+            <div class="card border-0 shadow-sm h-100" style="border-radius: 24px; background: #ffffff; border: 1px solid #e2e8f0; position: relative; overflow: hidden;">
+                <div class="card-body p-4">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div class="d-flex align-items-center gap-2.5">
+                            <div style="width: 44px; height: 44px; border-radius: 14px; background: #d1fae5; color: #059669; display: flex; align-items: center; justify-content: center; font-size: 1.25rem;">
+                                <i class="fa-solid fa-box-open"></i>
+                            </div>
+                            <div>
+                                <h5 class="fw-bold mb-0 text-dark" style="font-size: 1.05rem;">Educational Item Listings</h5>
+                                <span class="text-muted" style="font-size: 0.8rem;">Donor listings & countdown timer management</span>
+                            </div>
+                        </div>
+                        <a href="<?php echo base_url('admin/manage_products'); ?>" class="btn btn-sm btn-outline-success fw-bold" style="border-radius: 10px;">
+                            Manage →
+                        </a>
+                    </div>
+                    <div class="row g-2 text-center mt-2">
+                        <div class="col-4">
+                            <div class="p-2.5 rounded-3 bg-light">
+                                <span class="text-muted fw-bold d-block text-uppercase" style="font-size: 0.68rem;">Total Items</span>
+                                <h4 class="fw-bold mb-0 text-dark"><?php echo isset($product_stats['total']) ? $product_stats['total'] : 0; ?></h4>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="p-2.5 rounded-3" style="background: #fef3c7;">
+                                <span class="text-warning-emphasis fw-bold d-block text-uppercase" style="font-size: 0.68rem;">Pending</span>
+                                <h4 class="fw-bold mb-0 text-warning-emphasis"><?php echo isset($product_stats['pending']) ? $product_stats['pending'] : 0; ?></h4>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="p-2.5 rounded-3" style="background: #d1fae5;">
+                                <span class="text-success fw-bold d-block text-uppercase" style="font-size: 0.68rem;">Live / Active</span>
+                                <h4 class="fw-bold mb-0 text-success"><?php echo isset($product_stats['active']) ? $product_stats['active'] : 0; ?></h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+            <div class="card border-0 shadow-sm h-100" style="border-radius: 24px; background: #ffffff; border: 1px solid #e2e8f0; position: relative; overflow: hidden;">
+                <div class="card-body p-4">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div class="d-flex align-items-center gap-2.5">
+                            <div style="width: 44px; height: 44px; border-radius: 14px; background: #e0e7ff; color: #4338ca; display: flex; align-items: center; justify-content: center; font-size: 1.25rem;">
+                                <i class="fa-solid fa-clipboard-list"></i>
+                            </div>
+                            <div>
+                                <h5 class="fw-bold mb-0 text-dark" style="font-size: 1.05rem;">Student Product Applications</h5>
+                                <span class="text-muted" style="font-size: 0.8rem;">Requests submitted by students for donated items</span>
+                            </div>
+                        </div>
+                        <a href="<?php echo base_url('admin/product_applications'); ?>" class="btn btn-sm btn-outline-primary fw-bold" style="border-radius: 10px;">
+                            Review →
+                        </a>
+                    </div>
+                    <div class="row g-2 text-center mt-2">
+                        <div class="col-4">
+                            <div class="p-2.5 rounded-3 bg-light">
+                                <span class="text-muted fw-bold d-block text-uppercase" style="font-size: 0.68rem;">Total Requests</span>
+                                <h4 class="fw-bold mb-0 text-dark"><?php echo isset($product_app_stats['total']) ? $product_app_stats['total'] : 0; ?></h4>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="p-2.5 rounded-3" style="background: #fef3c7;">
+                                <span class="text-warning-emphasis fw-bold d-block text-uppercase" style="font-size: 0.68rem;">Pending Review</span>
+                                <h4 class="fw-bold mb-0 text-warning-emphasis"><?php echo isset($product_app_stats['pending']) ? $product_app_stats['pending'] : 0; ?></h4>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="p-2.5 rounded-3" style="background: #e0f2fe;">
+                                <span class="text-info fw-bold d-block text-uppercase" style="font-size: 0.68rem;">Approved / Given</span>
+                                <h4 class="fw-bold mb-0 text-info"><?php echo isset($product_app_stats['approved']) ? ($product_app_stats['approved'] + ($product_app_stats['delivered'] ?? 0)) : 0; ?></h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Recent Contact Form Enquiries Section -->
     <div class="card border-0 shadow-sm mb-4" style="border-radius: 24px; background: #ffffff; border: 1px solid #e2e8f0; overflow: hidden;">
         <div class="card-header bg-transparent border-0 p-4 pb-0 d-flex justify-content-between align-items-center flex-wrap gap-2">

@@ -497,4 +497,160 @@ class Welcome extends CI_Controller {
 			echo json_encode(array('status' => 'not_found', 'message' => 'Application Reference Number not found'));
 		}
 	}
+
+	public function products()
+	{
+		$this->load->model('Product_model');
+		$category = $this->input->get('category');
+		$search = $this->input->get('search');
+
+		$data['products'] = $this->Product_model->get_active_products($category, $search);
+		$data['selected_category'] = $category ? $category : 'All';
+		$data['search_query'] = $search ? $search : '';
+		$data['stats'] = $this->Product_model->get_stats();
+
+		$this->load->view('products', $data);
+	}
+
+	public function upload_product()
+	{
+		$this->load->model('Product_model');
+
+		// If GET request, show dedicated upload product page
+		if (!$this->input->post()) {
+			$data['stats'] = $this->Product_model->get_stats();
+			$this->load->view('upload_product', $data);
+			return;
+		}
+
+		$is_ajax = $this->input->is_ajax_request() || $this->input->post('is_ajax');
+
+		// Validation
+		$seller_name = trim($this->input->post('seller_name'));
+		$seller_phone = trim($this->input->post('seller_phone'));
+		$title = trim($this->input->post('title'));
+		$description = trim($this->input->post('description'));
+
+		if (empty($seller_name) || empty($seller_phone) || empty($title) || empty($description)) {
+			if ($is_ajax) {
+				header('Content-Type: application/json');
+				echo json_encode(array('status' => 'error', 'message' => 'Please fill in all required fields (Name, Phone, Title, Description).'));
+				return;
+			}
+			$this->session->set_flashdata('error', 'Please fill in all required fields.');
+			redirect('products/upload');
+			return;
+		}
+
+		$duration_hours = $this->input->post('duration_hours') ? intval($this->input->post('duration_hours')) : 72;
+		if ($duration_hours <= 0) $duration_hours = 72;
+
+		// Handle image upload
+		$image_filename = NULL;
+		if (!empty($_FILES['product_image']['name'])) {
+			$upload_dir = './uploads/products/';
+			if (!is_dir($upload_dir)) {
+				@mkdir($upload_dir, 0777, TRUE);
+			}
+
+			$config['upload_path']   = $upload_dir;
+			$config['allowed_types'] = 'jpg|jpeg|png|webp|gif';
+			$config['max_size']      = 5120; // 5MB
+			$config['encrypt_name']  = TRUE;
+
+			$this->load->library('upload', $config);
+			if ($this->upload->do_upload('product_image')) {
+				$upload_data = $this->upload->data();
+				$image_filename = $upload_data['file_name'];
+			} else {
+				// Non-fatal error, but capture if desired
+				log_message('error', 'Product image upload error: ' . $this->upload->display_errors());
+			}
+		}
+
+		$product_data = array(
+			'seller_name'     => $seller_name,
+			'seller_email'    => trim($this->input->post('seller_email')),
+			'seller_phone'    => $seller_phone,
+			'seller_city'     => trim($this->input->post('seller_city')),
+			'title'           => $title,
+			'category'        => $this->input->post('category') ? $this->input->post('category') : 'Books & Study Materials',
+			'condition_type'  => $this->input->post('condition_type') ? $this->input->post('condition_type') : 'Good',
+			'price'           => 0.00,
+			'original_price'  => NULL,
+			'is_free'         => 1,
+			'description'     => $description,
+			'image'           => $image_filename,
+			'duration_hours'  => $duration_hours,
+			'status'          => 'pending',
+			'created_at'      => date('Y-m-d H:i:s')
+		);
+
+		$this->Product_model->insert_product($product_data);
+
+		if ($is_ajax) {
+			header('Content-Type: application/json');
+			echo json_encode(array(
+				'status'  => 'success',
+				'message' => 'Your product has been submitted successfully! It is pending admin review and will appear on the page with your chosen time limit once approved.'
+			));
+			return;
+		}
+
+		$this->session->set_flashdata('success', 'Your product has been submitted successfully! It will appear once approved by the admin.');
+		redirect('products');
+	}
+
+	public function ajax_get_product($id)
+	{
+		$this->load->model('Product_model');
+		$product = $this->Product_model->get_product_by_id($id);
+
+		header('Content-Type: application/json');
+		if ($product) {
+			echo json_encode(array('status' => 'success', 'data' => $product));
+		} else {
+			echo json_encode(array('status' => 'error', 'message' => 'Product not found.'));
+		}
+	}
+
+	public function apply_product()
+	{
+		$this->load->model('Product_model');
+
+		$applicant_name = trim($this->input->post('applicant_name'));
+		$applicant_phone = trim($this->input->post('applicant_phone'));
+		$product_id = intval($this->input->post('product_id'));
+		$product_title = trim($this->input->post('product_title'));
+
+		if (empty($applicant_name) || empty($applicant_phone) || empty($product_id)) {
+			header('Content-Type: application/json');
+			echo json_encode(array('status' => 'error', 'message' => 'Please provide your name and phone number.'));
+			return;
+		}
+
+		$data = array(
+			'product_id'      => $product_id,
+			'product_title'   => $product_title,
+			'applicant_name'  => $applicant_name,
+			'applicant_phone' => $applicant_phone,
+			'applicant_email' => trim($this->input->post('applicant_email')),
+			'institution'     => trim($this->input->post('institution')),
+			'course_year'     => trim($this->input->post('course_year')),
+			'address'         => trim($this->input->post('address')),
+			'reason'          => trim($this->input->post('reason')),
+			'status'          => 'Pending',
+			'created_at'      => date('Y-m-d H:i:s')
+		);
+
+		$this->Product_model->insert_application($data);
+
+		header('Content-Type: application/json');
+		echo json_encode(array(
+			'status' => 'success',
+			'message' => 'Your application for "' . $product_title . '" has been submitted successfully! We will contact you soon.'
+		));
+	}
 }
+
+

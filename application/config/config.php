@@ -40,7 +40,15 @@ if ($is_live) {
     $host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'sindhikumsamugam.com';
     $config['base_url'] = $protocol . $host . '/';
 } else {
-    $config['base_url'] = 'http://localhost/sindhikumsamugam/';
+    $protocol = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') || (isset($_SERVER['SERVER_PORT']) && $_SERVER['SERVER_PORT'] == 443) || (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https') ? 'https://' : 'http://';
+    $host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost';
+    if (isset($_SERVER['SCRIPT_NAME'])) {
+        $subfolder = str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME']));
+        $subfolder = rtrim($subfolder, '/') . '/';
+        $config['base_url'] = $protocol . $host . $subfolder;
+    } else {
+        $config['base_url'] = 'http://localhost/SindikumSamugam/';
+    }
 }
 
 /*
@@ -405,7 +413,7 @@ $config['sess_driver'] = 'files';
 $config['sess_cookie_name'] = 'ci_session';
 $config['sess_samesite'] = 'Lax';
 $config['sess_expiration'] = 7200;
-$config['sess_save_path'] = '/tmp';
+$config['sess_save_path'] = $is_live ? '/tmp' : NULL;
 $config['sess_match_ip'] = FALSE;
 $config['sess_time_to_update'] = 300;
 $config['sess_regenerate_destroy'] = FALSE;

@@ -13,6 +13,7 @@ class Admin extends CI_Controller {
 		$this->load->model('Staff_model');
 		$this->load->model('Student_model');
 		$this->load->model('Enquiry_model');
+		$this->load->model('Product_model');
 	}
 
 	private function _check_auth() {
@@ -97,6 +98,8 @@ class Admin extends CI_Controller {
 		$data['enquiry_stats'] = $this->Enquiry_model->get_stats();
 		$data['recent_enquiries'] = $this->Enquiry_model->get_all_enquiries('All', 5);
 		$data['monthly_analytics'] = $this->Student_model->get_monthly_analytics();
+		$data['product_stats'] = $this->Product_model->get_stats();
+		$data['product_app_stats'] = $this->Product_model->get_application_stats();
 
 		$this->load->view('admin/layout/header');
 		$this->load->view('admin/layout/sidebar');
@@ -732,6 +735,280 @@ class Admin extends CI_Controller {
 				isset($row['status']) ? $row['status'] : '',
 				isset($row['admin_notes']) ? $row['admin_notes'] : '',
 				isset($row['created_at']) ? date('d-m-Y H:i', strtotime($row['created_at'])) : ''
+			));
+		}
+		fclose($output);
+		exit;
+	}
+
+	// ==========================================
+	// Educational Products / Item Listings
+	// ==========================================
+
+	public function products()
+	{
+		$this->manage_products();
+	}
+
+	public function manage_products()
+	{
+		$this->_check_auth();
+		$status    = $this->input->get('status') ? $this->input->get('status') : null;
+		$date_from = $this->input->get('date_from') ? $this->input->get('date_from') : null;
+		$date_to   = $this->input->get('date_to') ? $this->input->get('date_to') : null;
+		$search    = $this->input->get('search') ? trim($this->input->get('search')) : null;
+
+		$data['stats']          = $this->Product_model->get_stats();
+		$data['products']       = $this->Product_model->get_admin_products($status, $date_from, $date_to, $search);
+		$data['current_filter'] = $status ? $status : 'All';
+		$data['date_from']      = $date_from;
+		$data['date_to']        = $date_to;
+		$data['search']         = $search;
+
+		$this->load->view('admin/layout/header');
+		$this->load->view('admin/layout/sidebar');
+		$this->load->view('admin/manage_products', $data);
+		$this->load->view('admin/layout/footer');
+	}
+
+	public function approve_product($id)
+	{
+		$this->_check_auth();
+		if ($id) {
+			$duration_hours = $this->input->post('duration_hours');
+			$this->Product_model->approve_product($id, $duration_hours);
+			$this->session->set_flashdata('success', 'Educational item has been approved and is now LIVE with a countdown timer!');
+		} else {
+			$this->session->set_flashdata('error', 'Invalid product ID.');
+		}
+		redirect($this->input->server('HTTP_REFERER') ? $this->input->server('HTTP_REFERER') : 'admin/manage_products');
+	}
+
+	public function reject_product($id)
+	{
+		$this->_check_auth();
+		if ($id) {
+			$reason = $this->input->post('rejection_reason') ? trim($this->input->post('rejection_reason')) : 'Listing rejected after admin review.';
+			$this->Product_model->reject_product($id, $reason);
+			$this->session->set_flashdata('success', 'Educational item listing has been rejected.');
+		} else {
+			$this->session->set_flashdata('error', 'Invalid product ID.');
+		}
+		redirect($this->input->server('HTTP_REFERER') ? $this->input->server('HTTP_REFERER') : 'admin/manage_products');
+	}
+
+	public function delete_product($id)
+	{
+		$this->_check_auth();
+		if ($id) {
+			$this->Product_model->delete_product($id);
+			$this->session->set_flashdata('success', 'Product listing deleted successfully.');
+		} else {
+			$this->session->set_flashdata('error', 'Invalid product ID.');
+		}
+		redirect($this->input->server('HTTP_REFERER') ? $this->input->server('HTTP_REFERER') : 'admin/manage_products');
+	}
+
+	public function add_product_admin()
+	{
+		$this->_check_auth();
+		if ($this->input->post()) {
+			$seller_name  = trim($this->input->post('seller_name'));
+			$seller_phone = trim($this->input->post('seller_phone'));
+			$title        = trim($this->input->post('title'));
+			$description  = trim($this->input->post('description'));
+
+			if (empty($seller_name) || empty($seller_phone) || empty($title) || empty($description)) {
+				$this->session->set_flashdata('error', 'Please fill in all required fields (Name, Phone, Title, Description).');
+				redirect('admin/manage_products');
+				return;
+			}
+
+			$duration_hours = $this->input->post('duration_hours') ? intval($this->input->post('duration_hours')) : 72;
+			if ($duration_hours <= 0) $duration_hours = 72;
+
+			$image_filename = NULL;
+			if (!empty($_FILES['product_image']['name'])) {
+				$upload_dir = './uploads/products/';
+				if (!is_dir($upload_dir)) {
+					@mkdir($upload_dir, 0777, TRUE);
+				}
+
+				$config['upload_path']   = $upload_dir;
+				$config['allowed_types'] = 'jpg|jpeg|png|webp|gif';
+				$config['max_size']      = 5120; // 5MB
+				$config['encrypt_name']  = TRUE;
+
+				$this->load->library('upload', $config);
+				if ($this->upload->do_upload('product_image')) {
+					$upload_data = $this->upload->data();
+					$image_filename = $upload_data['file_name'];
+				}
+			}
+
+			$status = $this->input->post('status') ? $this->input->post('status') : 'approved';
+			$now = time();
+			$approved_at = ($status === 'approved') ? date('Y-m-d H:i:s', $now) : NULL;
+			$expires_at  = ($status === 'approved') ? date('Y-m-d H:i:s', $now + ($duration_hours * 3600)) : NULL;
+
+			$product_data = array(
+				'seller_name'     => $seller_name,
+				'seller_email'    => trim($this->input->post('seller_email')),
+				'seller_phone'    => $seller_phone,
+				'seller_city'     => trim($this->input->post('seller_city')),
+				'title'           => $title,
+				'category'        => $this->input->post('category') ? $this->input->post('category') : 'Books & Study Materials',
+				'condition_type'  => $this->input->post('condition_type') ? $this->input->post('condition_type') : 'Good',
+				'price'           => 0.00,
+				'original_price'  => NULL,
+				'is_free'         => 1,
+				'description'     => $description,
+				'image'           => $image_filename,
+				'duration_hours'  => $duration_hours,
+				'status'          => $status,
+				'approved_at'     => $approved_at,
+				'expires_at'      => $expires_at,
+				'created_at'      => date('Y-m-d H:i:s')
+			);
+
+			$this->Product_model->insert_product($product_data);
+			$this->session->set_flashdata('success', 'Educational item listing added successfully!');
+		}
+		redirect('admin/manage_products');
+	}
+
+	public function export_products_excel()
+	{
+		$this->_check_auth();
+		$status    = $this->input->get('status');
+		$date_from = $this->input->get('date_from');
+		$date_to   = $this->input->get('date_to');
+
+		$products = $this->Product_model->get_admin_products($status, $date_from, $date_to);
+
+		$filename = 'Educational_Items_Listings_' . date('Y-m-d') . '.csv';
+		header('Content-Type: text/csv; charset=utf-8');
+		header('Content-Disposition: attachment; filename="' . $filename . '"');
+		header('Pragma: no-cache');
+		header('Expires: 0');
+
+		$output = fopen('php://output', 'w');
+		fprintf($output, chr(0xEF).chr(0xBB).chr(0xBF));
+
+		fputcsv($output, array(
+			'ID', 'Title', 'Category', 'Condition', 'Donor Name', 'Donor Phone', 'Donor Email', 'City', 'Duration (Hours)', 'Status', 'Approved At', 'Expires At', 'Date Submitted'
+		));
+
+		foreach ($products as $row) {
+			fputcsv($output, array(
+				$row['id'],
+				$row['title'],
+				$row['category'],
+				$row['condition_type'],
+				$row['seller_name'],
+				$row['seller_phone'],
+				$row['seller_email'],
+				$row['seller_city'],
+				$row['duration_hours'],
+				ucfirst($row['status']),
+				$row['approved_at'] ? date('d-m-Y H:i', strtotime($row['approved_at'])) : '-',
+				$row['expires_at'] ? date('d-m-Y H:i', strtotime($row['expires_at'])) : '-',
+				date('d-m-Y H:i', strtotime($row['created_at']))
+			));
+		}
+		fclose($output);
+		exit;
+	}
+
+	// ==========================================
+	// Product Applications (Student Requests)
+	// ==========================================
+
+	public function product_applications()
+	{
+		$this->_check_auth();
+		$status    = $this->input->get('status') ? $this->input->get('status') : null;
+		$date_from = $this->input->get('date_from') ? $this->input->get('date_from') : null;
+		$date_to   = $this->input->get('date_to') ? $this->input->get('date_to') : null;
+		$search    = $this->input->get('search') ? trim($this->input->get('search')) : null;
+
+		$data['stats']          = $this->Product_model->get_application_stats();
+		$data['applications']   = $this->Product_model->get_admin_applications($status, $date_from, $date_to, $search);
+		$data['current_filter'] = $status ? $status : 'All';
+		$data['date_from']      = $date_from;
+		$data['date_to']        = $date_to;
+		$data['search']         = $search;
+
+		$this->load->view('admin/layout/header');
+		$this->load->view('admin/layout/sidebar');
+		$this->load->view('admin/product_applications', $data);
+		$this->load->view('admin/layout/footer');
+	}
+
+	public function update_product_application_status()
+	{
+		$this->_check_auth();
+		$id          = $this->input->post('id');
+		$status      = $this->input->post('status');
+		$admin_notes = $this->input->post('admin_notes');
+
+		if ($id && $status) {
+			$this->Product_model->update_application_status($id, $status, $admin_notes);
+			$this->session->set_flashdata('success', 'Application status updated to ' . $status);
+		} else {
+			$this->session->set_flashdata('error', 'Failed to update application status.');
+		}
+		redirect($this->input->server('HTTP_REFERER') ? $this->input->server('HTTP_REFERER') : 'admin/product_applications');
+	}
+
+	public function delete_product_application($id)
+	{
+		$this->_check_auth();
+		if ($id) {
+			$this->Product_model->delete_application($id);
+			$this->session->set_flashdata('success', 'Product application deleted successfully.');
+		} else {
+			$this->session->set_flashdata('error', 'Invalid application ID.');
+		}
+		redirect('admin/product_applications');
+	}
+
+	public function export_product_applications_excel()
+	{
+		$this->_check_auth();
+		$status    = $this->input->get('status');
+		$date_from = $this->input->get('date_from');
+		$date_to   = $this->input->get('date_to');
+
+		$apps = $this->Product_model->get_admin_applications($status, $date_from, $date_to);
+
+		$filename = 'Product_Applications_Export_' . date('Y-m-d') . '.csv';
+		header('Content-Type: text/csv; charset=utf-8');
+		header('Content-Disposition: attachment; filename="' . $filename . '"');
+		header('Pragma: no-cache');
+		header('Expires: 0');
+
+		$output = fopen('php://output', 'w');
+		fprintf($output, chr(0xEF).chr(0xBB).chr(0xBF));
+
+		fputcsv($output, array(
+			'ID', 'Student Name', 'Phone', 'Email', 'Institution', 'Course / Year', 'City / Address', 'Requested Item', 'Reason / Need', 'Status', 'Admin Notes', 'Date Submitted'
+		));
+
+		foreach ($apps as $row) {
+			fputcsv($output, array(
+				$row['id'],
+				$row['applicant_name'],
+				$row['applicant_phone'],
+				$row['applicant_email'],
+				$row['institution'],
+				$row['course_year'],
+				$row['address'],
+				$row['product_title'],
+				$row['reason'],
+				ucfirst($row['status']),
+				isset($row['admin_notes']) ? $row['admin_notes'] : '',
+				date('d-m-Y H:i', strtotime($row['created_at']))
 			));
 		}
 		fclose($output);
